@@ -192,6 +192,19 @@ class SpeechCoach {
     initCharts() {
         this.initSpeedChart();
         this.initFillerChart();
+
+        window.addEventListener('resize', this.handleChartResize.bind(this));
+    }
+
+    handleChartResize() {
+        requestAnimationFrame(() => {
+            if (this.charts.speed) {
+                this.charts.speed.resize();
+            }
+            if (this.charts.filler) {
+                this.charts.filler.resize();
+            }
+        });
     }
 
     initSpeedChart() {
@@ -200,35 +213,107 @@ class SpeechCoach {
 
         this.charts.speed = echarts.init(chartDom);
         this.charts.speed.setOption({
-            grid: { top: 20, left: 35, right: 15, bottom: 20 },
-            tooltip: { trigger: 'axis', formatter: '第 {b} 秒<br/>语速: {c} 字/分钟' },
+            grid: { 
+                top: 20, 
+                left: 35, 
+                right: 15, 
+                bottom: 20,
+                containLabel: true // 确保标签不被裁剪
+            },
+            tooltip: { 
+                trigger: 'axis',
+                formatter: '第 {b} 秒<br/>语速: {c} 字/分钟',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
             xAxis: {
                 type: 'category',
                 data: [],
-                axisLabel: { fontSize: 10, color: this.getChartTextColor() }
+                axisLabel: { 
+                    fontSize: 10, 
+                    color: this.getChartTextColor(),
+                    rotate: 0, // 默认不旋转
+                    interval: 'auto', // 自动间隔
+                    hideOverlap: true // 隐藏重叠的标签
+                },
+                axisLine: { lineStyle: { color: this.getChartLineColor() } },
+                axisTick: { alignWithLabel: true }
             },
             yAxis: {
                 type: 'value',
                 min: 0,
                 max: 200,
-                splitLine: { lineStyle: { color: this.getChartLineColor(), type: 'dashed' } },
-                axisLabel: { fontSize: 10, color: this.getChartTextColor() }
+                splitLine: { 
+                    lineStyle: { 
+                        color: this.getChartLineColor(), 
+                        type: 'dashed' 
+                    } 
+                },
+                axisLabel: { 
+                    fontSize: 10, 
+                    color: this.getChartTextColor() 
+                },
+                axisLine: { show: false }
             },
             series: [{
                 data: [],
                 type: 'line',
                 smooth: true,
                 lineStyle: { color: '#4b7bec', width: 2 },
-                areaStyle: { color: 'rgba(75, 123, 236, 0.05)' },
+                areaStyle: { 
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(75, 123, 236, 0.3)' },
+                        { offset: 1, color: 'rgba(75, 123, 236, 0.05)' }
+                    ])
+                },
                 symbol: 'circle',
                 symbolSize: 6,
+                showSymbol: false, // 默认不显示所有点
                 markPoint: {
                     data: [
-                        { type: 'max', name: '峰值' },
-                        { type: 'min', name: '谷值' }
-                    ]
+                        { type: 'max', name: '峰值', symbolSize: 30 },
+                        { type: 'min', name: '谷值', symbolSize: 30 }
+                    ],
+                    symbol: 'pin',
+                    symbolSize: 40
+                },
+                markLine: {
+                    data: [
+                        { 
+                            name: '理想语速下限', 
+                            yAxis: 100, 
+                            lineStyle: { color: '#10b981', type: 'dashed', width: 1 } 
+                        },
+                        { 
+                            name: '理想语速上限', 
+                            yAxis: 160, 
+                            lineStyle: { color: '#10b981', type: 'dashed', width: 1 } 
+                        }
+                    ],
+                    symbol: 'none',
+                    label: { show: false }
+                },
+                // 根据数据量动态调整显示效果
+                encode: {
+                    x: 0,
+                    y: 1
                 }
-            }]
+            }],
+            // 数据缩放组件，当数据量多时可以拖动查看
+            dataZoom: this.state.stats.speedHistory.length > 15 ? [{
+                type: 'slider',
+                start: Math.max(0, 100 - 15 / this.state.stats.speedHistory.length * 100),
+                end: 100,
+                bottom: 0,
+                height: 20,
+                borderColor: 'transparent',
+                backgroundColor: this.state.isDarkMode ? '#333' : '#f0f0f0',
+                fillerColor: this.state.isDarkMode ? 'rgba(75, 123, 236, 0.3)' : 'rgba(75, 123, 236, 0.2)',
+                handleStyle: {
+                    color: this.state.isDarkMode ? '#666' : '#999'
+                }
+            }] : []
         });
     }
 
@@ -336,10 +421,18 @@ class SpeechCoach {
                 this.state.isPaused = false;
                 this.updateStatus('active', '聆听中...');
                 
+                // 计算暂停时长
                 if (this.state.stats.pauseTime) {
                     this.state.stats.totalPausedDuration += Date.now() - this.state.stats.pauseTime;
                     this.state.stats.pauseTime = null;
                 }
+                
+                // 重新启动时长动画
+                this.startDurationAnimation();
+                
+                // 更新按钮状态和图标
+                this.updateButtons();
+                this.updatePauseButtonIcon('resume');
                 
                 this.showSuggestion('▶️ 继续练习', 'neutral');
             } catch (error) {
@@ -354,13 +447,43 @@ class SpeechCoach {
                 this.updateStatus('paused', '已暂停');
                 this.state.interimTranscript = '';
                 this.updateTranscriptDisplay();
+                
+                // 停止时长动画
+                this.stopDurationAnimation();
+                
+                // 更新一次时长，显示暂停时刻
                 this.updateDurationDisplay();
+                
+                // 更新按钮状态和图标
+                this.updateButtons();
+                this.updatePauseButtonIcon('pause');
+                
                 this.showSuggestion('⏸️ 已暂停，点击继续', 'neutral');
             } catch (error) {}
         }
         
-        this.updateButtons();
         this.updateInterimIndicator(this.state.isPaused ? '已暂停' : '正在聆听...');
+    }
+
+    // 更新暂停按钮图标
+    updatePauseButtonIcon(state) {
+        const btn = this.dom['pause-btn'];
+        if (state === 'pause') {
+            btn.innerHTML = `
+                <svg class="icon" viewBox="0 0 24 24" width="20" height="20">
+                    <polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>
+                </svg>
+                继续
+            `;
+        } else {
+            btn.innerHTML = `
+                <svg class="icon" viewBox="0 0 24 24" width="20" height="20">
+                    <rect x="7" y="6" width="3" height="12" fill="currentColor"/>
+                    <rect x="14" y="6" width="3" height="12" fill="currentColor"/>
+                </svg>
+                暂停
+            `;
+        }
     }
 
     // 清空数据
@@ -489,34 +612,120 @@ class SpeechCoach {
 
     // 更新图表
     updateCharts() {
-        // 使用 requestAnimationFrame 优化图表更新
         requestAnimationFrame(() => {
             if (this.charts.speed && this.state.stats.speedHistory.length) {
-                this.charts.speed.setOption({
+                const dataCount = this.state.stats.speedHistory.length;
+                const speeds = this.state.stats.speedHistory.map(d => d.speed);
+                const seconds = this.state.stats.speedHistory.map(d => d.elapsedSeconds || 0);
+                
+                // 动态计算图表配置
+                const chartOptions = {
                     xAxis: { 
-                        axisLabel: { color: this.getChartTextColor() },
-                        data: this.state.stats.speedHistory.map(d => d.elapsedSeconds || 0)
+                        axisLabel: { 
+                            color: this.getChartTextColor(),
+                            // 当数据量多时，旋转标签避免重叠
+                            rotate: dataCount > 20 ? 30 : 0,
+                            // 当数据量非常多时，设置间隔显示
+                            interval: dataCount > 25 ? Math.floor(dataCount / 15) : 0
+                        },
+                        data: seconds
                     },
                     yAxis: {
                         splitLine: { lineStyle: { color: this.getChartLineColor() } },
                         axisLabel: { color: this.getChartTextColor() }
                     },
-                    series: [{ data: this.state.stats.speedHistory.map(d => d.speed) }]
+                    series: [{ 
+                        data: speeds,
+                        // 当数据量少时显示所有点，多时只显示峰值
+                        showSymbol: dataCount <= 15,
+                        // 数据量多时增加平滑度
+                        smooth: dataCount > 20 ? 0.8 : true,
+                        // 动态调整区域渐变
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(75, 123, 236, 0.3)' },
+                                { offset: 1, color: 'rgba(75, 123, 236, 0.05)' }
+                            ])
+                        }
+                    }]
+                };
+
+                // 当数据量超过15时，添加数据缩放组件
+                if (dataCount > 15) {
+                    chartOptions.dataZoom = [{
+                        type: 'slider',
+                        start: Math.max(0, 100 - 15 / dataCount * 100),
+                        end: 100,
+                        bottom: 0,
+                        height: 20,
+                        borderColor: 'transparent',
+                        backgroundColor: this.state.isDarkMode ? '#333' : '#f0f0f0',
+                        fillerColor: this.state.isDarkMode ? 'rgba(75, 123, 236, 0.3)' : 'rgba(75, 123, 236, 0.2)',
+                        handleStyle: {
+                            color: this.state.isDarkMode ? '#666' : '#999'
+                        },
+                        textStyle: {
+                            color: this.state.isDarkMode ? '#fff' : '#333',
+                            fontSize: 10
+                        }
+                    }];
+                } else {
+                    chartOptions.dataZoom = [];
+                }
+
+                // 动态计算Y轴范围，让数据更好地展示
+                if (speeds.length > 0) {
+                    const maxSpeed = Math.max(...speeds);
+                    const minSpeed = Math.min(...speeds);
+                    const padding = 20;
+                    
+                    chartOptions.yAxis = {
+                        ...chartOptions.yAxis,
+                        min: Math.max(0, Math.floor(minSpeed - padding)),
+                        max: Math.ceil(maxSpeed + padding)
+                    };
+                }
+
+                this.charts.speed.setOption(chartOptions);
+            } else if (this.charts.speed) {
+                // 没有数据时显示空状态
+                this.charts.speed.setOption({
+                    xAxis: { data: [] },
+                    series: [{ data: [] }],
+                    dataZoom: []
                 });
             }
             
+            // 更新语气词图表
             if (this.charts.filler) {
                 const data = Object.entries(this.state.stats.fillerBreakdown)
                     .filter(([_, v]) => v > 0)
                     .map(([name, value]) => ({ name, value }));
                 
+                // 当有数据时正常显示，没有时显示空状态
+                if (data.length === 0) {
+                    data.push({ 
+                        name: '无语气词', 
+                        value: 1, 
+                        itemStyle: { color: this.getChartLineColor() } 
+                    });
+                }
+
+                // 动态调整饼图半径，根据数据量
+                const radius = data.length > 5 ? ['40%', '60%'] : ['50%', '70%'];
+
                 this.charts.filler.setOption({
                     series: [{
-                        data: data.length ? data : [{ 
-                            name: '无语气词', 
-                            value: 1, 
-                            itemStyle: { color: this.getChartLineColor() } 
-                        }]
+                        radius: radius,
+                        data: data,
+                        // 数据多时显示更多标签
+                        label: data.length > 3 ? {
+                            show: true,
+                            position: 'outside',
+                            formatter: '{b}: {d}%',
+                            fontSize: 10,
+                            color: this.getChartTextColor()
+                        } : { show: false }
                     }]
                 });
             }
@@ -562,50 +771,284 @@ class SpeechCoach {
     // 生成建议
     generateSuggestions(speed) {
         const suggestions = [];
-        const { fillerCount, wordCount, averageSpeed, startTime } = this.state.stats;
+        const { fillerCount, wordCount, averageSpeed, startTime, speedHistory } = this.state.stats;
         
-        // 语速建议
+        // ========== 语速相关提示 ==========
         if (speed === 0) {
-            suggestions.push({ type: 'neutral', text: '🎤 开始说话，我会分析你的演讲表现' });
-        } else if (speed < CONFIG.SPEED_WARNING_MIN) {
-            suggestions.push({ type: 'warning', text: `🐢 语速偏慢（<${CONFIG.SPEED_WARNING_MIN}字/分），听众容易走神，可以适当加快` });
-        } else if (speed > CONFIG.SPEED_WARNING_MAX) {
-            suggestions.push({ type: 'warning', text: `🐇 语速偏快（>${CONFIG.SPEED_WARNING_MAX}字/分），听众可能跟不上，建议放慢` });
-        } else if (speed >= CONFIG.NORMAL_SPEED_MIN && speed <= CONFIG.NORMAL_SPEED_MAX) {
-            suggestions.push({ type: 'success', text: `✅ 当前语速适中（${speed}字/分），适合大多数演讲场景` });
-        }
-        
-        // 平均语速建议
-        if (averageSpeed > 0) {
-            const avg = Math.round(averageSpeed);
-            if (avg >= CONFIG.NORMAL_SPEED_MIN && avg <= CONFIG.NORMAL_SPEED_MAX) {
-                suggestions.push({ type: 'success', text: `📊 平均语速 ${avg}字/分，整体节奏把控很好` });
+            suggestions.push({ type: 'neutral', text: '🎤 开始说话，我会实时分析你的演讲表现' });
+        } else {
+            // 当前语速状态
+            if (speed < CONFIG.SPEED_WARNING_MIN) {
+                suggestions.push({ 
+                    type: 'warning', 
+                    text: `🐢 当前语速 ${speed}字/分钟，低于理想下限（${CONFIG.SPEED_WARNING_MIN}字/分），听众容易走神` 
+                });
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '💡 建议：适当加快语速，增加信息的密度，可以用更少的词表达更多内容' 
+                });
+            } else if (speed > CONFIG.SPEED_WARNING_MAX) {
+                suggestions.push({ 
+                    type: 'warning', 
+                    text: `🐇 当前语速 ${speed}字/分钟，超过理想上限（${CONFIG.SPEED_WARNING_MAX}字/分），听众可能跟不上` 
+                });
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '💡 建议：适当放慢语速，在重点处停顿，给听众思考的时间' 
+                });
+            } else if (speed >= CONFIG.NORMAL_SPEED_MIN && speed <= CONFIG.NORMAL_SPEED_MAX) {
+                if (speed < 120) {
+                    suggestions.push({ 
+                        type: 'success', 
+                        text: `✅ 当前语速 ${speed}字/分钟，处于理想范围内，偏向稳重型演讲` 
+                    });
+                } else if (speed > 140) {
+                    suggestions.push({ 
+                        type: 'success', 
+                        text: `✅ 当前语速 ${speed}字/分钟，处于理想范围内，偏向活跃型演讲` 
+                    });
+                } else {
+                    suggestions.push({ 
+                        type: 'success', 
+                        text: `✅ 当前语速 ${speed}字/分钟，处于最佳黄金语速区，非常适合大多数场景` 
+                    });
+                }
+            }
+            
+            // 语速趋势分析
+            if (speedHistory.length >= 3) {
+                const recentSpeeds = speedHistory.slice(-3).map(d => d.speed);
+                const trend = this.analyzeSpeedTrend(recentSpeeds);
+                
+                if (trend === 'increasing') {
+                    suggestions.push({ 
+                        type: 'neutral', 
+                        text: '📈 语速呈上升趋势，注意不要越来越快超出理想范围' 
+                    });
+                } else if (trend === 'decreasing') {
+                    suggestions.push({ 
+                        type: 'neutral', 
+                        text: '📉 语速呈下降趋势，注意保持稳定的演讲节奏' 
+                    });
+                } else if (trend === 'stable') {
+                    suggestions.push({ 
+                        type: 'success', 
+                        text: '📊 语速保持稳定，节奏控制得很好' 
+                    });
+                }
+            }
+            
+            // 平均语速分析
+            if (averageSpeed > 0) {
+                const avg = Math.round(averageSpeed);
+                if (avg < CONFIG.SPEED_WARNING_MIN) {
+                    suggestions.push({ 
+                        type: 'warning', 
+                        text: `📊 平均语速 ${avg}字/分钟，整体偏慢，建议整体提升` 
+                    });
+                } else if (avg > CONFIG.SPEED_WARNING_MAX) {
+                    suggestions.push({ 
+                        type: 'warning', 
+                        text: `📊 平均语速 ${avg}字/分钟，整体偏快，建议整体放慢` 
+                    });
+                } else if (avg >= CONFIG.NORMAL_SPEED_MIN && avg <= CONFIG.NORMAL_SPEED_MAX) {
+                    suggestions.push({ 
+                        type: 'success', 
+                        text: `📊 平均语速 ${avg}字/分钟，整体节奏把控得很好` 
+                    });
+                }
+            }
+            
+            // 语速波动分析
+            if (speedHistory.length >= 5) {
+                const volatility = this.calculateSpeedVolatility();
+                if (volatility > 30) {
+                    suggestions.push({ 
+                        type: 'warning', 
+                        text: '📊 语速波动较大，时快时慢，建议保持更稳定的节奏' 
+                    });
+                } else if (volatility > 15) {
+                    suggestions.push({ 
+                        type: 'neutral', 
+                        text: '📊 语速有一定波动，可以在重点处变化，但不要过于剧烈' 
+                    });
+                } else {
+                    suggestions.push({ 
+                        type: 'success', 
+                        text: '📊 语速非常稳定，给人一种沉稳自信的感觉' 
+                    });
+                }
             }
         }
         
-        // 语气词建议
+        // ========== 语气词相关提示 ==========
         if (fillerCount > 0) {
             const rate = (fillerCount / (wordCount || 1)) * 100;
-            if (rate > 15) {
-                suggestions.push({ type: 'warning', text: `⚠️ 语气词偏多（${fillerCount}次，占${rate.toFixed(1)}%），尝试用停顿代替` });
+            
+            // 总体语气词分析
+            if (rate > 20) {
+                suggestions.push({ 
+                    type: 'warning', 
+                    text: `⚠️ 语气词频率过高（${fillerCount}次，占${rate.toFixed(1)}%），严重影响演讲质量` 
+                });
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '💡 尝试用深呼吸或短暂停顿代替语气词，给自己思考的时间' 
+                });
+            } else if (rate > 10) {
+                suggestions.push({ 
+                    type: 'warning', 
+                    text: `⚠️ 语气词偏多（${fillerCount}次，占${rate.toFixed(1)}%），容易分散听众注意力` 
+                });
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '💡 可以提前准备演讲提纲，减少思考时的停顿填充' 
+                });
             } else if (rate > 5) {
-                suggestions.push({ type: 'neutral', text: `📊 语气词出现${fillerCount}次，占比${rate.toFixed(1)}%，还有改进空间` });
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: `📊 语气词出现${fillerCount}次，占比${rate.toFixed(1)}%，还有改进空间` 
+                });
             } else {
-                suggestions.push({ type: 'success', text: `👍 语气词控制良好（${fillerCount}次，仅占${rate.toFixed(1)}%）` });
+                suggestions.push({ 
+                    type: 'success', 
+                    text: `👍 语气词控制良好（${fillerCount}次，仅占${rate.toFixed(1)}%），表达很流畅` 
+                });
             }
+            
+            // 具体语气词分析
+            const topFillers = Object.entries(this.state.stats.fillerBreakdown)
+                .filter(([_, v]) => v > 0)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 2);
+            
+            if (topFillers.length > 0) {
+                const [filler1, count1] = topFillers[0];
+                if (count1 > 5) {
+                    suggestions.push({ 
+                        type: 'neutral', 
+                        text: `🎯 你最常用"${filler1}"（${count1}次），可以刻意录制自己说话，找出习惯` 
+                    });
+                }
+                
+                if (topFillers.length > 1) {
+                    const [filler2, count2] = topFillers[1];
+                    suggestions.push({ 
+                        type: 'neutral', 
+                        text: `📝 其次是"${filler2}"（${count2}次），这两个语气词占了大多数` 
+                    });
+                }
+            }
+            
+            // 语气词密度趋势
+            const fillerDensity = (fillerCount / (wordCount || 1)) * 100;
+            if (fillerDensity > 15 && wordCount > 100) {
+                suggestions.push({ 
+                    type: 'warning', 
+                    text: '📈 语气词密度偏高，建议练习时放慢语速，有意识地停顿' 
+                });
+            }
+        } else if (wordCount > 50) {
+            suggestions.push({ 
+                type: 'success', 
+                text: '🌟 完美！说了这么多话，一个语气词都没有，非常专业的表达' 
+            });
         }
         
-        // 时长建议
+        // ========== 时长相关提示 ==========
         if (startTime && this.state.isListening && !this.state.isPaused) {
             const elapsedSeconds = (Date.now() - startTime - this.state.stats.totalPausedDuration) / 1000;
-            if (elapsedSeconds > 60 && elapsedSeconds < 120) {
-                suggestions.push({ type: 'neutral', text: '⏱️ 练习已超过1分钟，继续保持' });
-            } else if (elapsedSeconds >= 120) {
-                suggestions.push({ type: 'success', text: '🎉 专注练习超过2分钟，很棒！' });
+            const minutes = Math.floor(elapsedSeconds / 60);
+            const seconds = Math.floor(elapsedSeconds % 60);
+            
+            if (elapsedSeconds < 30) {
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '⏱️ 刚开始练习，放松心态，正常表达就好' 
+                });
+            } else if (elapsedSeconds >= 30 && elapsedSeconds < 60) {
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '⏱️ 练习即将满1分钟，继续保持' 
+                });
+            } else if (elapsedSeconds >= 60 && elapsedSeconds < 120) {
+                suggestions.push({ 
+                    type: 'success', 
+                    text: `⏱️ 已经练习了${minutes}分${seconds}秒，超过1分钟，进入状态了` 
+                });
+            } else if (elapsedSeconds >= 120 && elapsedSeconds < 180) {
+                suggestions.push({ 
+                    type: 'success', 
+                    text: `⏱️ 练习了${minutes}分${seconds}秒，超过2分钟，专注力很好` 
+                });
+            } else if (elapsedSeconds >= 180) {
+                suggestions.push({ 
+                    type: 'success', 
+                    text: `🎉 超棒！持续练习了${minutes}分${seconds}秒，非常有耐心` 
+                });
             }
         }
         
-        this.renderSuggestions(suggestions.slice(0, 3));
+        // ========== 综合建议 ==========
+        if (wordCount > 200) {
+            if (fillerCount === 0 && speed >= 100 && speed <= 160) {
+                suggestions.push({ 
+                    type: 'success', 
+                    text: '🏆 完美演讲！语速适中，没有语气词，可以应对任何场合' 
+                });
+            } else if (fillerCount < 5 && speed >= 100 && speed <= 160) {
+                suggestions.push({ 
+                    type: 'success', 
+                    text: '🎯 整体表现优秀，稍加练习就能达到专业水准' 
+                });
+            }
+        }
+        
+        // ========== 场景建议 ==========
+        if (speed > 0) {
+            if (speed < 100) {
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '🎯 适合场景：教学、培训、需要强调重点的演讲' 
+                });
+            } else if (speed > 160) {
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '🎯 适合场景：脱口秀、激情演讲、快速信息传递' 
+                });
+            } else {
+                suggestions.push({ 
+                    type: 'neutral', 
+                    text: '🎯 适合场景：面试、汇报、TED演讲、商务谈判' 
+                });
+            }
+        }
+        
+        // 限制最多显示4条建议（比以前多一条）
+        this.renderSuggestions(suggestions.slice(0, 4));
+    }
+
+    // 分析语速趋势
+    analyzeSpeedTrend(recentSpeeds) {
+        if (recentSpeeds.length < 2) return 'stable';
+        
+        const first = recentSpeeds[0];
+        const last = recentSpeeds[recentSpeeds.length - 1];
+        const threshold = 10; // 变化阈值
+        
+        if (last - first > threshold) return 'increasing';
+        if (first - last > threshold) return 'decreasing';
+        return 'stable';
+    }
+
+    // 计算语速波动率
+    calculateSpeedVolatility() {
+        const speeds = this.state.stats.speedHistory.map(d => d.speed);
+        if (speeds.length < 2) return 0;
+        
+        const mean = speeds.reduce((a, b) => a + b, 0) / speeds.length;
+        const variance = speeds.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / speeds.length;
+        return Math.sqrt(variance);
     }
 
     // 渲染建议
@@ -641,6 +1084,13 @@ class SpeechCoach {
     // 更新按钮状态
     updateButtons() {
         this.dom['pause-btn'].disabled = !this.state.isListening;
+        
+        // 根据暂停状态更新图标
+        if (this.state.isPaused) {
+            this.updatePauseButtonIcon('pause');
+        } else {
+            this.updatePauseButtonIcon('resume');
+        }
     }
 
     // 更新按钮 HTML
