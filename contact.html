@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>联系 · 个人网站</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%236b6bff'>💬</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <!-- 移除 Google Fonts 链接 -->
+    <style>
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-header h1 {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--greeting-start), var(--greeting-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .contact-card {
+            background: rgba(30, 30, 40, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-decoration: none;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        body.light-mode .contact-card {
+            background: rgba(240, 240, 250, 0.5);
+        }
+        
+        .contact-card:hover {
+            transform: translateX(8px);
+            border-color: var(--underline-color);
+        }
+        
+        .contact-emoji {
+            font-size: 2.2rem;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+        }
+        
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+        
+        .contact-arrow {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            opacity: 0.6;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        
+        .contact-card:hover .contact-arrow {
+            opacity: 1;
+            transform: translateX(4px);
+            color: var(--underline-color);
+        }
+        
+        .contact-form {
+            background: rgba(30, 30, 40, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+        }
+        
+        body.light-mode .contact-form {
+            background: rgba(240, 240, 250, 0.5);
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(20, 20, 30, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            backdrop-filter: blur(5px);
+        }
+        
+        body.light-mode .form-input,
+        body.light-mode .form-textarea {
+            background: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--underline-color);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-button {
+            background: var(--underline-color);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-button:hover {
+            opacity: 0.9;
+        }
+        
+        .form-note {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 600px) {
+            .contact-card {
+                padding: 1.2rem;
+                gap: 1rem;
+            }
+            .contact-emoji {
+                font-size: 1.8rem;
+                min-width: 40px;
+            }
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-area">
+                <a href="index.html" class="avatar-link">
+                    <img src="assets/avatar.png" alt="我的头像" class="avatar-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="project.html">项目</a>
+                <a href="about.html">关于</a>
+                <a href="contact.html" class="active">联系</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="切换亮色/暗色模式">🌓 深色</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content" style="padding-top: 3rem; align-items: flex-start;">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h1>联系</h1>
+                <p>期待听到你的声音</p>
+            </div>
+            
+            <div class="contact-methods">
+                <a href="mailto:3866477796@qq.com" class="contact-card">
+                    <span class="contact-emoji">📧</span>
+                    <div class="contact-info">
+                        <h3>Email</h3>
+                        <p>邮箱1：3866477796@qq.com 邮箱2：csgdnrxg@163.com</p>
+                    </div>
+                    <span class="contact-arrow">→</span>
+                </a>
+                
+                <a href="https://github.com/ok-lzr" target="_blank" class="contact-card">
+                    <span class="contact-emoji">🐙</span>
+                    <div class="contact-info">
+                        <h3>GitHub</h3>
+                        <p>ok-lzr</p>
+                    </div>
+                    <span class="contact-arrow">→</span>
+                </a>
+                
+                <a href="#" class="contact-card">
+                    <span class="contact-emoji">📱</span>
+                    <div class="contact-info">
+                        <h3>QQ</h3>
+                        <p>QQ号 (点击复制)</p>
+                    </div>
+                    <span class="contact-arrow">→</span>
+                </a>
+            </div>
+            
+            <div class="contact-form">
+                <div class="form-title">发送留言</div>
+                <form id="contactForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label class="form-label" for="name">姓名</label>
+                        <input type="text" class="form-input" id="name" placeholder="你的名字">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">邮箱</label>
+                        <input type="email" class="form-input" id="email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="message">留言</label>
+                        <textarea class="form-textarea" id="message" placeholder="想说什么..."></textarea>
+                    </div>
+                    <button type="submit" class="form-button" onclick="alert('哈哈，骗你的（￣︶￣）实际上根本发不出去，你可以通过上方的信息联系我')">发送留言</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('.contact-card')[2].addEventListener('click', function(e) {
+            e.preventDefault();
+            navigator.clipboard.writeText('3866477796').then(() => {
+                alert('QQ号已复制到剪贴板');
+            }).catch(() => {
+                alert('QQ号: 3866477796');
+            });
+        });
+    </script>
+</body>
+</html>

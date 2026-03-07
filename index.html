@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>ok-lzr的个人空间</title>
+    <!-- 引入外部 CSS (已包含本地 Inter 字体) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%236b6bff'>🌐</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <!-- 移除 Google Fonts 链接，完全使用本地字体 -->
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-area">
+                <a href="index.html" class="avatar-link">
+                    <img src="assets/avatar.png" alt="我的头像" class="avatar-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" data-nav="home">首页</a>
+                <a href="project.html" data-nav="projects">项目</a>
+                <a href="about.html" data-nav="about">关于</a>
+                <a href="contact.html" data-nav="contact">联系</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="切换亮色/暗色模式">🌓 深色</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content" id="mainContent">
+        <div class="hero">
+            <div class="greeting" id="greetingText">
+                Hello, world!
+            </div>
+            <div class="sub" id="subText">
+                — ok-lzr的个人空间 —
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>关于 · 个人网站</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%236b6bff'>👤</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .about-header h1 {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--greeting-start), var(--greeting-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-content {
+            background: rgba(30, 30, 40, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            padding: 2.5rem;
+            width: 100%;
+        }
+        
+        body.light-mode .about-content {
+            background: rgba(240, 240, 250, 0.5);
+        }
+        
+        .about-section {
+            margin-bottom: 2rem;
+        }
+        
+        .about-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .about-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag {
+            background: rgba(100, 100, 150, 0.15);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .timeline-year {
+            font-weight: 600;
+            color: var(--underline-color);
+            min-width: 80px;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+        }
+        
+        .timeline-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 600px) {
+            .about-content {
+                padding: 1.5rem;
+            }
+            .timeline-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .timeline-year {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-area">
+                <a href="index.html" class="avatar-link">
+                    <img src="assets/avatar.png" alt="我的头像" class="avatar-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="project.html">项目</a>
+                <a href="about.html" class="active">关于</a>
+                <a href="contact.html">联系</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="切换亮色/暗色模式">🌓 深色</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content" style="padding-top: 3rem; align-items: flex-start;">
+        <div class="about-container">
+            <div class="about-header">
+                <h1>关于我</h1>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-section">
+                    <h2>👋 你好，我是...</h2>
+                    <p>一名热爱创造的设计师和开发者，相信好的设计应该简洁、有用、令人愉悦。这个网站是我记录想法和作品的地方。</p>
+                </div>
+                
+                <div class="about-section">
+                    <h2>🛠️ 常用工具</h2>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                    </div>
+                </div>
+                
+                <div class="about-section">
+                    <h2>🎯 兴趣</h2>
+                    <p>除了写代码，还喜欢画画、读书、骑自行车。相信保持好奇心是最好的成长方式。</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

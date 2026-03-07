@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>项目 · ok-lzr的个人网站</title>
+    <!-- 在<head>中添加 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%236b6bff'>💻</text></svg>">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 项目页面卡片样式 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        
+        .project-card {
+            background: rgba(30, 30, 40, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.8rem;
+            transition: transform 0.3s ease, border-color 0.3s;
+            text-align: left;
+        }
+        
+        body.light-mode .project-card {
+            background: rgba(240, 240, 250, 0.6);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--underline-color);
+        }
+        
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+        }
+        
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tag {
+            background: rgba(100, 100, 150, 0.2);
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .project-link {
+            color: var(--underline-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .project-link:hover {
+            border-bottom-color: var(--underline-color);
+        }
+        
+        .page-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--greeting-start), var(--greeting-mid));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 600px) {
+            .projects-grid {
+                gap: 1.2rem;
+            }
+            .project-card {
+                padding: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-area">
+                <a href="index.html" class="avatar-link">
+                    <img src="assets/avatar.png" alt="我的头像" class="avatar-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="project.html" class="active">项目</a>
+                <a href="about.html">关于</a>
+                <a href="contact.html">联系</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="切换亮色/暗色模式">🌓 深色</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content" style="padding-top: 3rem; align-items: flex-start;">
+        <div class="hero" style="max-width: 1200px;">
+            <div class="page-header">
+                <h1>项目</h1>
+                <p>我的一些作品</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- 项目卡片 -->
+                <div class="project-card">
+                    <div class="project-icon">🔈</div>
+                    <h3 class="project-title">SpeakCoach · 智能演讲助手</h3>
+                    <p class="project-desc">实时语音分析工具，监测语速语气词，助你提升演讲表现力。</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                    </div>
+                    <a href="projects/speech-coach/index.html" class="project-link">查看项目 →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
