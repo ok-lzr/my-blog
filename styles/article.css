@@ -1,0 +1,292 @@
+/* article.css - 文章页面专用样式 */
+/* 该文件包含所有文章正文左对齐、布局优化的核心样式，独立于全局 style.css 以方便维护 */
+
+/* 全局重置，确保正文不居中，默认左对齐 */
+.article-body {
+    max-width: 800px;
+    margin: 0;           /* 移除自动居中，改为左对齐 */
+    color: var(--text-primary);
+    line-height: 1.8;
+    text-align: left;    /* 强制左对齐 */
+}
+
+/* 保持整体文章结构，但内容区块不再有自动居中偏移 */
+.main-content {
+    display: flex;
+    justify-content: flex-start; /* 主内容左对齐，不强制居中 */
+    align-items: flex-start;
+    padding-top: 2rem;
+}
+
+/* 确保article内部所有内容都继承左对齐 */
+article {
+    width: 100%;
+}
+
+/* 文章头部样式 - 保持居中显示 */
+.article-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.article-header h1 {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.article-meta {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.article-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* 标签区域样式 */
+.article-tags {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--hover-bg);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* 文章正文样式 - 左对齐核心 */
+.article-body h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+}
+
+.article-body h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.article-body h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.article-body h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: var(--text-primary);
+}
+
+.article-body h6 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.article-body p {
+    margin-bottom: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.article-body ul,
+.article-body ol {
+    margin-left: 2rem;
+    margin-bottom: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.article-body li {
+    margin-bottom: 0.5rem;
+}
+
+.article-body a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: text-decoration 0.3s;
+}
+
+.article-body a:hover {
+    text-decoration: underline;
+}
+
+.article-body code {
+    background: var(--hover-bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: var(--accent-color);
+}
+
+.article-body pre {
+    background: var(--hover-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--border-color);
+}
+
+.article-body pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    color: var(--text-primary);
+}
+
+/* 引用块样式 */
+.article-body blockquote {
+    margin: 1rem 0;
+    padding-left: 1rem;
+    border-left: 4px solid var(--accent-color);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* 水平分割线 */
+.article-body hr {
+    border: none;
+    height: 1px;
+    background: var(--border-color);
+    margin: 1.5rem 0;
+}
+
+/* 表格样式 */
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 1.2rem;
+}
+
+.article-body table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-primary);
+}
+
+.article-body th,
+.article-body td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.article-body th {
+    background: var(--hover-bg);
+    font-weight: 600;
+}
+
+/* 任务列表样式 */
+.task-list-item {
+    list-style: none;
+    margin-left: -1rem;
+}
+
+.task-list-item input {
+    margin-right: 0.5rem;
+}
+
+.contains-task-list {
+    padding-left: 1.5rem;
+}
+
+/* 脚注样式 */
+.footnotes {
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* 图片样式 */
+.article-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* 文章底部样式 */
+.article-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.back-link:hover {
+    transform: translateX(-4px);
+}
+
+.back-link::before {
+    content: '← ';
+}
+
+/* 响应式适配 - 保持左对齐 */
+@media (max-width: 768px) {
+    .article-body {
+        max-width: 100%;
+    }
+    
+    .article-body ul,
+    .article-body ol {
+        margin-left: 1.5rem;
+    }
+    
+    .article-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .article-meta {
+        gap: 1rem;
+    }
+}

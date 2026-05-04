@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>文章 · 个人网站</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%230066cc'>📝</text></svg>">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-area">
+                <a href="index.html" class="avatar-link">
+                    <img src="assets/avatar.png" alt="我的头像" class="avatar-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" data-nav="home">首页</a>
+                <a href="articles.html" data-nav="articles" class="active">文章</a>
+                <a href="project.html" data-nav="projects">项目</a>
+                <a href="about.html" data-nav="about">关于</a>
+                <a href="contact.html" data-nav="contact">联系</a>
+            </div>
+            <div class="nav-actions"></div>
+        </nav>
+    </header>
+
+    <main class="main-content" style="padding-top: 2rem; align-items: flex-start;">
+        <div class="container">
+            <div class="content-header">
+                <h1>文章</h1>
+                <p>分享我的学习和思考</p>
+            </div>
+            
+            <div class="articles-grid" id="articlesGrid">
+                <p style="color: #999; text-align: center; grid-column: 1/-1;">加载中...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/articles-loader.js"></script>
+</body>
+</html>

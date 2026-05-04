@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>文章标题 · 个人网站</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%230066cc'>📝</text></svg>">
+    <link rel="stylesheet" href="../styles/style.css">
+    <!-- 引入新增的独立CSS文件，存储所有文章正文不居中的样式 -->
+    <link rel="stylesheet" href="../styles/article.css">
+    <style>
+        /* 保留极少量临时或页面级应急样式，但所有核心控制样式已经移至 article.css */
+        /* 确保容器边距与基础安全，不破坏原有结构 */
+        .main-content {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-top: 2rem;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        /* 确保所有响应式基准不会冲突 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link">
+                    <img src="../assets/avatar.png" alt="我的头像" class="avatar-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+                <a href="../contact.html" data-nav="contact">联系</a>
+            </div>
+            <div class="nav-actions"></div>
+        </nav>
+    </header>
+
+    <main class="main-content" style="padding-top: 2rem; align-items: flex-start;">
+        <div class="container">
+            <article>
+                <div class="article-header">
+                    <h1>文章模板</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">📅 <span>xxxx年xx月xx日</span></div>
+                        <div class="article-meta-item">👁️ <span>阅读时间：8分钟</span></div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">标签1</span>
+                        <span class="tag">标签2</span>
+                    </div>
+                </div>
+                <!-- 文章内容区域：正文不再居中，完全左对齐，由 article.css 控制样式 -->
+                <div class="article-body" id="articleContent">
+                    <h1>一级标题：文章主标题</h1>
+                    <p>这里是一个普通的段落。它包含了<strong>粗体文本</strong>和<em>斜体文本</em>，以及 <code>行内代码</code>。您还可以在这里<a href="https://example.com">插入一个超链接</a>。现在正文采用左对齐布局，不再整体居中，更符合传统阅读习惯，提升大段文字的可读性。</p>
+                    <p>这是另一个段落。为了换行，您需要在上一行末尾添加两个空格，然后回车。<br>
+                    或者，直接用一个空行来创建一个全新的段落。左对齐的正文能够减少视线移动距离，特别适合技术文档与长篇文章。</p>
+                    <h2>二级标题：内容分区与排版考量</h2>
+                    <blockquote>
+                    <p>这是一个引用块。通常用于摘录他人的话或强调重点。<br>
+                    可以跨越多行。在左对齐模式下，引用块依然保留左侧边框，视觉层次清晰。</p>
+                    </blockquote>
+                    <h3>三级标题：子主题——布局的灵活性</h3>
+                    <ol>
+                        <li>这是一个有序列表的第一项。左对齐确保序号和文本对齐自然。</li>
+                        <li>这是第二项。
+                            <ul>
+                                <li>您可以在有序列表中嵌套无序列表。</li>
+                                <li>这是嵌套的第二项，展示多级缩进。</li>
+                            </ul>
+                        </li>
+                        <li>这是第三项。列表内容更加舒展。</li>
+                    </ol>
+                    <ul>
+                        <li>这是一个无序列表项。</li>
+                        <li>这是另一个无序列表项。
+                            <ul>
+                                <li>这是嵌套的无序列表项（二级）。
+                                    <ul>
+                                        <li>这是三级嵌套。左侧留白对齐恰到好处。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4>四级标题：代码示例与高亮体验</h4>
+                    <p>下面是一个代码块（无特定语言）：</p>
+                    <pre><code>function sayHello() {
+    console.log("Hello, world!");
+}
+</code></pre>
+                    <p>下面是一个带有语法高亮的代码块（指定语言Python）：</p>
+                    <pre><code class="language-python">def say_hello():
+    print("Hello, world! 正文左对齐使得代码块与文本同样从左边缘开始，易读性提升")
+                    </code></pre>
+                    <h5>五级标题：丰富元素——表格、分割线、任务列表</h5>
+                    <p><strong>水平分割线</strong>：用于主题分割。</p>
+                    <hr>
+                    <p><strong>表格展示</strong>（左对齐表内文字）：</p>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th align="left">技术领域</th><th align="left">优势</th><th align="left">适用场景</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td align="left">前端框架</td><td align="left">组件化、高效渲染</td><td align="left">单页应用</td></tr>
+                                <tr><td align="left">后端开发</td><td align="left">稳定、可扩展</td><td align="left">API服务</td></tr>
+                                <tr><td align="left">数据库</td><td align="left">持久化、高并发</td><td align="left">数据存储</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><strong>任务列表</strong>（提升工作流）：</p>
+                    <ul class="contains-task-list">
+                        <li class="task-list-item"><input type="checkbox" checked="" disabled=""> 已完成的任务（文章优化）</li>
+                        <li class="task-list-item"><input type="checkbox" disabled=""> 未完成的任务: 左对齐样式验证</li>
+                        <li class="task-list-item"><input type="checkbox" disabled=""> 另一个待办事项: 跨浏览器测试</li>
+                    </ul>
+                    <p><strong>删除线</strong>：<del>这是一条被删除的文本</del>，展示文稿修改痕迹。</p>
+                    <p><strong>脚注示例</strong>：这里是一个带脚注的句子<sup><a href="#user-content-fn-1" id="user-content-user-content-fnref-1" data-footnote-ref="" aria-describedby="user-content-footnote-label">1</a></sup>，说明脚注也能完整支持。</p>
+                    <h6>六级标题：图片与媒体嵌入</h6>
+                    <p><strong>插入图片占位</strong>：<br>
+                    <img src="https://picsum.photos/id/42/700/400" alt="示例图片: 自然风景" title="左对齐正文中的图片展示" style="max-width:100%; border-radius:12px;"></p>
+                    <p><strong>嵌入视频</strong>（演示链接形式）：<br>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">▶ 观看示例视频 (YouTube)</a></p>
+                    <p>您也可以直接使用原始HTML嵌入第三方内容，但为了简洁，此处提供友好的跳转链接。</p>
+                    <h2>结语</h2>
+                    <p>最后，这里是一个收尾段落。感谢阅读！遵循“正文不居中的设计”使得文章页面更加实用，尤其适合博客、技术文档及长文写作场景。您可以自由扩展内容，左对齐依旧保持优雅整洁。</p>
+                    <section data-footnotes="" class="footnotes">
+                        <h2 class="sr-only" id="user-content-footnote-label">脚注说明</h2>
+                        <ol>
+                            <li id="user-content-user-content-fn-1">
+                                <p>这是脚注的说明文字，演示引用标记和返回链接功能。 <a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+                            </li>
+                        </ol>
+                    </section>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@13/dist/markdown-it.umd.js"></script>
+    <script>
+        // 动态设置当前年份
+        document.getElementById('year') && (document.getElementById('year').innerText = new Date().getFullYear());
+    </script>
+</body>
+</html>

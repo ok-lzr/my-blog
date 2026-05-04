@@ -6,7 +6,7 @@
     <title>ok-lzr的个人空间</title>
     <!-- 引入外部 CSS (已包含本地 Inter 字体) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%236b6bff'>🌐</text></svg>">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <!-- 移除 Google Fonts 链接，完全使用本地字体 -->
 </head>
 <body>
@@ -18,14 +18,13 @@
                 </a>
             </div>
             <div class="nav-links">
-                <a href="index.html" data-nav="home">首页</a>
+                <a href="index.html" data-nav="home" class="active">首页</a>
+                <a href="articles.html" data-nav="articles">文章</a>
                 <a href="project.html" data-nav="projects">项目</a>
                 <a href="about.html" data-nav="about">关于</a>
                 <a href="contact.html" data-nav="contact">联系</a>
             </div>
-            <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="切换亮色/暗色模式">🌓 深色</button>
-            </div>
+            <div class="nav-actions"></div>
         </nav>
     </header>
 
@@ -37,6 +36,51 @@
             <div class="sub" id="subText">
                 — ok-lzr的个人空间 —
             </div>
+        </div>
+
+        <!-- 主体导航网格 -->
+        <div class="main-nav-grid">
+            <a href="articles.html" class="nav-card animate-delay-1" style="animation: slideInFromLeft 0.6s ease-out both;">
+                <div class="nav-card-icon">📚</div>
+                <h3 class="nav-card-title">文章</h3>
+                <p class="nav-card-desc">探索我的技术文章、学习笔记和思考分享</p>
+                <div class="nav-card-arrow">→</div>
+            </a>
+            
+            <a href="project.html" class="nav-card animate-delay-2" style="animation: scaleIn 0.6s ease-out both;">
+                <div class="nav-card-icon">🚀</div>
+                <h3 class="nav-card-title">项目</h3>
+                <p class="nav-card-desc">查看我的开源项目、作品集和技术实践</p>
+                <div class="nav-card-arrow">→</div>
+            </a>
+            
+            <a href="about.html" class="nav-card animate-delay-3" style="animation: slideInFromRight 0.6s ease-out both;">
+                <div class="nav-card-icon">👨‍💻</div>
+                <h3 class="nav-card-title">关于</h3>
+                <p class="nav-card-desc">了解我的背景、技能和兴趣爱好</p>
+                <div class="nav-card-arrow">→</div>
+            </a>
+            
+            <a href="contact.html" class="nav-card animate-delay-4" style="animation: slideInFromLeft 0.6s ease-out both;">
+                <div class="nav-card-icon">📧</div>
+                <h3 class="nav-card-title">联系</h3>
+                <p class="nav-card-desc">通过多种方式与我取得联系和沟通</p>
+                <div class="nav-card-arrow">→</div>
+            </a>
+            
+            <a href="https://github.com" target="_blank" class="nav-card animate-delay-5" style="animation: scaleIn 0.6s ease-out both;">
+                <div class="nav-card-icon">💻</div>
+                <h3 class="nav-card-title">GitHub</h3>
+                <p class="nav-card-desc">访问我的GitHub查看代码和贡献</p>
+                <div class="nav-card-arrow">↗</div>
+            </a>
+            
+            <a href="#" class="nav-card animate-delay-1" style="animation: slideInFromRight 0.6s ease-out both;">
+                <div class="nav-card-icon">🌟</div>
+                <h3 class="nav-card-title">更多</h3>
+                <p class="nav-card-desc">探索更多内容和未来计划</p>
+                <div class="nav-card-arrow">→</div>
+            </a>
         </div>
     </main>
 

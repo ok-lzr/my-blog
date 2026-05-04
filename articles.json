@@ -1,0 +1,10 @@
+[
+  {
+    "id": "TEMPLATE",
+    "title": "模板",
+    "date": "2026年5月4日",
+    "excerpt": "文章的模板",
+    "tags": ["标签1", "标签2"],
+    "file": "TEMPLATE.md"
+  }
+]
