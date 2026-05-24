@@ -6,5 +6,13 @@
     "excerpt": "文章的模板",
     "tags": ["标签1", "标签2"],
     "file": "TEMPLATE.md"
+  },
+  {
+    "id": "Decryption_and_Disguise_The_Clever_Use_of_CSS_in_ARGs",
+    "title": "解密与隐藏：CSS 在 ARG 游戏中的巧思应用",
+    "date": "2026年5月4日",
+    "excerpt": "探讨 CSS 在 ARG（替代现实游戏）中作为谜题关键手段的巧妙应用，包括隐写、状态触发、图形绘制等解谜技巧总结。",
+    "tags": ["Web", "ARG", "CSS", "解谜", "前端"],
+    "file": "Decryption_and_Disguise_The_Clever_Use_of_CSS_in_ARGs.html"
   }
 ]
