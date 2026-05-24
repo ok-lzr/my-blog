@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ok-lzr.us.ci/sitemap.xml
+
+# 文章模板页仅供编辑参考，不收录
+Disallow: /articles/TEMPLATE.html

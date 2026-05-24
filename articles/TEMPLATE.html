@@ -3,55 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>文章标题 · 个人网站</title>
+    <!-- 发布新文章时：替换 title、description、canonical、og:* 与下方 JSON-LD -->
+    <title>文章标题 · ok-lzr的个人空间</title>
+    <meta name="description" content="文章摘要：用一两句话概括本文内容，便于搜索引擎展示。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/文章标题.html">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%230066cc'>📝</text></svg>">
-    <link rel="stylesheet" href="../styles/style.css">
-    <!-- 引入新增的独立CSS文件，存储所有文章正文不居中的样式 -->
-    <link rel="stylesheet" href="../styles/article.css">
-    <style>
-        /* 保留极少量临时或页面级应急样式，但所有核心控制样式已经移至 article.css */
-        /* 确保容器边距与基础安全，不破坏原有结构 */
-        .main-content {
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding-top: 2rem;
-        }
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        /* 确保所有响应式基准不会冲突 */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-        }
-    </style>
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="文章标题 · ok-lzr的个人空间">
+    <meta property="og:description" content="文章摘要">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/文章标题.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="文章标题">
+    <meta name="twitter:description" content="文章摘要">
+    <link rel="stylesheet" href="../styles/style.css?v=7">
+    <link rel="stylesheet" href="../styles/article.css?v=7">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "文章标题",
+        "description": "文章摘要",
+        "url": "https://ok-lzr.us.ci/articles/文章标题.html",
+        "datePublished": "2026-05-04",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
 </head>
-<body>
+<body class="article-page">
     <header>
-        <nav class="navbar">
+        <nav class="navbar" aria-label="主导航">
             <div class="logo-area">
-                <a href="../index.html" class="avatar-link">
-                    <img src="../assets/avatar.png" alt="我的头像" class="avatar-img">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
                 </a>
             </div>
-            <div class="nav-links">
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
                 <a href="../index.html" data-nav="home">首页</a>
                 <a href="../articles.html" data-nav="articles" class="active">文章</a>
                 <a href="../project.html" data-nav="projects">项目</a>
                 <a href="../about.html" data-nav="about">关于</a>
-                <a href="../contact.html" data-nav="contact">联系</a>
             </div>
-            <div class="nav-actions"></div>
         </nav>
     </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
 
-    <main class="main-content" style="padding-top: 2rem; align-items: flex-start;">
-        <div class="container">
+    <main class="main-content main-content--page">
+        <div class="container container--article">
             <article>
                 <div class="article-header">
                     <h1>文章模板</h1>
@@ -66,7 +77,7 @@
                 </div>
                 <!-- 文章内容区域：正文不再居中，完全左对齐，由 article.css 控制样式 -->
                 <div class="article-body" id="articleContent">
-                    <h1>一级标题：文章主标题</h1>
+                    <h2>一级标题：文章主标题（正文请从 h2 起，页头已含 h1）</h2>
                     <p>这里是一个普通的段落。它包含了<strong>粗体文本</strong>和<em>斜体文本</em>，以及 <code>行内代码</code>。您还可以在这里<a href="https://example.com">插入一个超链接</a>。现在正文采用左对齐布局，不再整体居中，更符合传统阅读习惯，提升大段文字的可读性。</p>
                     <p>这是另一个段落。为了换行，您需要在上一行末尾添加两个空格，然后回车。<br>
                     或者，直接用一个空行来创建一个全新的段落。左对齐的正文能够减少视线移动距离，特别适合技术文档与长篇文章。</p>
@@ -104,10 +115,6 @@
     console.log("Hello, world!");
 }
 </code></pre>
-                    <p>下面是一个带有语法高亮的代码块（指定语言Python）：</p>
-                    <pre><code class="language-python">def say_hello():
-    print("Hello, world! 正文左对齐使得代码块与文本同样从左边缘开始，易读性提升")
-                    </code></pre>
                     <h5>五级标题：丰富元素——表格、分割线、任务列表</h5>
                     <p><strong>水平分割线</strong>：用于主题分割。</p>
                     <hr>
@@ -134,7 +141,7 @@
                     <p><strong>脚注示例</strong>：这里是一个带脚注的句子<sup><a href="#user-content-fn-1" id="user-content-user-content-fnref-1" data-footnote-ref="" aria-describedby="user-content-footnote-label">1</a></sup>，说明脚注也能完整支持。</p>
                     <h6>六级标题：图片与媒体嵌入</h6>
                     <p><strong>插入图片占位</strong>：<br>
-                    <img src="https://picsum.photos/id/42/700/400" alt="示例图片: 自然风景" title="左对齐正文中的图片展示" style="max-width:100%; border-radius:12px;"></p>
+                    <img src="https://picsum.photos/id/42/700/400" alt="示例图片: 自然风景" title="左对齐正文中的图片展示"></p>
                     <p><strong>嵌入视频</strong>（演示链接形式）：<br>
                     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener">▶ 观看示例视频 (YouTube)</a></p>
                     <p>您也可以直接使用原始HTML嵌入第三方内容，但为了简洁，此处提供友好的跳转链接。</p>
@@ -157,15 +164,12 @@
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <span>✦ 个人网站 · <span id="year"></span></span>
     </footer>
 
-    <script src="../script.js"></script>
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
     <script src="https://cdn.jsdelivr.net/npm/markdown-it@13/dist/markdown-it.umd.js"></script>
-    <script>
-        // 动态设置当前年份
-        document.getElementById('year') && (document.getElementById('year').innerText = new Date().getFullYear());
-    </script>
 </body>
 </html>

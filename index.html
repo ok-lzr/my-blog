@@ -3,76 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>ok-lzr的个人空间</title>
-    <!-- 引入外部 CSS (已包含本地 Inter 字体) -->
+    <title>ok-lzr的个人空间 · 技术博客与作品展示</title>
+    <meta name="description" content="ok-lzr 的个人网站，分享技术文章、开源项目、学习笔记与开发实践。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%236b6bff'>🌐</text></svg>">
-    <link rel="stylesheet" href="./styles/style.css">
-    <!-- 移除 Google Fonts 链接，完全使用本地字体 -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="ok-lzr的个人空间">
+    <meta property="og:description" content="ok-lzr 的个人网站，分享技术文章、开源项目、学习笔记与开发实践。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ok-lzr的个人空间">
+    <meta name="twitter:description" content="ok-lzr 的个人网站，分享技术文章、开源项目、学习笔记与开发实践。">
+    <meta name="twitter:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <link rel="stylesheet" href="./styles/style.css?v=7">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "ok-lzr的个人空间",
+        "url": "https://ok-lzr.us.ci/",
+        "description": "ok-lzr 的个人网站，分享技术文章、开源项目、学习笔记与开发实践。",
+        "inLanguage": "zh-CN",
+        "author": {
+            "@type": "Person",
+            "name": "ok-lzr",
+            "url": "https://github.com/ok-lzr"
+        }
+    }
+    </script>
 </head>
 <body>
     <header>
-        <nav class="navbar">
+        <nav class="navbar" aria-label="主导航">
             <div class="logo-area">
-                <a href="index.html" class="avatar-link">
-                    <img src="assets/avatar.png" alt="我的头像" class="avatar-img">
+                <a href="index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
                 </a>
             </div>
-            <div class="nav-links">
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
                 <a href="index.html" data-nav="home" class="active">首页</a>
                 <a href="articles.html" data-nav="articles">文章</a>
                 <a href="project.html" data-nav="projects">项目</a>
                 <a href="about.html" data-nav="about">关于</a>
-                <a href="contact.html" data-nav="contact">联系</a>
             </div>
-            <div class="nav-actions"></div>
         </nav>
     </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
 
     <main class="main-content" id="mainContent">
         <div class="hero">
-            <div class="greeting" id="greetingText">
-                Hello, world!
-            </div>
-            <div class="sub" id="subText">
-                — ok-lzr的个人空间 —
-            </div>
-        </div>
-
-        <!-- 主体导航网格 -->
-        <div class="main-nav-grid">
-            <a href="articles.html" class="nav-card animate-delay-1" style="animation: slideInFromLeft 0.6s ease-out both;">
-                <div class="nav-card-icon">📚</div>
-                <h3 class="nav-card-title">文章</h3>
-                <p class="nav-card-desc">探索我的技术文章、学习笔记和思考分享</p>
-                <div class="nav-card-arrow">→</div>
-            </a>
-            
-            <a href="project.html" class="nav-card animate-delay-2" style="animation: scaleIn 0.6s ease-out both;">
-                <div class="nav-card-icon">🚀</div>
-                <h3 class="nav-card-title">项目</h3>
-                <p class="nav-card-desc">查看我的开源项目、作品集和技术实践</p>
-                <div class="nav-card-arrow">→</div>
-            </a>
-            
-            <a href="about.html" class="nav-card animate-delay-3" style="animation: slideInFromRight 0.6s ease-out both;">
-                <div class="nav-card-icon">👨‍💻</div>
-                <h3 class="nav-card-title">关于</h3>
-                <p class="nav-card-desc">了解我的背景、技能和兴趣爱好</p>
-                <div class="nav-card-arrow">→</div>
-            </a>
-            
-            <a href="contact.html" class="nav-card animate-delay-4" style="animation: slideInFromLeft 0.6s ease-out both;">
-                <div class="nav-card-icon">📧</div>
-                <h3 class="nav-card-title">联系</h3>
-                <p class="nav-card-desc">通过多种方式与我取得联系和沟通</p>
-                <div class="nav-card-arrow">→</div>
+            <p class="greeting" id="greetingText">Hello, world!</p>
+            <p class="sub" id="subText">— ok-lzr的个人空间 —</p>
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <span>✦ 个人网站 · <span id="year"></span></span>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="./scripts/site-config.js?v=8"></script>
+    <script src="./scripts/script.js?v=8"></script>
 </body>
 </html>

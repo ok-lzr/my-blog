@@ -3,262 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>项目 · ok-lzr的个人网站</title>
-    <!-- 在<head>中添加 -->
+    <title>项目 · ok-lzr的个人空间</title>
+    <meta name="description" content="ok-lzr 的开源项目与作品展示，包括 SpeakCoach 智能演讲助手等 Web 应用。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/project.html">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%236b6bff'>💻</text></svg>">
-    <link rel="stylesheet" href="./styles/style.css">
-    <style>
-        /* 项目页面增强样式 */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2.5rem;
-            width: 100%;
-        }
-        
-        .project-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--card-border);
-            border-radius: 28px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: left;
-            box-shadow: var(--card-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-accent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .project-card:hover::before {
-            opacity: 1;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
-            box-shadow: var(--shadow-xl);
-        }
-        
-        .project-icon {
-            font-size: 3rem;
-            margin-bottom: 1.2rem;
-            display: inline-block;
-            transition: transform 0.4s ease;
-        }
-        
-        .project-card:hover .project-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: var(--text-primary);
-            line-height: 1.3;
-        }
-        
-        .project-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .tech-tag {
-            background: rgba(26, 115, 232, 0.1);
-            border-radius: 20px;
-            padding: 0.5rem 1.2rem;
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            border: 1px solid rgba(26, 115, 232, 0.2);
-            transition: var(--transition-smooth);
-            font-weight: 600;
-        }
-        
-        .tech-tag:hover {
-            background: rgba(26, 115, 232, 0.2);
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .project-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.5rem 0;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .project-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            transition: width 0.3s ease;
-        }
-        
-        .project-link:hover::after {
-            width: 100%;
-        }
-        
-        .project-link:hover {
-            gap: 0.6rem;
-        }
-        
-        .page-header {
-            margin-bottom: 2.5rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .page-header h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.8rem;
-            filter: drop-shadow(0 0 20px rgba(26, 115, 232, 0.2));
-            animation: gradientShift 3s ease infinite;
-            background-size: 200% 200%;
-        }
-        
-        .page-header p {
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            font-weight: 400;
-        }
-        
-        /* 空状态样式 */
-        .empty-state {
-            text-align: center;
-            padding: 5rem 2rem;
-            color: var(--text-secondary);
-        }
-        
-        .empty-state-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.5;
-        }
-        
-        @media (max-width: 768px) {
-            .project-card {
-                padding: 2rem;
-                border-radius: 24px;
-            }
-            
-            .project-icon {
-                font-size: 2.5rem;
-            }
-            
-            .project-title {
-                font-size: 1.3rem;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .projects-grid {
-                gap: 1.5rem;
-                grid-template-columns: 1fr;
-            }
-            
-            .project-card {
-                padding: 1.8rem;
-                border-radius: 20px;
-            }
-            
-            .project-icon {
-                font-size: 2.2rem;
-            }
-            
-            .tech-tag {
-                padding: 0.4rem 1rem;
-                font-size: 0.85rem;
-            }
-        }
-    </style>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="项目 · ok-lzr的个人空间">
+    <meta property="og:description" content="ok-lzr 的开源项目与作品展示，包括 SpeakCoach 智能演讲助手。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/project.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="项目 · ok-lzr的个人空间">
+    <meta name="twitter:description" content="ok-lzr 的开源项目与作品展示。">
+    <meta name="twitter:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <link rel="stylesheet" href="./styles/style.css?v=7">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "项目",
+        "url": "https://ok-lzr.us.ci/project.html",
+        "description": "ok-lzr 的开源项目与作品展示",
+        "inLanguage": "zh-CN"
+    }
+    </script>
 </head>
 <body>
     <header>
-        <nav class="navbar">
+        <nav class="navbar" aria-label="主导航">
             <div class="logo-area">
-                <a href="index.html" class="avatar-link">
-                    <img src="assets/avatar.png" alt="我的头像" class="avatar-img">
+                <a href="index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
                 </a>
             </div>
-            <div class="nav-links">
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
                 <a href="index.html" data-nav="home">首页</a>
                 <a href="articles.html" data-nav="articles">文章</a>
                 <a href="project.html" data-nav="projects" class="active">项目</a>
                 <a href="about.html" data-nav="about">关于</a>
-                <a href="contact.html" data-nav="contact">联系</a>
             </div>
-            <div class="nav-actions"></div>
         </nav>
     </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
 
-    <main class="main-content" style="padding-top: 3rem; align-items: flex-start;">
-        <div class="hero" style="max-width: 1200px;">
+    <main class="main-content main-content--page main-content--page-lg">
+        <div class="hero hero--wide">
             <div class="page-header">
-                <h1>项目</h1>
+                <h1 class="page-heading">项目</h1>
                 <p>我的一些作品</p>
             </div>
             
             <div class="projects-grid">
                 <!-- 项目卡片 -->
-                <div class="project-card">
-                    <div class="project-icon">🔈</div>
-                    <h3 class="project-title">SpeakCoach · 智能演讲助手</h3>
+                <article class="project-card">
+                    <div class="project-icon" aria-hidden="true">🔈</div>
+                    <h2 class="project-title">SpeakCoach · 智能演讲助手</h2>
                     <p class="project-desc">实时语音分析工具，监测语速语气词，助你提升演讲表现力。</p>
-                    <div class="project-tech">
+                    <div class="project-tech" aria-label="技术栈">
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">CSS</span>
                         <span class="tech-tag">JavaScript</span>
                     </div>
-                    <a href="https://speakcoach.ok-lzr.us.ci" class="project-link">查看项目 →</a>
-                </div>
+                    <a href="https://speakcoach.ok-lzr.us.ci" class="project-link" rel="noopener noreferrer" title="在新窗口打开 SpeakCoach">查看项目 →</a>
+                </article>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <span>✦ 个人网站 · <span id="year"></span></span>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="./scripts/site-config.js?v=8"></script>
+    <script src="./scripts/script.js?v=8"></script>
 </body>
 </html>

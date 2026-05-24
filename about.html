@@ -3,238 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>关于 · 个人网站</title>
+    <title>关于我 · ok-lzr的个人空间</title>
+    <meta name="description" content="了解 ok-lzr：开发者背景、技能栈、兴趣爱好与联系方式（邮箱、GitHub、QQ）。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/about.html">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%236b6bff'>👤</text></svg>">
-    <link rel="stylesheet" href="./styles/style.css">
-    <style>
-        .about-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 850px;
-            margin: 0 auto;
-            text-align: left;
-            position: relative;
-            z-index: 1;
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="关于我 · ok-lzr的个人空间">
+    <meta property="og:description" content="了解 ok-lzr 的背景、技能与联系方式。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/about.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="关于我 · ok-lzr的个人空间">
+    <meta name="twitter:description" content="了解 ok-lzr 的背景、技能与联系方式。">
+    <meta name="twitter:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <link rel="stylesheet" href="./styles/style.css?v=7">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "name": "关于 ok-lzr",
+        "url": "https://ok-lzr.us.ci/about.html",
+        "inLanguage": "zh-CN",
+        "mainEntity": {
+            "@type": "Person",
+            "name": "ok-lzr",
+            "url": "https://ok-lzr.us.ci/about.html",
+            "sameAs": ["https://github.com/ok-lzr"],
+            "email": "mailto:3866477796@qq.com",
+            "knowsAbout": ["HTML", "CSS", "JavaScript", "Python", "C++"]
         }
-        
-        .about-header {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-        
-        .about-header h1 {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 800;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.8rem;
-            filter: drop-shadow(0 0 20px rgba(26, 115, 232, 0.2));
-            animation: gradientShift 3s ease infinite;
-            background-size: 200% 200%;
-        }
-        
-        .about-content {
-            background: var(--card-bg);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid var(--card-border);
-            border-radius: 36px;
-            padding: 3rem;
-            width: 100%;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition-smooth);
-        }
-        
-        .about-content:hover {
-            box-shadow: var(--shadow-xl);
-            transform: translateY(-4px);
-        }
-        
-        .about-section {
-            margin-bottom: 2.5rem;
-        }
-        
-        .about-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .about-section h2 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        
-        .about-section p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-        
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.7rem;
-            margin-top: 1rem;
-        }
-        
-        .skill-tag {
-            background: rgba(26, 115, 232, 0.1);
-            border: 1px solid rgba(26, 115, 232, 0.2);
-            border-radius: 24px;
-            padding: 0.5rem 1.4rem;
-            font-size: 0.9rem;
-            color: var(--accent-color);
-            transition: var(--transition-smooth);
-            font-weight: 600;
-            cursor: default;
-        }
-        
-        .skill-tag:hover {
-            background: rgba(26, 115, 232, 0.2);
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-md);
-        }
-        
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--gradient-accent);
-            opacity: 0.3;
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-            padding-left: 1.5rem;
-            transition: var(--transition-smooth);
-        }
-        
-        .timeline-item:hover {
-            transform: translateX(5px);
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            box-shadow: 0 0 15px rgba(26, 115, 232, 0.4);
-            transition: var(--transition-smooth);
-        }
-        
-        .timeline-item:hover::before {
-            transform: scale(1.2);
-            background: var(--gradient-accent);
-        }
-        
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .timeline-year {
-            font-weight: 700;
-            color: var(--accent-color);
-            font-size: 0.9rem;
-            margin-bottom: 0.4rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .timeline-content h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-        
-        .timeline-content p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-        
-        @media (max-width: 768px) {
-            .about-content {
-                padding: 2.5rem 2rem;
-                border-radius: 28px;
-            }
-            
-            .about-header h1 {
-                font-size: clamp(2rem, 5vw, 3rem);
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .about-content {
-                padding: 2rem 1.5rem;
-                border-radius: 24px;
-            }
-            
-            .timeline-item {
-                padding-left: 1rem;
-            }
-            
-            .timeline-item::before {
-                left: -1.5rem;
-                width: 10px;
-                height: 10px;
-            }
-            
-            .timeline::before {
-                left: -0.5rem;
-            }
-            
-            .skill-tag {
-                padding: 0.4rem 1.2rem;
-                font-size: 0.85rem;
-            }
-        }
-    </style>
+    }
+    </script>
 </head>
 <body>
     <header>
-        <nav class="navbar">
+        <nav class="navbar" aria-label="主导航">
             <div class="logo-area">
-                <a href="index.html" class="avatar-link">
-                    <img src="assets/avatar.png" alt="我的头像" class="avatar-img">
+                <a href="index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
                 </a>
             </div>
-            <div class="nav-links">
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
                 <a href="index.html" data-nav="home">首页</a>
                 <a href="articles.html" data-nav="articles">文章</a>
                 <a href="project.html" data-nav="projects">项目</a>
                 <a href="about.html" data-nav="about" class="active">关于</a>
-                <a href="contact.html" data-nav="contact">联系</a>
             </div>
-            <div class="nav-actions"></div>
         </nav>
     </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
 
-    <main class="main-content" style="padding-top: 3rem; align-items: flex-start;">
+    <main class="main-content main-content--page main-content--page-lg">
         <div class="about-container">
             <div class="about-header">
-                <h1>关于我</h1>
+                <h1 class="page-heading">关于我</h1>
             </div>
             
             <div class="about-content">
@@ -259,14 +92,65 @@
                     <h2>🎯 兴趣</h2>
                     <p>除了写代码，还喜欢画画、读书、骑自行车。相信保持好奇心是最好的成长方式。</p>
                 </div>
+
+                <div class="about-section">
+                    <h2>📧 联系我</h2>
+                    <p>期待听到你的声音，欢迎通过以下方式与我取得联系。</p>
+                    <div class="contact-methods">
+                        <a href="mailto:3866477796@qq.com" class="contact-card">
+                            <span class="contact-emoji">📧</span>
+                            <div class="contact-info">
+                                <h3>Email</h3>
+                                <p>邮箱1：3866477796@qq.com · 邮箱2：csgdnrxg@163.com</p>
+                            </div>
+                            <span class="contact-arrow">→</span>
+                        </a>
+                        <a href="https://github.com/ok-lzr" target="_blank" rel="noopener" class="contact-card">
+                            <span class="contact-emoji">🐙</span>
+                            <div class="contact-info">
+                                <h3>GitHub</h3>
+                                <p>ok-lzr</p>
+                            </div>
+                            <span class="contact-arrow">→</span>
+                        </a>
+                        <a href="#" class="contact-card" data-copy="3866477796">
+                            <span class="contact-emoji">📱</span>
+                            <div class="contact-info">
+                                <h3>QQ</h3>
+                                <p>QQ号（点击复制）</p>
+                            </div>
+                            <span class="contact-arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <div class="form-title">发送留言</div>
+                <form id="contactForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label class="form-label" for="name">姓名</label>
+                        <input type="text" class="form-input" id="name" placeholder="你的名字">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">邮箱</label>
+                        <input type="email" class="form-input" id="email" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="message">留言</label>
+                        <textarea class="form-textarea" id="message" placeholder="想说什么..."></textarea>
+                    </div>
+                    <button type="submit" class="form-button" onclick="alert('哈哈，骗你的（￣︶￣）实际上根本发不出去，你可以通过上方的信息联系我')">发送留言</button>
+                </form>
             </div>
         </div>
     </main>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <span>✦ 个人网站 · <span id="year"></span></span>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="./scripts/site-config.js?v=8"></script>
+    <script src="./scripts/script.js?v=8"></script>
 </body>
 </html>
