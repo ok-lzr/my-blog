@@ -268,3 +268,39 @@ article {
         gap: 1rem;
     }
 }
+
+/* 代码块复制按钮 */
+.article-body pre {
+    position: relative;
+}
+
+.article-body pre .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    backdrop-filter: blur(2px);
+    z-index: 2;
+}
+
+.article-body pre:hover .copy-btn {
+    opacity: 1;
+}
+
+.article-body pre .copy-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.article-body pre .copy-btn.copied {
+    background: #4b7bec;
+    opacity: 1;
+}

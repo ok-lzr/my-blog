@@ -178,6 +178,61 @@
         });
     }
 
+    // ----- 新增：代码块复制按钮 -----
+    function initCodeCopyButtons() {
+        const codeBlocks = document.querySelectorAll('.article-body pre');
+        if (!codeBlocks.length) return;
+
+        codeBlocks.forEach((pre) => {
+            // 避免重复添加
+            if (pre.querySelector('.copy-btn')) return;
+
+            const code = pre.querySelector('code');
+            if (!code) return;
+
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.textContent = '复制';
+            btn.setAttribute('aria-label', '复制代码');
+
+            const copyCode = async () => {
+                const text = code.textContent || code.innerText;
+                try {
+                    await navigator.clipboard.writeText(text);
+                    btn.textContent = '已复制 ✓';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = '复制';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                } catch {
+                    // 降级方案
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        btn.textContent = '已复制 ✓';
+                        btn.classList.add('copied');
+                        setTimeout(() => {
+                            btn.textContent = '复制';
+                            btn.classList.remove('copied');
+                        }, 2000);
+                    } catch (e) {
+                        alert('复制失败，请手动复制。');
+                    }
+                    document.body.removeChild(textarea);
+                }
+            };
+
+            btn.addEventListener('click', copyCode);
+            pre.style.position = 'relative';
+            pre.appendChild(btn);
+        });
+    }
+
+    // ----- 初始化 -----
     onReady(() => {
         initNavHighlight();
         initMobileNav();
@@ -187,5 +242,6 @@
         initHeroParallax();
         initCardTilt();
         initPageEnter();
+        initCodeCopyButtons();
     });
 })();
