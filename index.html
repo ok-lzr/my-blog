@@ -20,7 +20,7 @@
     <meta name="twitter:title" content="ok-lzr的个人空间">
     <meta name="twitter:description" content="ok-lzr 的个人网站，分享技术文章、开源项目、学习笔记与开发实践。">
     <meta name="twitter:image" content="https://ok-lzr.us.ci/assets/avatar.png">
-    <link rel="stylesheet" href="./styles/style.css?v=7">
+    <link rel="stylesheet" href="./styles/style.css">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -62,10 +62,40 @@
     </header>
     <div class="nav-overlay" aria-hidden="true"></div>
 
-    <main class="main-content" id="mainContent">
-        <div class="hero">
-            <p class="greeting" id="greetingText">Hello, world!</p>
-            <p class="sub" id="subText">— ok-lzr的个人空间 —</p>
+    <main class="main-content main-content--home" id="mainContent">
+        <div class="home-grid">
+            <!-- 左侧：主标题区 -->
+            <section class="home-hero">
+                <p class="greeting" id="greetingText">Hello, world!</p>
+                <p class="sub" id="subText">— ok-lzr的个人空间 —</p>
+                <div class="hero-desc">
+                    <p>设计师 · 开发者 · 终身学习者</p>
+                    <p>用代码和文字记录思考，用设计传递温度</p>
+                </div>
+                <div class="hero-actions">
+                    <a href="articles.html" class="btn btn-primary">阅读文章</a>
+                    <a href="project.html" class="btn btn-secondary">浏览项目</a>
+                </div>
+            </section>
+
+            <!-- 右侧：精选文章 & 动态 -->
+            <aside class="home-sidebar">
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">📖 精选文章</h3>
+                    <ul class="sidebar-list" id="featuredArticles">
+                        <li><a href="articles/From_Prompt_Mask_to_AI_Skills_The_Evolution_of_Customized_Interaction_Methods.html">从“提示词面具”到“AI技能”：定制化交互方式的演进</a></li>
+                        <li><a href="articles/Decryption_and_Disguise_The_Clever_Use_of_CSS_in_ARGs.html">解密与隐藏：CSS 在 ARG 游戏中的巧思应用</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-card">
+                    <h3 class="sidebar-title">✦ 最近动态</h3>
+                    <ul class="sidebar-list">
+                        <li><span class="dot"></span> 发布文章：从“提示词面具”到“AI技能”：定制化交互方式的演进</li>
+                        <li><span class="dot"></span> 网站全新改版 · 书卷风格</li>
+                        <li><span class="dot"></span> 发布文章：CSS 在 ARG 中的妙用</li>
+                    </ul>
+                </div>
+            </aside>
         </div>
     </main>
 

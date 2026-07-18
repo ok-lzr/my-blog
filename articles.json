@@ -14,5 +14,13 @@
     "excerpt": "探讨 CSS 在 ARG（替代现实游戏）中作为谜题关键手段的巧妙应用，包括隐写、状态触发、图形绘制等解谜技巧总结。",
     "tags": ["Web", "ARG", "CSS", "解谜", "前端"],
     "file": "Decryption_and_Disguise_The_Clever_Use_of_CSS_in_ARGs.html"
+  },
+  {
+    "id": "From_Prompt_Mask_to_AI_Skills_The_Evolution_of_Customized_Interaction_Methods",
+    "title": "从“提示词面具”到“AI技能”：定制化交互方式的演进",
+    "date": "2026年5月4日",
+    "excerpt": "通过对比早期纯文本的“提示词面具”与当今集成工具、知识和行动能力的结构化“AI技能”，阐述了AI定制化从脆弱的手工角色扮演向可复用、可行动的智能代理演进的过程与本质区别。",
+    "tags": ["AI", "AI Skills", "提示词面具"],
+    "file": "From_Prompt_Mask_to_AI_Skills_The_Evolution_of_Customized_Interaction_Methods.html"
   }
 ]
