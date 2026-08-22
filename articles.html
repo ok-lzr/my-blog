@@ -20,7 +20,7 @@
     <meta name="twitter:title" content="文章 · ok-lzr的个人空间">
     <meta name="twitter:description" content="阅读 ok-lzr 的技术文章、学习笔记与思考分享。">
     <meta name="twitter:image" content="https://ok-lzr.us.ci/assets/avatar.png">
-    <link rel="stylesheet" href="./styles/style.css?v=9">
+    <link rel="stylesheet" href="./styles/style.css?v=10">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -65,7 +65,16 @@
                 <h1 class="page-heading">文章</h1>
                 <p>分享我的学习和思考</p>
             </div>
-            
+
+            <div class="article-search">
+                <svg class="article-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"/>
+                    <line x1="21" y1="21" x2="16.5" y2="16.5"/>
+                </svg>
+                <input type="search" id="articleSearch" class="article-search-input" placeholder="搜索文章标题、标签或摘要..." aria-label="搜索文章标题、标签或摘要" autocomplete="off">
+                <span class="article-search-count" id="articleCount" aria-live="polite"></span>
+            </div>
+
             <div class="articles-grid" id="articlesGrid">
                 <p class="articles-grid__status">加载中...</p>
             </div>
@@ -78,6 +87,6 @@
 
     <script src="./scripts/site-config.js?v=8"></script>
     <script src="./scripts/script.js?v=8"></script>
-    <script src="./scripts/articles-loader.js?v=8"></script>
+    <script src="./scripts/articles-loader.js?v=9"></script>
 </body>
 </html>

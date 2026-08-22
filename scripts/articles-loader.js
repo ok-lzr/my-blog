@@ -5,6 +5,8 @@
     'use strict';
 
     const GRID_ID = 'articlesGrid';
+    const SEARCH_ID = 'articleSearch';
+    const COUNT_ID = 'articleCount';
     const STATUS_CLASS = 'articles-grid__status';
 
     function onReady(callback) {
@@ -77,9 +79,35 @@
         );
     }
 
+    /* ----- 搜索过滤 ----- */
+    function getQuery(input) {
+        return input ? input.value.trim() : '';
+    }
+
+    function filterArticles(articles, query) {
+        const q = query.toLowerCase();
+        if (!q) return articles;
+        return articles.filter((article) => {
+            const haystack = [
+                article.title || '',
+                article.excerpt || '',
+                (article.tags || []).join(' '),
+            ].join(' ').toLowerCase();
+            return haystack.includes(q);
+        });
+    }
+
+    function updateCount(countEl, total, matched, query) {
+        if (!countEl) return;
+        countEl.textContent = query ? `找到 ${matched} / ${total} 篇` : `共 ${total} 篇`;
+    }
+
     async function loadArticles() {
         const grid = document.getElementById(GRID_ID);
         if (!grid) return;
+
+        const searchInput = document.getElementById(SEARCH_ID);
+        const countEl = document.getElementById(COUNT_ID);
 
         try {
             const response = await fetch('articles.json');
@@ -87,20 +115,37 @@
                 throw new Error(`HTTP ${response.status}`);
             }
 
-            const articles = getValidArticles(await response.json());
+            const all = getValidArticles(await response.json());
 
-            if (!articles.length) {
+            if (!all.length) {
                 renderStatus(grid, '暂无文章');
                 return;
             }
 
-            injectArticleListSchema(articles);
+            injectArticleListSchema(all);
 
-            const fragment = document.createDocumentFragment();
-            articles.forEach((article) => {
-                fragment.appendChild(createArticleCard(article));
-            });
-            grid.replaceChildren(fragment);
+            function render() {
+                const query = getQuery(searchInput);
+                const articles = filterArticles(all, query);
+
+                if (!articles.length) {
+                    renderStatus(grid, query ? `未找到与“${query}”匹配的文章` : '暂无文章');
+                } else {
+                    const fragment = document.createDocumentFragment();
+                    articles.forEach((article) => {
+                        fragment.appendChild(createArticleCard(article));
+                    });
+                    grid.replaceChildren(fragment);
+                }
+
+                updateCount(countEl, all.length, articles.length, query);
+            }
+
+            render();
+
+            if (searchInput) {
+                searchInput.addEventListener('input', render);
+            }
         } catch (error) {
             console.error('加载文章失败:', error);
             renderStatus(grid, '加载文章失败，请稍后重试');
