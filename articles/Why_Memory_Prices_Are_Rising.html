@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>深度分析：为什么最近内存价格水涨船高 · ok-lzr的个人空间</title>
+    <meta name="description" content="从 AI 算力需求、原厂转产 HBM、寡头控产与扩产周期四个维度，拆解 2025–2026 年内存价格翻倍背后的供需逻辑，并给出消费者视角的判断。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/Why_Memory_Prices_Are_Rising.html">
+    <link rel="icon" href="../assets/avatar.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="深度分析：为什么最近内存价格水涨船高 · ok-lzr的个人空间">
+    <meta property="og:description" content="从 AI 算力需求、原厂转产 HBM、寡头控产与扩产周期四个维度，拆解内存价格翻倍背后的供需逻辑。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/Why_Memory_Prices_Are_Rising.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="深度分析：为什么最近内存价格水涨船高">
+    <meta name="twitter:description" content="从 AI 需求、原厂转产 HBM、寡头控产与扩产周期四个维度拆解内存涨价逻辑。">
+    <link rel="stylesheet" href="../styles/style.css?v=9">
+    <link rel="stylesheet" href="../styles/article.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "深度分析：为什么最近内存价格水涨船高",
+        "description": "从 AI 算力需求、原厂转产 HBM、寡头控产与扩产周期四个维度，拆解 2025–2026 年内存价格翻倍背后的供需逻辑，并给出消费者视角的判断。",
+        "url": "https://ok-lzr.us.ci/articles/Why_Memory_Prices_Are_Rising.html",
+        "datePublished": "2026-12-12",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
+</head>
+<body class="article-page">
+    <header>
+        <nav class="navbar" aria-label="主导航">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+            </div>
+        </nav>
+    </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main class="main-content main-content--page">
+        <div class="container container--article">
+            <article>
+                <div class="article-header">
+                    <h1>深度分析：为什么最近内存价格水涨船高</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-calendar.svg" alt="日期" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>2026年12月12日</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-clock.svg" alt="阅读时间" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>阅读时间：12 分钟</span>
+                        </div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">硬件</span>
+                        <span class="tag">内存</span>
+                        <span class="tag">DRAM</span>
+                        <span class="tag">行业分析</span>
+                    </div>
+                </div>
+                <div class="article-body" id="articleContent">
+                    <p>过去一年，内存条价格一路走高，被网友调侃成了"理财产品"：有人 2024 年囤的 DDR5 现在转手能赚差价，"等等党"则眼睁睁看着价格翻倍。这轮涨价不是简单的供需抖动，而是一场由 AI 驱动的<strong>存储超级周期</strong>。这篇文章把链条从头到尾拆开看。</p>
+
+                    <h2>现象：从"白菜价"到"金条价"</h2>
+                    <p>2023 年内存还在历史低位，一条 32GB DDR5 不到五百元；到了 2026 年，主流内存条价格普遍翻倍甚至更多，媒体开始用"价格翻倍的金条"来形容它。与此同时，三大存储原厂（三星、SK 海力士、美光）的业绩持续创出新高，行业整体被形容为"快跑进入超级周期"。</p>
+                    <p>涨价不只在消费市场：服务器内存、手机内存、显存（GDDR）、闪存（NAND）几乎全线普涨，只是幅度和节奏略有差异。这说明问题出在<strong>行业供给端</strong>，而不是某一个细分市场的偶发波动。</p>
+
+                    <h2>需求端：AI 把"内存饥饿"放大了无数倍</h2>
+                    <p>这轮行情的总根源是 AI。具体有三层需求叠加：</p>
+                    <ul>
+                        <li><strong>AI 服务器的 HBM 需求爆炸</strong>：训练和推理大模型需要高带宽内存（HBM），单颗 AI 加速卡要配 8–16 颗 HBM 堆叠，而 HBM 的生产要占用最先进的 DRAM 晶圆产能。</li>
+                        <li><strong>端侧 AI 设备的内存升级</strong>：AI PC 标配 32GB、AI 手机普遍 12–16GB 起步，大模型本地推理让"内存容量"第一次成为硬件卖点。</li>
+                        <li><strong>云厂商囤货</strong>：大厂为 AI 基建抢产能、签长约，进一步挤压现货供给。</li>
+                    </ul>
+
+                    <h2>供给端：产能被 HBM"吸走"，扩产又慢</h2>
+                    <p>需求只是引子，真正的涨价推手在供给端：</p>
+                    <ol>
+                        <li><strong>转产 HBM</strong>：DRAM 原厂把最先进制程的晶圆优先排给 HBM（利润更高），普通 DDR5 的产能被结构性压缩——不是没能力产，而是"不划算"。</li>
+                        <li><strong>NAND 减产控价</strong>：闪存原厂经历 2023 年巨亏后学会了"减产保价"，价格从底部反弹。</li>
+                        <li><strong>扩产周期长</strong>：从决定扩产到产能爬坡需要 12–18 个月，远水救不了近火。</li>
+                    </ol>
+                    <p>于是出现了罕见的局面：AI 需求的"增量"和消费内存的"存量"在同一片晶圆上争产能，而消费级内存恰好是利润最低、最先被牺牲的那部分。</p>
+
+                    <h2>寡头格局：三巨头"默契"控产</h2>
+                    <p>DRAM 市场是教科书级的寡头格局：三星、SK 海力士、美光三家合计占据九成以上份额。经历过 2022–2023 年的惨烈下行后，三家公司都转向"利润优先、控制供给"的策略——宁可少卖，也不打价格战。叠加 AI 需求的确定性，原厂有充分的动力维持甚至推高价格。这也是为什么本轮涨价"涨得又快又稳"。</p>
+
+                    <h2>价格传导的完整链条</h2>
+                    <div class="table-wrapper">
+                    <table>
+                    <thead>
+                        <tr><th align="left">环节</th><th align="left">变化</th><th align="left">对价格的影响</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td align="left">原厂产能</td><td align="left">先进制程转向 HBM</td><td align="left">DDR5 供给收缩，价格上行</td></tr>
+                        <tr><td align="left">现货价</td><td align="left">DRAM/NAND 现货率先上涨</td><td align="left">渠道商囤货加剧短缺</td></tr>
+                        <tr><td align="left">合约价</td><td align="left">季度合约价连续上调</td><td align="left">整机、手机成本上升</td></tr>
+                        <tr><td align="left">消费市场</td><td align="left">内存条、SSD、新机普涨</td><td align="left">消费者为 AI 周期买单</td></tr>
+                    </tbody>
+                    </table>
+                    </div>
+
+                    <h2>这轮"超级周期"会不会重演历史</h2>
+                    <p>存储行业十年间经历了 2017–2018、2021、2025–2026 三次大涨。前两次都由需求暴涨驱动、以产能过剩和价格崩盘收尾。本轮的不同在于：AI 需求被普遍认为具备更强的持续性，且 HBM 的产能占用是"结构性"的——即便消费市场降温，AI 仍会继续吃掉最先进的产能。多数机构判断，高位运行至少会持续到 2026 年年中，之后取决于 AI 资本开支是否回落。</p>
+
+                    <h2>消费者该怎么办</h2>
+                    <ul>
+                        <li><strong>刚需（装机/升级）</strong>：短期看不到大幅回落，刚需该买就买，别赌"明天更便宜"。</li>
+                        <li><strong>非刚需</strong>：可以等 2026 年中的产能释放窗口，但要有"等不到"的心理准备。</li>
+                        <li><strong>警惕炒作</strong>：把内存条当理财不可取——它有保质期、有换代风险，二手流动性远不如黄金。</li>
+                    </ul>
+
+                    <h2>结语</h2>
+                    <p>内存涨价，本质上是"AI 时代的算力军备竞赛"向供应链下游的一次传导：先进产能被 AI 独占，寡头借势控产，消费者为整个行业的转型买单。看懂这条链条，你就能理解为什么这次涨价不是短期炒作，而是一轮结构性的行业周期。</p>
+
+                    <h2>参考资料</h2>
+                    <ul>
+                        <li><a href="https://www.cls.cn/detail/2175284" target="_blank" rel="noopener">活久见！全球存储行业正快跑进入超级周期，内存条涨成"理财产品"（财联社）</a></li>
+                        <li><a href="https://m.jiemian.com/article/13640625.html" target="_blank" rel="noopener">价格翻倍的"金条"，等等党组不起电脑（界面新闻）</a></li>
+                        <li><a href="https://finance.sina.cn/2026-03-20/detail-inhrshaq0527768.d.html" target="_blank" rel="noopener">存储芯片"超级周期"行情可否持续？（新华指数/新浪财经）</a></li>
+                        <li><a href="https://ieknet.iek.org.tw/ieknews/news_open.aspx?actiontype=ieknews&amp;indu_idno=10&amp;nsl_id=403002a121414f6c81cb11f08816e066" target="_blank" rel="noopener">AI 拉抬，存储芯片价格狂飙（工研院产科国际所 IEK）</a></li>
+                        <li><a href="https://hk.on.cc/hk/bkn/cnt/finance/20260502/bkn-20260502230050631-0502_00842_001_cn.html" target="_blank" rel="noopener">今年三大记忆体厂商业绩料续亮丽，行业景气高位运行（东方日报）</a></li>
+                    </ul>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
+</body>
+</html>

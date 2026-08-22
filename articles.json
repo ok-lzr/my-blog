@@ -46,5 +46,13 @@
     "excerpt": "NPU（神经网络处理单元）是什么？它和 CPU、GPU 有何区别？为什么手机、电脑都要塞进一块 NPU？一文讲清原理、对比与应用场景。",
     "tags": ["AI", "硬件", "NPU"],
     "file": "What_Is_An_NPU.html"
+  },
+  {
+    "id": "Why_Memory_Prices_Are_Rising",
+    "title": "深度分析：为什么最近内存价格水涨船高",
+    "date": "2026年12月12日",
+    "excerpt": "从 AI 算力需求、原厂转产 HBM、寡头控产与扩产周期四个维度，拆解 2025–2026 年内存价格翻倍背后的供需逻辑，并给出消费者视角的判断。",
+    "tags": ["硬件", "内存", "DRAM", "行业分析"],
+    "file": "Why_Memory_Prices_Are_Rising.html"
   }
 ]
