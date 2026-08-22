@@ -2,56 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ok-lzr.us.ci/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://ok-lzr.us.ci/index.html</loc>
+    <lastmod>2026-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/articles.html</loc>
+    <lastmod>2026-12-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/project.html</loc>
+    <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/about.html</loc>
+    <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/articles/How_to_Download_DeepSeek_Harness.html</loc>
+    <lastmod>2026-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/articles/Cpp26_Updates.html</loc>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/articles/How_Circle_Drawing_Algorithms_Work.html</loc>
+    <lastmod>2026-11-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/articles/RTX50_Series_GPU_Theoretical_Comparison.html</loc>
+    <lastmod>2026-11-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/articles/What_Is_An_NPU.html</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://ok-lzr.us.ci/articles/Why_Memory_Prices_Are_Rising.html</loc>
+    <lastmod>2026-12-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
