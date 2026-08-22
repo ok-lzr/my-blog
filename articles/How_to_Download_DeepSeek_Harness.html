@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>如何下载 DeepSeek Harness · ok-lzr的个人空间</title>
+    <meta name="description" content="DeepSeek Harness（dsh）是 DeepSeek AI 开源的 agent 智能体框架。本文介绍两种获取方式：npx 一行命令快速启动，以及从源码克隆构建，并附常见问题排查。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/How_to_Download_DeepSeek_Harness.html">
+    <link rel="icon" href="../assets/avatar.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="如何下载 DeepSeek Harness · ok-lzr的个人空间">
+    <meta property="og:description" content="DeepSeek Harness（dsh）是 DeepSeek AI 开源的 agent 智能体框架。本文介绍两种获取方式与常见问题排查。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/How_to_Download_DeepSeek_Harness.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="如何下载 DeepSeek Harness">
+    <meta name="twitter:description" content="DeepSeek Harness（dsh）的两种获取方式与常见问题排查。">
+    <link rel="stylesheet" href="../styles/style.css?v=9">
+    <link rel="stylesheet" href="../styles/article.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何下载 DeepSeek Harness",
+        "description": "DeepSeek Harness（dsh）是 DeepSeek AI 开源的 agent 智能体框架。本文介绍两种获取方式：npx 一行命令快速启动，以及从源码克隆构建，并附常见问题排查。",
+        "url": "https://ok-lzr.us.ci/articles/How_to_Download_DeepSeek_Harness.html",
+        "datePublished": "2026-10-18",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
+</head>
+<body class="article-page">
+    <header>
+        <nav class="navbar" aria-label="主导航">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+            </div>
+        </nav>
+    </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main class="main-content main-content--page">
+        <div class="container container--article">
+            <article>
+                <div class="article-header">
+                    <h1>如何下载 DeepSeek Harness</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-calendar.svg" alt="日期" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>2026年10月18日</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-clock.svg" alt="阅读时间" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>阅读时间：6 分钟</span>
+                        </div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">DeepSeek</span>
+                        <span class="tag">Harness</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">开源</span>
+                    </div>
+                </div>
+                <div class="article-body" id="articleContent">
+                    <p>DeepSeek Harness（命令行工具名为 <code>dsh</code>）是 DeepSeek AI 开发并开源的一款 agent harness（智能体框架）。它采用"一切皆插件"的架构，由 Cordis 驱动，可以让你搭建、运行和管理自己的 AI 智能体。项目目前处于<strong>开发者预览</strong>阶段，迭代很快。这篇文章介绍两种最常用的获取方式。</p>
+
+                    <h2>方式一：npx 一行命令启动（推荐）</h2>
+                    <p>最简单的方式是通过 npm 生态的 <code>npx</code> 直接运行，不需要克隆仓库：</p>
+                    <pre><code class="language-bash">npx @deepseek-ai/dsh web
+</code></pre>
+                    <p>该命令默认会在 <code>http://127.0.0.1:3080</code> 启动 Web UI。本机运行时，它还会自动用默认浏览器打开页面；如果你是通过 SSH 远程连接启动，它只会打印宿主机 URL，由 SSH 客户端或编辑器负责端口转发。</p>
+                    <p>如果不想让它自动打开浏览器，可以加上 <code>--no-open</code> 参数，仅启动服务器：</p>
+                    <pre><code class="language-bash">npx @deepseek-ai/dsh web --no-open
+</code></pre>
+                    <p>首次运行 <code>npx</code> 会自动下载对应的包，请保持网络畅通；之后再次运行会直接使用本地缓存，速度很快。</p>
+
+                    <h2>方式二：从源码克隆并构建</h2>
+                    <p>如果你想查看源码、参与贡献或者跟踪最新的开发进度，可以从 GitHub 克隆仓库：</p>
+                    <pre><code class="language-bash">git clone https://github.com/deepseek-ai/deepseek-harness.git
+cd deepseek-harness
+pnpm install
+pnpm run build
+pnpm dsh web
+</code></pre>
+                    <p>这里需要用到 <a href="https://pnpm.io" target="_blank" rel="noopener">pnpm</a> 作为包管理器（如果还没有安装，可以用 <code>npm install -g pnpm</code> 安装）。<code>pnpm run build</code> 负责准备仓库产物，<code>pnpm dsh web</code> 会直接使用这些已构建的产物，不会重复构建。</p>
+
+                    <h2>常见问题排查</h2>
+                    <ul>
+                        <li><strong>端口被占用</strong>：3080 端口被其他程序占用时，先关闭占用进程，或查看官方 Web UI 指南中的端口配置项。</li>
+                        <li><strong>npx 下载失败</strong>：多半是网络问题，可以重试，或配置 npm 镜像源后再次执行。</li>
+                        <li><strong>Node.js 版本过低</strong>：源码构建需要较新的 Node.js 与 pnpm，建议使用 Node.js 的 LTS 版本。</li>
+                        <li><strong>访问不了页面</strong>：确认命令确实在运行，且访问的地址是 <code>127.0.0.1:3080</code>（远程场景请检查端口转发）。</li>
+                    </ul>
+
+                    <h2>社区与支持</h2>
+                    <p>项目采用 MIT 许可证，完全开源。遇到问题或想反馈建议，可以前往 <a href="https://github.com/deepseek-ai/deepseek-harness/discussions" target="_blank" rel="noopener">GitHub Discussions</a> 提交；如果你开发了自己的插件，也可以为插件仓库添加 <code>dsh-plugin</code> 话题，方便其他人发现。官方 README 中还提供了企微交流群与微信公众号的入口，欢迎加入。</p>
+
+                    <h2>结语</h2>
+                    <p>下载 DeepSeek Harness 的路径很清晰：<strong>想快速体验就用 <code>npx @deepseek-ai/dsh web</code>，想深入折腾就从源码构建</strong>。由于它仍处于开发者预览阶段，升级时可能会遇到破坏性变更，建议留意官方更新日志。去试试吧，几分钟后你就拥有自己的智能体工作台了。</p>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
+</body>
+</html>

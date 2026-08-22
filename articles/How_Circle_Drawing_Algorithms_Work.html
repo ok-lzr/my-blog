@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>画圆算法是怎么画圆的 · ok-lzr的个人空间</title>
+    <meta name="description" content="从圆的方程出发，讲解参数法、方程采样法与中点画圆法（Bresenham 圆算法）的原理，附完整 C 代码与 8 对称性技巧。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/How_Circle_Drawing_Algorithms_Work.html">
+    <link rel="icon" href="../assets/avatar.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="画圆算法是怎么画圆的 · ok-lzr的个人空间">
+    <meta property="og:description" content="从圆的方程出发，讲解参数法、方程采样法与中点画圆法（Bresenham 圆算法）的原理，附完整 C 代码。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/How_Circle_Drawing_Algorithms_Work.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="画圆算法是怎么画圆的">
+    <meta name="twitter:description" content="参数法、方程采样法与中点画圆法的原理与代码。">
+    <link rel="stylesheet" href="../styles/style.css?v=9">
+    <link rel="stylesheet" href="../styles/article.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "画圆算法是怎么画圆的",
+        "description": "从圆的方程出发，讲解参数法、方程采样法与中点画圆法（Bresenham 圆算法）的原理，附完整 C 代码与 8 对称性技巧。",
+        "url": "https://ok-lzr.us.ci/articles/How_Circle_Drawing_Algorithms_Work.html",
+        "datePublished": "2026-11-02",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
+</head>
+<body class="article-page">
+    <header>
+        <nav class="navbar" aria-label="主导航">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+            </div>
+        </nav>
+    </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main class="main-content main-content--page">
+        <div class="container container--article">
+            <article>
+                <div class="article-header">
+                    <h1>画圆算法是怎么画圆的</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-calendar.svg" alt="日期" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>2026年11月2日</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-clock.svg" alt="阅读时间" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>阅读时间：9 分钟</span>
+                        </div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">算法</span>
+                        <span class="tag">图形学</span>
+                        <span class="tag">C</span>
+                    </div>
+                </div>
+                <div class="article-body" id="articleContent">
+                    <p>屏幕上的圆，其实是一堆按规律排布的小方格（像素）。问题是：怎么决定哪些像素该点亮？最朴素的想法是"把方程上的每个点都算出来"，但浮点运算慢、还容易产生断点。真正的经典解法，是只做整数加减法的<strong>中点画圆法</strong>。这篇文章从方程出发，一步步把它推导出来。</p>
+
+                    <h2>圆的两种数学表达</h2>
+                    <p>画圆首先要有圆的方程。常用的有两种：</p>
+                    <ul>
+                        <li><strong>标准方程</strong>：<code>x² + y² = r²</code>。给定 x 求 y 需要开方，产生浮点运算。</li>
+                        <li><strong>参数方程</strong>：<code>x = r·cosθ</code>，<code>y = r·sinθ</code>。θ 从 0 扫到 2π，需要三角函数。</li>
+                    </ul>
+                    <p>直接按这两种方程逐点采样都能画出圆，但每画一个点都要做浮点计算。在 90 年代的低性能设备上，这很奢侈。于是人们想到了用"判断 + 递推"来代替"计算"。</p>
+
+                    <h2>利用 8 对称性：只算八分之一</h2>
+                    <p>圆关于两条坐标轴和两条对角线对称。只要画出第一象限 45° 的弧，其余 7 段都能通过镜像得到。也就是说，每确定一个点 <code>(x, y)</code>，就可以同时画出 8 个点：</p>
+                    <pre><code class="language-c">void plot8(int xc, int yc, int x, int y) {
+    putPixel(xc + x, yc + y);
+    putPixel(xc - x, yc + y);
+    putPixel(xc + x, yc - y);
+    putPixel(xc - x, yc - y);
+    putPixel(xc + y, yc + x);
+    putPixel(xc - y, yc + x);
+    putPixel(xc + y, yc - x);
+    putPixel(xc - y, yc - x);
+}
+</code></pre>
+                    <p>这直接让计算量缩小到原来的八分之一。</p>
+
+                    <h2>中点画圆法（Bresenham 圆算法）</h2>
+                    <p>核心思路：从 <code>(0, r)</code> 出发，x 每次加 1，y 保持或减 1——具体是哪个，取决于"下一个理想点落在两个候选像素中点的哪一侧"。用函数 <code>f(x, y) = x² + y² - r²</code> 判断：点在圆内为负，圆外为正，正好在圆上为 0。</p>
+                    <p>定义决策参数 <code>p</code> 为"候选中点"处的函数值。可以证明（推导从略）：</p>
+                    <ul>
+                        <li>初始值 <code>p = 1 - r</code>（取整后），<code>x = 0</code>，<code>y = r</code>。</li>
+                        <li>若 <code>p &lt; 0</code>：中点偏内，选 <code>(x+1, y)</code>，<code>p += 2x + 3</code>。</li>
+                        <li>否则：中点偏外，选 <code>(x+1, y-1)</code>，<code>p += 2x - 2y + 5</code>。</li>
+                    </ul>
+                    <p>整个过程只有整数加减，没有乘法、开方或三角函数。完整代码：</p>
+                    <pre><code class="language-c">void drawCircle(int xc, int yc, int r) {
+    int x = 0;
+    int y = r;
+    int p = 1 - r;              // 决策参数初始值
+
+    while (x &lt;= y) {
+        plot8(xc, yc, x, y);    // 一次画 8 个对称点
+        x++;
+        if (p &lt; 0) {
+            p += 2 * x + 1;     // 选择正右方像素
+        } else {
+            y--;
+            p += 2 * (x - y) + 1; // 选择右下方像素
+        }
+    }
+}
+</code></pre>
+                    <p>（上式把推导中的 <code>2x+3</code>、<code>2x-2y+5</code> 换成了先自增 x 后的等价形式 <code>2x+1</code>、<code>2(x-y)+1</code>，两者结果一致，后者更常见。）</p>
+
+                    <h2>几种方法的对比</h2>
+                    <div class="table-wrapper">
+                    <table>
+                    <thead>
+                        <tr><th align="left">方法</th><th align="left">运算</th><th align="left">优点</th><th align="left">缺点</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td align="left">参数方程采样</td><td align="left">三角函数、浮点</td><td align="left">直观，角度可控</td><td align="left">慢，点密度不均匀</td></tr>
+                        <tr><td align="left">标准方程采样</td><td align="left">开方、浮点</td><td align="left">实现简单</td><td align="left">慢，容易产生空隙</td></tr>
+                        <tr><td align="left">中点画圆法</td><td align="left">整数加减</td><td align="left">极快，无浮点，均匀无断点</td><td align="left">只画实心圆边界，思路稍绕</td></tr>
+                    </tbody>
+                    </table>
+                    </div>
+
+                    <h2>一点延伸：抗锯齿</h2>
+                    <p>中点画圆法画出的圆在斜边上会有明显的"锯齿"（像素台阶）。现代渲染会用超采样（把每个像素再细分后平均）或多级灰度近似来处理。理解了中点法的"点选"逻辑后，这些进阶方案其实都是在"选哪个像素"和"涂多亮"之间做权衡。</p>
+
+                    <h2>结语</h2>
+                    <p>中点画圆法的高明之处，是把"求精确交点"的问题转化为"判断偏差符号"的问题，再用递推把计算量压到纯整数加减。这正是计算图形学的魅力：用巧妙的数学变换，把昂贵运算变成廉价判断。下次看到屏幕上一个光滑的圆，你可以想想——它可能只是几百次整数加法拼出来的。</p>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
+</body>
+</html>

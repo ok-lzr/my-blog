@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>RTX50 系列全显卡理论对比 · ok-lzr的个人空间</title>
+    <meta name="description" content="NVIDIA Blackwell 架构 RTX 50 系列全家桶规格对比：RTX 5090/5080/5070 Ti/5070/5060 Ti/5060 的 CUDA 核心、显存、位宽、带宽与功耗，纯理论参数横向盘点。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/RTX50_Series_GPU_Theoretical_Comparison.html">
+    <link rel="icon" href="../assets/avatar.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="RTX50 系列全显卡理论对比 · ok-lzr的个人空间">
+    <meta property="og:description" content="NVIDIA Blackwell 架构 RTX 50 系列全家桶规格对比：纯理论参数横向盘点。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/RTX50_Series_GPU_Theoretical_Comparison.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="RTX50 系列全显卡理论对比">
+    <meta name="twitter:description" content="RTX 50 系列全家桶规格对比：核心、显存、位宽、带宽与功耗。">
+    <link rel="stylesheet" href="../styles/style.css?v=9">
+    <link rel="stylesheet" href="../styles/article.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "RTX50 系列全显卡理论对比",
+        "description": "NVIDIA Blackwell 架构 RTX 50 系列全家桶规格对比：RTX 5090/5080/5070 Ti/5070/5060 Ti/5060 的 CUDA 核心、显存、位宽、带宽与功耗。",
+        "url": "https://ok-lzr.us.ci/articles/RTX50_Series_GPU_Theoretical_Comparison.html",
+        "datePublished": "2026-11-15",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
+</head>
+<body class="article-page">
+    <header>
+        <nav class="navbar" aria-label="主导航">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+            </div>
+        </nav>
+    </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main class="main-content main-content--page">
+        <div class="container container--article">
+            <article>
+                <div class="article-header">
+                    <h1>RTX50 系列全显卡理论对比</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-calendar.svg" alt="日期" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>2026年11月15日</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-clock.svg" alt="阅读时间" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>阅读时间：8 分钟</span>
+                        </div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">硬件</span>
+                        <span class="tag">显卡</span>
+                        <span class="tag">NVIDIA</span>
+                    </div>
+                </div>
+                <div class="article-body" id="articleContent">
+                    <p>RTX 50 系列是 NVIDIA 基于 Blackwell 架构的消费级显卡全家桶，全系标配 GDDR7 显存、PCIe 5.0 与 DLSS 4（多帧生成）。这篇文章只做<strong>纯理论参数</strong>的横向对比，不涉及实际帧率——毕竟"理论"是选购的第一步，实测是第二步。</p>
+
+                    <h2>全家桶规格一览</h2>
+                    <p>下表为发布窗口的官方标称参数（近似值），实际以 NVIDIA 官网为准：</p>
+                    <div class="table-wrapper">
+                    <table>
+                    <thead>
+                        <tr><th align="left">型号</th><th align="left">CUDA 核心</th><th align="left">显存</th><th align="left">位宽</th><th align="left">显存带宽</th><th align="left">功耗</th><th align="left">建议零售价</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td align="left">RTX 5090</td><td align="left">21760</td><td align="left">32GB GDDR7</td><td align="left">512-bit</td><td align="left">1792 GB/s</td><td align="left">575W</td><td align="left">$1999</td></tr>
+                        <tr><td align="left">RTX 5080</td><td align="left">10752</td><td align="left">16GB GDDR7</td><td align="left">256-bit</td><td align="left">960 GB/s</td><td align="left">360W</td><td align="left">$999</td></tr>
+                        <tr><td align="left">RTX 5070 Ti</td><td align="left">8960</td><td align="left">16GB GDDR7</td><td align="left">256-bit</td><td align="left">896 GB/s</td><td align="left">300W</td><td align="left">$749</td></tr>
+                        <tr><td align="left">RTX 5070</td><td align="left">6144</td><td align="left">12GB GDDR7</td><td align="left">192-bit</td><td align="left">672 GB/s</td><td align="left">250W</td><td align="left">$549</td></tr>
+                        <tr><td align="left">RTX 5060 Ti</td><td align="left">4608</td><td align="left">16GB / 8GB GDDR7</td><td align="left">128-bit</td><td align="left">448 GB/s</td><td align="left">180W</td><td align="left">$429 / $379</td></tr>
+                        <tr><td align="left">RTX 5060</td><td align="left">3840</td><td align="left">8GB GDDR7</td><td align="left">128-bit</td><td align="left">448 GB/s</td><td align="left">145W</td><td align="left">$299</td></tr>
+                    </tbody>
+                    </table>
+                    </div>
+                    <p>入门级的 RTX 5050 定位更低（约 2560 CUDA 核心、8GB GDDR7），参数以最终发布为准，此处不列入主表。</p>
+
+                    <h2>解读：差距藏在哪几个维度</h2>
+                    <h3>核心规模：5090 一枝独秀</h3>
+                    <p>RTX 5090 的 21760 个 CUDA 核心是 5080（10752）的两倍多，是 5060（3840）的 5.7 倍。在频率接近的前提下，核心数基本决定了纯算力上限——这也是 5090 与 5080 之间价格鸿沟的主要原因。</p>
+                    <h3>显存位宽与带宽：最容易忽略的"硬伤"</h3>
+                    <p>50 系的显存分档非常清晰：旗舰 512-bit、高端 256-bit、中端 192-bit、入门 128-bit。带宽方面，5090 的 1792 GB/s 是 5070 的 2.7 倍。对 4K 高刷和 AI 本地推理来说，带宽往往比核心数更先成为瓶颈——这也是"理论对比"里最值得关注的数字。</p>
+                    <h3>功耗与能效</h3>
+                    <p>从 575W（5090）到 145W（5060），功耗差距近 4 倍。换算每瓦带宽：5090 约 3.1 GB/s/W，5060 约 3.1 GB/s/W，中端型号反而更"划算"——能效与绝对性能是两个维度的故事。</p>
+
+                    <h2>理论性能的推演</h2>
+                    <p>按发布窗口的 Boost 频率估算，各型号 FP32 算力大致为：5090 ≈ 105 TFLOPS、5080 ≈ 56、5070 Ti ≈ 44、5070 ≈ 31、5060 Ti ≈ 24、5060 ≈ 20（约值，仅供横向参考）。再加上 DLSS 4 的多帧生成，理论帧率会在传统渲染之上再叠一层"AI 增益"——这部分差异，恰恰是实测中最难量化的部分。</p>
+
+                    <h2>选购思路（仅看参数）</h2>
+                    <ul>
+                        <li><strong>旗舰</strong>：5090 面向 8K/极致 4K 与本地大模型，预算无上限者。</li>
+                        <li><strong>高端</strong>：5080/5070 Ti 是 4K 高刷的甜点，16GB 显存足够覆盖绝大多数场景。</li>
+                        <li><strong>主流</strong>：5070 在 2K 高刷与入门 4K 之间平衡最好。</li>
+                        <li><strong>入门</strong>：5060 Ti / 5060 是 1080P 全能卡，注意 8GB 显存版本在大型纹理下的局限。</li>
+                    </ul>
+
+                    <h2>结语</h2>
+                    <p>纯理论参数能帮你快速建立"档位坐标系"，但显卡的最终价值永远在实测帧率、温度、噪音与价格里。本文数据为发布窗口的标称值，选购前请以 NVIDIA 官网与权威评测为准。</p>
+
+                    <h2>参考资料</h2>
+                    <ul>
+                        <li><a href="https://rog.asus.com/us/graphics-cards/graphics-cards/rog-astral/rog-astral-rtx5090-o32g-gaming/wtb/" target="_blank" rel="noopener">ROG Astral RTX 5090 32GB GDDR7 规格页（ASUS）</a></li>
+                        <li><a href="https://www.yugatech.com/tl/news/nvidia-geforce-rtx-5060-rtx-5060-ti-launched/" target="_blank" rel="noopener">NVIDIA GeForce RTX 5060 / 5060 Ti 发布报道（YugaTech）</a></li>
+                        <li><a href="https://www.coolblue.de/en/advice/everything-on-the-nvidia-geforce-rtx-5000-video-cards.html" target="_blank" rel="noopener">NVIDIA GeForce RTX 5000 系列概览（Coolblue）</a></li>
+                    </ul>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
+</body>
+</html>

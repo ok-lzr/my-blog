@@ -8,43 +8,43 @@
     "file": "TEMPLATE.md"
   },
   {
-    "id": "Building_a_Static_Blog_With_GitHub_Pages",
-    "title": "从零搭建静态博客：GitHub Pages 与自定义域名",
-    "date": "2026年8月2日",
-    "excerpt": "一篇面向初学者的实战教程：从目录结构、本地预览、推送到 GitHub Pages 到绑定自定义域名与 HTTPS，手把手搭建一个免费、快速、可维护的静态博客。",
-    "tags": ["GitHub Pages", "部署", "博客"],
-    "file": "Building_a_Static_Blog_With_GitHub_Pages.html"
+    "id": "How_to_Download_DeepSeek_Harness",
+    "title": "如何下载 DeepSeek Harness",
+    "date": "2026年10月18日",
+    "excerpt": "DeepSeek Harness（dsh）是 DeepSeek AI 开源的 agent 智能体框架。本文介绍两种获取方式：npx 一行命令快速启动，以及从源码克隆构建，并附常见问题排查。",
+    "tags": ["DeepSeek", "Harness", "AI", "开源"],
+    "file": "How_to_Download_DeepSeek_Harness.html"
   },
   {
-    "id": "CSS_Gradient_Art_Pure_CSS_Textures",
-    "title": "CSS 渐变之美：用纯 CSS 绘制质感背景",
-    "date": "2026年8月16日",
-    "excerpt": "从线性渐变、径向渐变到锥形渐变，再到多层渐变叠加，用纯 CSS 绘制出有光感、有质感的背景。",
-    "tags": ["CSS", "设计", "前端"],
-    "file": "CSS_Gradient_Art_Pure_CSS_Textures.html"
+    "id": "Cpp26_Updates",
+    "title": "C++26 的更新",
+    "date": "2026年10月25日",
+    "excerpt": "盘点 C++26 标准的关键更新：#embed 编译期嵌入资源、契约（Contracts）、std::execution 异步模型、std::inplace_vector、饱和运算等新特性。",
+    "tags": ["C++", "C++26", "编程语言"],
+    "file": "Cpp26_Updates.html"
   },
   {
-    "id": "JavaScript_Async_Evolution_From_Callbacks_to_Async_Await",
-    "title": "JavaScript 异步进化史：从回调地狱到 async/await",
-    "date": "2026年9月3日",
-    "excerpt": "梳理 JavaScript 异步编程的演进脉络：回调、Promise、Generator 与 async/await，对比各自的设计思路、痛点与适用场景。",
-    "tags": ["JavaScript", "异步", "前端"],
-    "file": "JavaScript_Async_Evolution_From_Callbacks_to_Async_Await.html"
+    "id": "How_Circle_Drawing_Algorithms_Work",
+    "title": "画圆算法是怎么画圆的",
+    "date": "2026年11月2日",
+    "excerpt": "从圆的方程出发，讲解参数法、方程采样法与中点画圆法（Bresenham 圆算法）的原理，附完整 C 代码与 8 对称性技巧。",
+    "tags": ["算法", "图形学", "C"],
+    "file": "How_Circle_Drawing_Algorithms_Work.html"
   },
   {
-    "id": "Design_Tokens_And_Design_Systems_Intro",
-    "title": "设计系统入门：用设计令牌统一多端体验",
-    "date": "2026年9月20日",
-    "excerpt": "介绍设计系统的核心概念与最小落地路径：设计令牌、颜色语义化、间距节奏、排版规范与组件化，帮助你用一套体系统一多端产品体验。",
-    "tags": ["设计系统", "设计令牌", "前端"],
-    "file": "Design_Tokens_And_Design_Systems_Intro.html"
+    "id": "RTX50_Series_GPU_Theoretical_Comparison",
+    "title": "RTX50 系列全显卡理论对比",
+    "date": "2026年11月15日",
+    "excerpt": "NVIDIA Blackwell 架构 RTX 50 系列全家桶规格对比：RTX 5090/5080/5070 Ti/5070/5060 Ti/5060 的 CUDA 核心、显存、位宽、带宽与功耗，纯理论参数横向盘点。",
+    "tags": ["硬件", "显卡", "NVIDIA"],
+    "file": "RTX50_Series_GPU_Theoretical_Comparison.html"
   },
   {
-    "id": "Frontend_Performance_Optimization_First_Screen",
-    "title": "前端性能优化实战：首屏加载提速的 12 个技巧",
-    "date": "2026年10月11日",
-    "excerpt": "围绕 LCP、FCP 等核心指标，从资源加载、图片、JavaScript、渲染与缓存五个维度，总结 12 个可直接落地的首屏性能优化技巧。",
-    "tags": ["性能优化", "前端", "工程化"],
-    "file": "Frontend_Performance_Optimization_First_Screen.html"
+    "id": "What_Is_An_NPU",
+    "title": "NPU 是什么",
+    "date": "2026年11月28日",
+    "excerpt": "NPU（神经网络处理单元）是什么？它和 CPU、GPU 有何区别？为什么手机、电脑都要塞进一块 NPU？一文讲清原理、对比与应用场景。",
+    "tags": ["AI", "硬件", "NPU"],
+    "file": "What_Is_An_NPU.html"
   }
 ]
