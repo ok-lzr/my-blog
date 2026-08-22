@@ -35,7 +35,7 @@
     "id": "RTX50_Series_GPU_Theoretical_Comparison",
     "title": "RTX50 系列全显卡理论对比",
     "date": "2026年11月15日",
-    "excerpt": "NVIDIA Blackwell 架构 RTX 50 系列全家桶规格对比：RTX 5090/5080/5070 Ti/5070/5060 Ti/5060 的 CUDA 核心、显存、位宽、带宽与功耗，纯理论参数横向盘点。",
+    "excerpt": "NVIDIA Blackwell 架构 RTX 50 系列全家桶规格对比：RTX 5090/5080/5070 Ti/5070/5060 Ti/5060/5050 的 CUDA 核心、显存、位宽、带宽与功耗，并盘点传闻中的 5080 Ti 与 SUPER 系列。",
     "tags": ["硬件", "显卡", "NVIDIA"],
     "file": "RTX50_Series_GPU_Theoretical_Comparison.html"
   },
