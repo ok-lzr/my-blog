@@ -1,5 +1,6 @@
 /* ==========================================================================
    文章详情页样式 – 与全局完全隔离
+   摄影画册风格：暗色底、轻量无衬线、宽字距大写元信息、发丝描边
    ========================================================================== */
 
 /* ----- 文章页面容器 ----- */
@@ -7,13 +8,13 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 2rem;
+    padding-top: 3rem;
     text-align: left;
 }
 
 .container--article {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 1.5rem;
 }
@@ -21,18 +22,19 @@
 /* ----- 文章头部（居中） ----- */
 .article-header {
     text-align: center;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
     border-bottom: 1px solid var(--border-color);
 }
 
 .article-header h1 {
-    font-family: var(--font-serif);
+    font-family: var(--font-sans);
     font-size: clamp(1.8rem, 5vw, 2.8rem);
-    font-weight: 700;
-    color: var(--text-black);
-    margin-bottom: 1.2rem;
-    line-height: 1.2;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
+    margin-bottom: 1.4rem;
+    line-height: 1.25;
 }
 
 /* 元数据行：日期、阅读时间 —— 居中 */
@@ -40,11 +42,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 2.5rem;
     flex-wrap: wrap;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-bottom: 1.2rem;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
 }
 
 .article-meta-item {
@@ -68,46 +73,51 @@
 
 .article-header .tag {
     display: inline-block;
-    padding: 0.25rem 1rem;
+    padding: 0.3rem 1rem;
     background: var(--accent-light);
-    border-radius: 20px;
-    font-size: 0.85rem;
+    border: 1px solid rgba(215, 196, 168, 0.25);
+    border-radius: 0;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: var(--accent-color);
-    font-weight: 500;
 }
 
 /* ----- 文章正文（左对齐，不居中） ----- */
 .article-body {
-    max-width: 800px;
+    max-width: 760px;
     color: var(--text-primary);
-    line-height: 1.8;
+    line-height: 2;
     text-align: left;
     margin: 0 auto;
 }
 
 .article-body h2 {
-    font-family: var(--font-serif);
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 2.2rem 0 1rem;
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    margin: 2.4rem 0 1rem;
     color: var(--text-primary);
-    border-left: 4px solid var(--accent-color);
+    border-left: 2px solid var(--accent-color);
     padding-left: 1rem;
 }
 
 .article-body h3 {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin: 1.6rem 0 0.8rem;
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin: 1.8rem 0 0.8rem;
     color: var(--text-primary);
 }
 
 .article-body h4,
 .article-body h5,
 .article-body h6 {
-    font-weight: 600;
-    margin: 1.2rem 0 0.6rem;
+    font-weight: 500;
+    margin: 1.4rem 0 0.6rem;
     color: var(--text-primary);
 }
 .article-body h4 { font-size: 1.1rem; }
@@ -115,14 +125,16 @@
 .article-body h6 { font-size: 0.95rem; }
 
 .article-body p {
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.3rem;
     color: var(--text-secondary);
+    font-weight: 300;
 }
 
 .article-body ul,
 .article-body ol {
-    margin: 0 0 1.2rem 2rem;
+    margin: 0 0 1.3rem 2rem;
     color: var(--text-secondary);
+    font-weight: 300;
 }
 
 .article-body li {
@@ -132,25 +144,29 @@
 .article-body a {
     color: var(--accent-color);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(215, 196, 168, 0.35);
+    transition: border-color var(--transition), color var(--transition);
 }
 .article-body a:hover {
-    text-decoration: underline;
+    color: #fff;
+    border-bottom-color: #fff;
 }
 
 .article-body blockquote {
-    margin: 1rem 0;
-    padding-left: 1rem;
-    border-left: 4px solid var(--accent-color);
+    margin: 1.4rem 0;
+    padding: 0.4rem 0 0.4rem 1.2rem;
+    border-left: 2px solid var(--accent-color);
     color: var(--text-secondary);
     font-style: italic;
+    font-weight: 300;
 }
 
 .article-body hr {
     border: none;
     height: 1px;
-    background: var(--border-color);
-    margin: 1.5rem 0;
+    background: var(--border-strong);
+    margin: 1.8rem 0;
 }
 
 .article-body img {
@@ -161,26 +177,28 @@
 /* ----- 代码块 & 复制按钮 ----- */
 .article-body pre {
     position: relative;
-    background: var(--hover-bg);
+    background: #0d0d0d;
     padding: 1.5rem;
-    border-radius: var(--radius-sm);
+    border-radius: 0;
     overflow-x: auto;
-    border: 1px solid var(--border-color);
-    margin-bottom: 1.2rem;
+    border: 1px solid var(--border-strong);
+    margin-bottom: 1.4rem;
 }
 
 .article-body pre code {
     background: none;
     padding: 0;
-    color: var(--text-primary);
+    color: #dcdcdc;
     font-family: ui-monospace, 'Cascadia Code', 'Courier New', monospace;
     font-size: 0.9em;
+    line-height: 1.7;
 }
 
 .article-body code {
     background: var(--hover-bg);
     padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+    border-radius: 0;
+    border: 1px solid var(--border-color);
     font-family: ui-monospace, 'Cascadia Code', 'Courier New', monospace;
     font-size: 0.9em;
     color: var(--accent-color);
@@ -189,19 +207,20 @@
 /* 复制按钮 */
 .article-body pre .copy-btn {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #bbb;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0;
     padding: 4px 12px;
-    font-size: 12px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
     font-family: var(--font-sans);
     cursor: pointer;
     opacity: 0;
-    transition: opacity 0.2s ease;
-    backdrop-filter: blur(2px);
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    backdrop-filter: blur(4px);
     z-index: 2;
 }
 
@@ -210,18 +229,21 @@
 }
 
 .article-body pre .copy-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
 }
 
 .article-body pre .copy-btn.copied {
-    background: #4b7bec;
+    background: var(--accent-dark);
+    border-color: var(--accent-color);
+    color: #fff;
     opacity: 1;
 }
 
 /* ----- 表格 ----- */
 .table-wrapper {
     overflow-x: auto;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.3rem;
 }
 
 .article-body table {
@@ -239,7 +261,8 @@
 
 .article-body th {
     background: var(--hover-bg);
-    font-weight: 600;
+    font-weight: 500;
+    letter-spacing: 0.08em;
 }
 
 /* 任务列表（GitHub 风格） */
@@ -275,7 +298,7 @@
 
 /* ----- 文章底部 ----- */
 .article-footer {
-    margin-top: 3rem;
+    margin-top: 3.5rem;
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
     text-align: center;
@@ -285,11 +308,15 @@
     display: inline-block;
     color: var(--accent-color);
     text-decoration: none;
-    font-weight: 500;
-    transition: transform var(--transition);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    transition: color var(--transition), transform var(--transition);
 }
 
 .back-link:hover {
+    color: #fff;
     transform: translateX(-4px);
 }
 
@@ -315,11 +342,11 @@
     }
 
     .article-header h1 {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
     }
 
     .article-meta {
-        gap: 1rem;
-        font-size: 0.85rem;
+        gap: 1.2rem;
+        font-size: 10px;
     }
 }

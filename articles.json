@@ -8,19 +8,43 @@
     "file": "TEMPLATE.md"
   },
   {
-    "id": "Decryption_and_Disguise_The_Clever_Use_of_CSS_in_ARGs",
-    "title": "解密与隐藏：CSS 在 ARG 游戏中的巧思应用",
-    "date": "2026年5月4日",
-    "excerpt": "探讨 CSS 在 ARG（替代现实游戏）中作为谜题关键手段的巧妙应用，包括隐写、状态触发、图形绘制等解谜技巧总结。",
-    "tags": ["Web", "ARG", "CSS", "解谜", "前端"],
-    "file": "Decryption_and_Disguise_The_Clever_Use_of_CSS_in_ARGs.html"
+    "id": "Building_a_Static_Blog_With_GitHub_Pages",
+    "title": "从零搭建静态博客：GitHub Pages 与自定义域名",
+    "date": "2026年8月2日",
+    "excerpt": "一篇面向初学者的实战教程：从目录结构、本地预览、推送到 GitHub Pages 到绑定自定义域名与 HTTPS，手把手搭建一个免费、快速、可维护的静态博客。",
+    "tags": ["GitHub Pages", "部署", "博客"],
+    "file": "Building_a_Static_Blog_With_GitHub_Pages.html"
   },
   {
-    "id": "From_Prompt_Mask_to_AI_Skills_The_Evolution_of_Customized_Interaction_Methods",
-    "title": "从“提示词面具”到“AI技能”：定制化交互方式的演进",
-    "date": "2026年7月18日",
-    "excerpt": "通过对比早期纯文本的“提示词面具”与当今集成工具、知识和行动能力的结构化“AI技能”，阐述了AI定制化从脆弱的手工角色扮演向可复用、可行动的智能代理演进的过程与本质区别。",
-    "tags": ["AI", "AI Skills", "提示词面具"],
-    "file": "From_Prompt_Mask_to_AI_Skills_The_Evolution_of_Customized_Interaction_Methods.html"
+    "id": "CSS_Gradient_Art_Pure_CSS_Textures",
+    "title": "CSS 渐变之美：用纯 CSS 绘制质感背景",
+    "date": "2026年8月16日",
+    "excerpt": "从线性渐变、径向渐变到锥形渐变，再到多层渐变叠加，用纯 CSS 绘制出有光感、有质感的背景。",
+    "tags": ["CSS", "设计", "前端"],
+    "file": "CSS_Gradient_Art_Pure_CSS_Textures.html"
+  },
+  {
+    "id": "JavaScript_Async_Evolution_From_Callbacks_to_Async_Await",
+    "title": "JavaScript 异步进化史：从回调地狱到 async/await",
+    "date": "2026年9月3日",
+    "excerpt": "梳理 JavaScript 异步编程的演进脉络：回调、Promise、Generator 与 async/await，对比各自的设计思路、痛点与适用场景。",
+    "tags": ["JavaScript", "异步", "前端"],
+    "file": "JavaScript_Async_Evolution_From_Callbacks_to_Async_Await.html"
+  },
+  {
+    "id": "Design_Tokens_And_Design_Systems_Intro",
+    "title": "设计系统入门：用设计令牌统一多端体验",
+    "date": "2026年9月20日",
+    "excerpt": "介绍设计系统的核心概念与最小落地路径：设计令牌、颜色语义化、间距节奏、排版规范与组件化，帮助你用一套体系统一多端产品体验。",
+    "tags": ["设计系统", "设计令牌", "前端"],
+    "file": "Design_Tokens_And_Design_Systems_Intro.html"
+  },
+  {
+    "id": "Frontend_Performance_Optimization_First_Screen",
+    "title": "前端性能优化实战：首屏加载提速的 12 个技巧",
+    "date": "2026年10月11日",
+    "excerpt": "围绕 LCP、FCP 等核心指标，从资源加载、图片、JavaScript、渲染与缓存五个维度，总结 12 个可直接落地的首屏性能优化技巧。",
+    "tags": ["性能优化", "前端", "工程化"],
+    "file": "Frontend_Performance_Optimization_First_Screen.html"
   }
 ]

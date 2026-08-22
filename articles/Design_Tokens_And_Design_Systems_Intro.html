@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>设计系统入门：用设计令牌统一多端体验 · ok-lzr的个人空间</title>
+    <meta name="description" content="介绍设计系统的核心概念与最小落地路径：设计令牌、颜色语义化、间距节奏、排版规范与组件化，帮助你用一套体系统一多端产品体验。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/Design_Tokens_And_Design_Systems_Intro.html">
+    <link rel="icon" href="../assets/avatar.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="设计系统入门：用设计令牌统一多端体验 · ok-lzr的个人空间">
+    <meta property="og:description" content="介绍设计系统的核心概念与最小落地路径：设计令牌、颜色语义化、间距节奏、排版规范与组件化。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/Design_Tokens_And_Design_Systems_Intro.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="设计系统入门：用设计令牌统一多端体验">
+    <meta name="twitter:description" content="介绍设计系统的核心概念与最小落地路径：设计令牌、颜色语义化、间距节奏、排版规范与组件化。">
+    <link rel="stylesheet" href="../styles/style.css?v=9">
+    <link rel="stylesheet" href="../styles/article.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "设计系统入门：用设计令牌统一多端体验",
+        "description": "介绍设计系统的核心概念与最小落地路径：设计令牌、颜色语义化、间距节奏、排版规范与组件化，帮助你用一套体系统一多端产品体验。",
+        "url": "https://ok-lzr.us.ci/articles/Design_Tokens_And_Design_Systems_Intro.html",
+        "datePublished": "2026-09-20",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
+</head>
+<body class="article-page">
+    <header>
+        <nav class="navbar" aria-label="主导航">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+            </div>
+        </nav>
+    </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main class="main-content main-content--page">
+        <div class="container container--article">
+            <article>
+                <div class="article-header">
+                    <h1>设计系统入门：用设计令牌统一多端体验</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-calendar.svg" alt="日期" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>2026年9月20日</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-clock.svg" alt="阅读时间" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>阅读时间：9 分钟</span>
+                        </div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">设计系统</span>
+                        <span class="tag">设计令牌</span>
+                        <span class="tag">前端</span>
+                    </div>
+                </div>
+                <div class="article-body" id="articleContent">
+                    <p>当一个产品从单个页面长成多个端、多个团队协作时，"设计不一致"就成了必然的熵增：按钮圆角三种、主色两套、间距全凭手感。设计系统的价值，就是把这些隐性约定变成显式、可复用、可演进的资产。这篇文章聊聊最小可落地的路径。</p>
+
+                    <h2>什么是设计系统</h2>
+                    <p>设计系统不是一套 UI 组件库，也不是一份设计规范文档。它是两者的结合，再加上支撑它们的工具链与协作流程：<strong>原则 → 令牌 → 组件 → 模式 → 文档</strong>。上层越抽象越稳定，下层越具体越易变。而一切的基石，是设计令牌。</p>
+
+                    <h2>设计令牌：给决策命名</h2>
+                    <p>设计令牌（Design Tokens）把颜色、字体、间距、圆角等设计决策存成带语义的变量。关键在于"语义化"——不叫"蓝色 #4a6fa5"，而叫"品牌主色"，这样换主题时只改一处：</p>
+                    <pre><code class="language-css">:root {
+    /* 原始值层 */
+    --blue-600: #4a6fa5;
+    --gray-900: #1a1815;
+
+    /* 语义层：组件只依赖语义名 */
+    --color-brand: var(--blue-600);
+    --color-text-primary: var(--gray-900);
+    --color-bg: #f7f2eb;
+
+    /* 间距与圆角 */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 16px;
+    --radius-md: 8px;
+}
+</code></pre>
+                    <p>深色模式是最典型的收益场景：只要把 <code>--color-bg</code>、<code>--color-text-primary</code> 在 <code>data-theme="dark"</code> 下重新赋值，整个站点的明暗就瞬间切换，没有任何组件需要改动。</p>
+
+                    <h2>间距节奏：告别魔法数字</h2>
+                    <p>间距是页面"呼吸感"的来源。建议用 4 或 8 的倍数建立节奏刻度，组件内部只从刻度中取值，禁止随手写 <code>padding: 13px</code> 之类的魔法数字：</p>
+                    <pre><code class="language-css">.card {
+    padding: var(--space-3);        /* 16px */
+    gap: var(--space-2);            /* 8px */
+    border-radius: var(--radius-md);
+}
+</code></pre>
+                    <p>节奏一旦统一，页面之间的对齐感会立刻提升——这是投入产出比最高的一步。</p>
+
+                    <h2>组件化：封装变化</h2>
+                    <p>组件库不是"把页面拆成组件"就完事了，关键是定义好<strong>变体（variant）</strong>和<strong>属性接口</strong>，把允许的变化收进白名单：</p>
+                    <ul>
+                        <li><strong>尺寸</strong>：sm / md / lg，对应固定的高度与内边距。</li>
+                        <li><strong>外观</strong>：primary / secondary / ghost，只允许预设的几种组合。</li>
+                        <li><strong>状态</strong>：hover、focus、disabled、loading 必须成体系地定义。</li>
+                    </ul>
+                    <p>白名单之外的变化，就应该回到设计侧讨论，而不是在代码里开"后门"。</p>
+
+                    <h2>落地工具与流程</h2>
+                    <div class="table-wrapper">
+                    <table>
+                    <thead>
+                        <tr><th align="left">环节</th><th align="left">推荐做法</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td align="left">令牌管理</td><td align="left">单一 JSON 源，经 Style Dictionary 编译为 CSS / SCSS / 原生变量</td></tr>
+                        <tr><td align="left">组件开发</td><td align="left">Storybook 或同类工具，组件即文档</td></tr>
+                        <tr><td align="left">规范沉淀</td><td align="left">使用规范与更新日志随仓库版本管理</td></tr>
+                        <tr><td align="left">变更流程</td><td align="left">先改令牌 → 同步组件 → 全站回归，禁止绕过系统"硬编码"</td></tr>
+                    </tbody>
+                    </table>
+                    </div>
+
+                    <h2>结语</h2>
+                    <p>设计系统不是一次性的"大工程"，而是一个持续演进的契约。即使只有一个人维护一个小站（就像本站），从颜色令牌和间距刻度开始，也能让后续的每次改动都更快、更一致。先建立最小体系，再让它随产品一起成长。</p>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
+</body>
+</html>

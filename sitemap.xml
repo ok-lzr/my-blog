@@ -26,12 +26,27 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://ok-lzr.us.ci/articles/Decryption_and_Disguise_The_Clever_Use_of_CSS_in_ARGs.html</loc>
+    <loc>https://ok-lzr.us.ci/articles/Building_a_Static_Blog_With_GitHub_Pages.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ok-lzr.us.ci/articles/From_Prompt_Mask_to_AI_Skills_The_Evolution_of_Customized_Interaction_Methods.html</loc>
+    <loc>https://ok-lzr.us.ci/articles/CSS_Gradient_Art_Pure_CSS_Textures.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ok-lzr.us.ci/articles/JavaScript_Async_Evolution_From_Callbacks_to_Async_Await.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ok-lzr.us.ci/articles/Design_Tokens_And_Design_Systems_Intro.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ok-lzr.us.ci/articles/Frontend_Performance_Optimization_First_Screen.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
