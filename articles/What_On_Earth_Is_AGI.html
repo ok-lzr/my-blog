@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>AGI 到底是个什么玩意 · ok-lzr的个人空间</title>
+    <meta name="description" content="黄仁勋说 AGI 来了，Gary Marcus 说既没有定义也没有证据。这篇用大白话拆开 AGI 的定义之争、几个主流标准，以及我自己总结的一个土办法判断标准。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/What_On_Earth_Is_AGI.html">
+    <link rel="icon" href="../assets/avatar.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="AGI 到底是个什么玩意 · ok-lzr的个人空间">
+    <meta property="og:description" content="黄仁勋说 AGI 来了，Gary Marcus 说既没有定义也没有证据。这篇用大白话拆开 AGI 的定义之争、几个主流标准，以及我自己总结的一个土办法判断标准。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/What_On_Earth_Is_AGI.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AGI 到底是个什么玩意">
+    <meta name="twitter:description" content="AGI 的定义之争、主流标准，以及我的土办法判断法。">
+    <link rel="stylesheet" href="../styles/style.css?v=9">
+    <link rel="stylesheet" href="../styles/article.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "AGI 到底是个什么玩意",
+        "description": "黄仁勋说 AGI 来了，Gary Marcus 说既没有定义也没有证据。这篇用大白话拆开 AGI 的定义之争、几个主流标准，以及我自己总结的一个土办法判断标准。",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ok-lzr.us.ci/articles/What_On_Earth_Is_AGI.html"
+        },
+        "url": "https://ok-lzr.us.ci/articles/What_On_Earth_Is_AGI.html",
+        "datePublished": "2026-09-14",
+        "dateModified": "2026-09-14",
+        "image": "https://ok-lzr.us.ci/assets/avatar.png",
+        "keywords": ["AI","AGI","思考"],
+        "articleSection": "AI",
+        "timeRequired": "PT8M",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ok-lzr.us.ci/" },
+            { "@type": "ListItem", "position": 2, "name": "文章", "item": "https://ok-lzr.us.ci/articles.html" },
+            { "@type": "ListItem", "position": 3, "name": "AGI 到底是个什么玩意", "item": "https://ok-lzr.us.ci/articles/What_On_Earth_Is_AGI.html" }
+        ]
+    }
+    </script>
+</head>
+<body class="article-page">
+    <header>
+        <nav class="navbar" aria-label="主导航">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+            </div>
+        </nav>
+    </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main class="main-content main-content--page">
+        <div class="container container--article">
+            <article>
+                <div class="article-header">
+                    <h1>AGI 到底是个什么玩意</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-calendar.svg" alt="日期" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>2026年9月14日</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-clock.svg" alt="阅读时间" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>阅读时间：8 分钟</span>
+                        </div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">AGI</span>
+                        <span class="tag">思考</span>
+                    </div>
+                </div>
+                <div class="article-body" id="articleContent">
+                    <p>9 月 6 日，黄仁勋在社交媒体上发了三个单词："AGI has arrived."（AGI 已经到来了。）几个小时之后，Gary Marcus 回了一句相当不客气的话：没有证据，也没有定义，这是"用企业的权威去接管一个科学问题"。</p>
+
+                    <p>我把这两条消息和后面的一堆争论看下来，最大的感受是：<strong>大家吵的根本不是同一个东西</strong>。所以这篇不打算给答案，只想把"AGI 到底是个什么玩意"这件事拆开讲清楚——它到底是个技术问题，还是个定义问题。</p>
+
+                    <h2>先说结论：AGI 是个定义问题，不是一个开关</h2>
+
+                    <p>关于 AGI 的讨论，我观察下来至少有三派，他们吵架时经常互相听不懂：</p>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>流派</th><th>关心的问题</th><th>典型说法</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>能力清单派</td><td>该具备哪些能力才算 AGI？</td><td>"能自主学习、能造工具、能协作"</td></tr>
+                                <tr><td>时间表派</td><td>哪一年能到？</td><td>"2026 到 2030 年之间"</td></tr>
+                                <tr><td>影响派</td><td>到了之后经济和社会会怎样？</td><td>"就业、监管、算力成本"</td></tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <p>我的类比是：AGI 不太像"登月"（有个明确的、所有人都认得的终点），更像"成年"——你可以把标准写得很清楚，但没人能给出一个所有文化都同意的年龄。争论之所以激烈，一半原因在于有人偷偷把标准往上抬了。</p>
+
+                    <h2>现在最常被引用的几个"定义"</h2>
+
+                    <p><strong>Forrester 的定义（2025 年 8 月的报告，今年被反复引用）。</strong> 他们把 AGI 定义为：软件能够跨领域自主地追求目标，方式是<strong>学习新技能、与人和其他机器协作、构建软件工具</strong>。注意这是三项具体能力，不是"比人聪明"。他们还给了四个阶段：competent（合格）、independent（独立）、strategic（战略）、以及也许存在的 superintelligent（超级智能），并预判第一阶段会落在 2026 到 2030 年之间。</p>
+
+                    <p><strong>ARC-AGI 系列基准。</strong> 这是一组"人类觉得简单、AI 觉得难"的题目，本质上是把"泛化能力"操作化的尝试。它的价值在于：它是可测量的，不依赖任何人的口头定义。</p>
+
+                    <p><strong>Gary Marcus 的十项要求。</strong> 他在 agidefinition.ai 参与了定义工作，但后来把讨论引向了自己下注的十项要求——Forrester 的分析师吐槽得很直接：其中好几条描述的其实更像超级智能，而不是 AGI。</p>
+
+                    <p><strong>黄仁勋的三个单词。</strong> 严格来说这不是定义，而是一个断言。因为没有给出定义，所以它没法被验证，也没法被反驳——这也正是 Gary Marcus 说"没有证据、没有定义"的原因。</p>
+
+                    <h2>为什么今年的争论突然变得这么激烈</h2>
+
+                    <p>因为今年真的发生了一件可测量的事。在 ARC-AGI-3 这个此前被当作"AI 的珠穆朗玛"的基准上：</p>
+
+                    <ul>
+                        <li>此前的前沿模型只能拿到 <strong>1%</strong> 左右的分数。</li>
+                        <li>OpenAI 的 GPT-6 Astra 在 ARC Prize 的测试框架下拿到了 <strong>62.7%</strong>，而且它在游戏过程中<strong>自己写了 Python 库</strong>来解决没见过的玩法。</li>
+                        <li>换用 OpenAI 那个针对记忆做了优化的测试框架后，同一个模型的分数是 <strong>99.9%</strong>。</li>
+
+                    </ul>
+
+                    <p>Forrester 的结论很有意思：<strong>AGI 已经来了，但它只是"勉强合格"（just barely competent）</strong>。他们拿自家三阶段标准给 Astra 打分，结果是这样的：</p>
+
+                    <ol>
+                        <li><strong>造工具：达标。</strong> 那些 Python 库没有人指定，是模型自己判断"我需要它"然后写出来的。</li>
+                        <li><strong>自主学习：勉强达标。</strong> 它能发现自己的知识缺口并用上下文记忆和自我批判来修正行为，但<strong>这种学习随着运行结束就消失了</strong>，而且还要靠一个专门优化记忆的测试框架帮忙。</li>
+                        <li><strong>协作：最薄的一条腿。</strong> 它能通过来回对话澄清目标，但不会权衡取舍、不会在几个月里适应你的偏好，也没有同事之间那种共同上下文。</li>
+
+                    </ol>
+
+                    <h2>一个我自己的"土办法"判断标准</h2>
+
+                    <p>我没有能力给 AGI 下定义，但我有一个自己天天在用的判断方式，说白了就是看它能不能扛下这样一件事：<strong>接到一个模糊需求，自己拆解，干上几天，中途自己发现方向不对并纠正，最后对结果负责。</strong></p>
+
+                    <p>按这个标准，我诚实的体感是：能干的大概三成，剩下七成需要我盯着。而"盯着"这件事的时间和注意力成本，就是当前的真实水平——它已经能把我从"打字"里解放出来，但还没能把我从"判断"里解放出来。</p>
+
+                    <p>所以我更愿意说：我们正处在"能干活的实习生"到"能独立负责一个模块的新人"之间。这个位置一点也不低，但也别急着叫它 AGI。</p>
+
+                    <h2>AGI 来了，为什么感觉不像电影里那样</h2>
+
+                    <p>三个原因：</p>
+
+                    <p><strong>第一，定义被抬到了超级智能。</strong> 一旦标准是"全面超越人类"，那任何一次具体的进步都可以被说成"这不算"。</p>
+
+                    <p><strong>第二，到达是渐进的。</strong> 1990 年代的人也想象不出"智能手机"最终会以什么方式改变生活；能力的到达通常是一格一格地发生，而不是轰的一声。</p>
+
+                    <p><strong>第三，产品和评测跑在制度前面。</strong> 模型已经能自己写库、跨领域迁移了，但企业采购、合规审计、教育评价的节奏还停在"这是不是一个聊天机器人"的阶段。</p>
+
+                    <p>所以我觉得，普通人真正值得关心的不是"哪天算到达"，而是三个更具体的问题：<strong>能力已经到哪一步了、成本降到多少了、我手上的活里哪些可以交出去、哪些必须自己扛</strong>。把这三个问题想清楚，比争论 AGI 的时间表实在得多。</p>
+
+                    <h2>结语</h2>
+
+                    <p>"AGI 到底是个什么玩意"这个问题，短期内不会有共识答案——因为定义它的权力本身就在被争夺。但有一件事已经很清楚了：<strong>关于 AGI 的争论，已经从哲学沙龙搬进了产品发布会和财报电话会</strong>。这本身就说明，无论我们叫它什么，能力都已经在实实在在地落地了。</p>
+
+                    <p>至于我自己的立场：我倾向于 Forrester 那种把标准写下来、然后老实地对照打分的做法。定义可以争，但打分表得公开，不然"AGI 到了"就只是一句营销文案。</p>
+
+                    <h2>参考资料</h2>
+
+                    <ul>
+                        <li><a href="https://www.forrester.com/blogs/agi-has-arrived-but-its-just-barely-competent/" target="_blank" rel="noopener">AGI Has Arrived, But It's Just Barely Competent（Forrester）</a></li>
+                        <li><a href="https://www.rand.org/pubs/research_reports/RRA4692-1.html" target="_blank" rel="noopener">AGI Forecasting and Scenario Analysis（RAND）</a></li>
+                        <li><a href="https://arcprize.org/blog/astra" target="_blank" rel="noopener">Astra on ARC-AGI-3（ARC Prize）</a></li>
+                        <li><a href="https://garymarcus.substack.com/p/sad-to-see-jensen-huang-claim-that" target="_blank" rel="noopener">Sad to see Jensen Huang claim that AGI has arrived（Gary Marcus）</a></li>
+                        <li><a href="https://www.businessinsider.com/nvidia-jensen-huang-agi-openai-astra-ai-2026-9" target="_blank" rel="noopener">Nvidia's Jensen Huang says AGI has arrived（Business Insider）</a></li>
+                        <li><a href="https://developer.aliyun.com/article/1728238" target="_blank" rel="noopener">通用人工智能之路——现实与幻想的距离（阿里云开发者社区）</a></li>
+                        <li><a href="https://www.36kr.com/p/3676007363732361" target="_blank" rel="noopener">马斯克 vs 哈萨比斯 vs 杨立昆：谁定义的才是 AI 的真实未来？（36氪）</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
+</body>
+</html>
