@@ -85,7 +85,7 @@ def say_hello():
 
 ## 发布教程：把一篇新文章发布到本站
 
-本站文章是「Markdown 源文件 + 静态 HTML 页面」两份并存的：`.md` 是源文件（留档、方便以后改），`articles/<ID>.html` 才是真正上线的页面。发布一篇新文章，按下面六步走。
+本站文章是「Markdown 源文件 + 静态 HTML 页面」两份并存的：`.md` 是源文件（留档、方便以后改），`articles/<ID>.html` 才是真正上线的页面。发布一篇新文章，按下面五步走（第二、三步有脚本，一条命令搞定）。
 
 ### 第一步：写 Markdown 源文件
 
@@ -96,30 +96,7 @@ def say_hello():
 - 第一行 `# 文章标题` 是标题，**正文里不要再重复写一遍**（页面顶部的 H1 由页面骨架渲染）。
 - 每一段写成单独一行，段落之间空一行。渲染器开启了 `breaks`，段内手动换行会变成 `<br>`。
 
-### 第二步：转成 HTML
-
-把 Markdown 全文粘进 [md2html.ok-lzr.us.ci](https://md2html.ok-lzr.us.ci)，切到右侧「源码」标签，复制生成的 HTML 源码。
-
-本地等价做法：用 `marked`，配置 `{ gfm: true, breaks: true }`（线上工具的配置），得到的结果一致。表格记得包一层 `<div class="table-wrapper">`。
-
-### 第三步：套页面骨架
-
-复制 `articles/TEMPLATE.html`（或任意一篇已有文章）另存为 `articles/<ID>.html`，逐项替换：
-
-| 位置 | 要改的内容 |
-| --- | --- |
-| `<title>` | `文章标题 · ok-lzr的个人空间` |
-| `meta description` / `og:description` | 一两句话的摘要 |
-| `og:title` / `twitter:title` | 文章标题 |
-| `canonical` / `og:url` | `https://ok-lzr.us.ci/articles/<ID>.html` |
-| JSON-LD `BlogPosting` | `headline`、`description`、`url`、`mainEntityOfPage.@id`、`keywords`、`articleSection`（取第一个标签）、`datePublished`、`dateModified`、`timeRequired` |
-| JSON-LD `BreadcrumbList` | 第三项的 `name` 与 `item` |
-| `.article-header` | `<h1>` 标题、日期、阅读时间、`.article-tags` 标签 |
-| `.article-body` | 第二步得到的 HTML |
-
-外链一律加 `target="_blank" rel="noopener"`。
-
-### 第四步：登记到 articles.json
+### 第二步：登记到 articles.json
 
 在 `articles.json` 里追加一条（`TEMPLATE` 那条不要动，它不会出现在列表里）：
 
@@ -127,28 +104,58 @@ def say_hello():
 {
   "id": "去掉 .md 的文件名",
   "title": "文章标题",
-  "date": "2026年9月14日",
+  "date": "2026年9月16日",
   "excerpt": "卡片上显示的摘要，一般与 meta description 一致",
   "tags": ["标签1", "标签2"],
   "file": "<ID>.html"
 }
 ```
 
-`date` 用「YYYY年M月D日」的显示格式，必须和页面 `<span>` 里的日期逐字一致。
+`date` 用「YYYY年M月D日」的显示格式，必须和 md 的 H1 标题、页面显示的日期逐字一致（标题不一致脚本会报警）。
 
-### 第五步：同步站点级文件
+### 第三步：一条命令生成页面
+
+```bash
+node scripts/build-articles.js
+```
+
+它做的正是以前手工做的那两步（转 HTML + 套页面骨架）：
+
+1. 用 `marked`（`{ gfm: true, breaks: true }`，与线上 [md2html.ok-lzr.us.ci](https://md2html.ok-lzr.us.ci) 同款配置）把 `articles/<ID>.md` 渲染成 HTML，表格自动包 `<div class="table-wrapper">`，外链自动加 `target="_blank" rel="noopener"`；
+2. 以 `articles/TEMPLATE.html` 为骨架，替换标题、摘要、canonical、og/twitter、两条 JSON-LD、日期、阅读时间、标签，再写入正文；
+3. 按正文字符数算阅读时间（约 350 字符/分钟，最低 3 分钟）。
+
+> 改页面结构（导航、页脚、meta）时，**直接改 `articles/TEMPLATE.html`**，再跑一次脚本，全站文章页一起更新。
+> 首次运行需要联网下载 `marked`（约 45KB，内存中加载，不落盘）。
+
+如果只想手工来一遍（比如没有 Node 环境）：把 Markdown 粘进 [md2html.ok-lzr.us.ci](https://md2html.ok-lzr.us.ci)，复制「源码」里的 HTML，再照 `TEMPLATE.html` 逐项替换上表那些字段（`<title>`、`meta description`、`canonical`、`og:*`/`twitter:*`、JSON-LD 的 `headline`/`description`/`keywords`/`articleSection`/`datePublished`/`timeRequired`、`.article-header` 里的标题与日期与标签、`.article-body` 正文）。
+
+### 第四步：同步站点级文件
 
 - `sitemap.xml`：加一条 `<url>`，`lastmod` 写发布日（`YYYY-MM-DD`）；首页与文章列表页的 `lastmod` 也顺手更新。
 - `articles.html`：`<noscript>` 里的静态文章列表加一行（纯抓取也能发现新文章）。
 - `index.html`：在「最近动态」加一条，必要时更新「精选文章」。
 
-### 第六步：发布前自查
+### 第五步：发布前自检
 
-- **日期**：不能是未来，也不要过于久远；用发布当天即可。三处必须一致——页面显示的日期、`articles.json` 的 `date`、JSON-LD 的 `datePublished`。
-- **阅读时间**：按正文字符数估算（本站口径约 350 字符/分钟，最低 3 分钟），并与 JSON-LD 的 `timeRequired`（`PT<分钟>M`）保持一致。
-- **一致性**：标题、摘要、标签在 HTML 与 `articles.json` 里保持一致；`<ID>.md` 与 `<ID>.html` 同名。
-- **格式**：正文里不出现未渲染的 `**`、`](` 之类的 Markdown 残留；中文加粗后紧跟汉字时，把句号移到 `**` 外面（否则渲染器不会识别加粗）。
-- **链接**：外链能打开，站内链接（`../articles.html`、`../index.html` 等）路径正确。
+```bash
+node scripts/check-articles.js
+```
+
+它会把下面这些一次查完，有问题就列出来并以非零退出码结束：
+
+- `articles.json`、`articles/<ID>.md`、`articles/<ID>.html` 三者是否对得上，H1 与 `title` 是否一致；
+- 日期格式、是否落在未来、页面 `<span>` 与 JSON-LD `datePublished` 是否一致；
+- 阅读时间与 `timeRequired` 是否一致，标签是否齐全；
+- 正文里有没有未渲染的 `**`、`](`，有没有没替换掉的占位符；
+- 有没有 emoji（本站规范不用 emoji）；
+- `sitemap.xml` 与 `articles.html` 的静态列表是否收录了每一篇。
+
+几个容易踩的坑：
+
+- **中文加粗**：加粗内容以标点结尾时，标点必须放在 `**` 外面——写 `**很厉害**。` 会渲染，写 `**很厉害。**后面` 不会渲染。
+- **段落**：一段一行，段间空行（渲染器开了 `breaks`，段内换行会变成 `<br>`）。
+- **正文不重复标题**：H1 由页面骨架渲染，md 的第一行标题不会出现在正文里。
 
 ### 关于日期与文体
 

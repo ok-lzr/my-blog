@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>关于一些 AI 的专业术语 · ok-lzr的个人空间</title>
+    <meta name="description" content="模型、token、上下文窗口、微调、RAG、Agent、MoE……按「它到底解决什么问题」排列的一份人话版 AI 术语表，附最容易搞混的六组对照。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/AI_Jargon_Explained.html">
+    <link rel="icon" href="../assets/avatar.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="关于一些 AI 的专业术语 · ok-lzr的个人空间">
+    <meta property="og:description" content="模型、token、上下文窗口、微调、RAG、Agent、MoE……按「它到底解决什么问题」排列的一份人话版 AI 术语表，附最容易搞混的六组对照。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/AI_Jargon_Explained.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="关于一些 AI 的专业术语">
+    <meta name="twitter:description" content="模型、token、上下文窗口、微调、RAG、Agent、MoE……按「它到底解决什么问题」排列的一份人话版 AI 术语表，附最容易搞混的六组对照。">
+    <link rel="stylesheet" href="../styles/style.css?v=9">
+    <link rel="stylesheet" href="../styles/article.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "关于一些 AI 的专业术语",
+        "description": "模型、token、上下文窗口、微调、RAG、Agent、MoE……按「它到底解决什么问题」排列的一份人话版 AI 术语表，附最容易搞混的六组对照。",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ok-lzr.us.ci/articles/AI_Jargon_Explained.html"
+        },
+        "url": "https://ok-lzr.us.ci/articles/AI_Jargon_Explained.html",
+        "datePublished": "2026-09-16",
+        "dateModified": "2026-09-16",
+        "image": "https://ok-lzr.us.ci/assets/avatar.png",
+        "keywords": ["AI","术语","科普"],
+        "articleSection": "AI",
+        "timeRequired": "PT8M",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ok-lzr.us.ci/" },
+            { "@type": "ListItem", "position": 2, "name": "文章", "item": "https://ok-lzr.us.ci/articles.html" },
+            { "@type": "ListItem", "position": 3, "name": "关于一些 AI 的专业术语", "item": "https://ok-lzr.us.ci/articles/AI_Jargon_Explained.html" }
+        ]
+    }
+    </script>
+</head>
+<body class="article-page">
+    <header>
+        <nav class="navbar" aria-label="主导航">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+            </div>
+        </nav>
+    </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main class="main-content main-content--page">
+        <div class="container container--article">
+            <article>
+                <div class="article-header">
+                    <h1>关于一些 AI 的专业术语</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-calendar.svg" alt="日期" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>2026年9月16日</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-clock.svg" alt="阅读时间" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>阅读时间：8 分钟</span>
+                        </div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">AI</span>
+                        <span class="tag">术语</span>
+                        <span class="tag">科普</span>
+                    </div>
+                </div>
+                <div class="article-body" id="articleContent">
+                    <p>有同学问我在折腾什么，我说"在调一个模型的提示词，顺便调了下温度"，他眼睛都直了："你们搞 AI 的都这么玄学吗？"其实一点都不玄，只是<strong>术语把简单的事说复杂了</strong>。我把这一年多攒下来的词整理了一份人话版，按"这个词到底在解决什么问题"排列，而不是按字母表——因为术语不是用来显得厉害的，是用来省字的，前提是双方都懂。</p>
+
+                    <h2>一、最基础的四个词</h2>
+
+                    <p><strong>模型（model）/ 权重（weights）/ 参数（parameters）</strong>。大模型的本体就是一堆数字（权重），"参数量"说的是这堆数字有多少个（比如 7B 就是 70 亿个）。有一条极容易被误解：<strong>参数量不等于知识量，也不等于聪明程度</strong>。它更像"脑袋的容量上限"，具体装了什么、会不会用，取决于训练数据和后训练方式。</p>
+
+                    <p><strong>Token（词元）</strong>。模型不是按"字"或"词"读文本的，而是按 token。中文里一个汉字常常是 1 到 2 个 token，英文大约是 1 个 token 对应 4 个字符。<strong>几乎所有"贵不贵、装不装得下"的问题，最后都要折算成 token 来算</strong>。</p>
+
+                    <p><strong>上下文窗口（context window）</strong>。一次对话里模型能同时"看到"的 token 上限（输入加输出一起算）。它<strong>不是记忆</strong>——窗口满了，最早的内容就被挤出去。所以"模型失忆"通常不是它不想记，是装不下。</p>
+
+                    <p><strong>训练与推理（training / inference）</strong>。训练是一次性的、极其昂贵的"学"；推理是每次使用时"答"。我们平时说的算力成本，绝大部分指的是推理成本。</p>
+
+                    <h2>二、让模型更像"人想要的样子"</h2>
+
+                    <p><strong>预训练（pretrain）</strong>。在海量文本上做"预测下一个 token"的练习。这一步之后，模型已经会说话，但不太听话。</p>
+
+                    <p><strong>微调（fine-tuning）/ SFT</strong>。用一批示范对话继续训练，教它"应该怎么回答"。<strong>SFT = Supervised Fine-Tuning，监督微调</strong>。</p>
+
+                    <p><strong>RLHF / 偏好对齐</strong>。让人类（或 AI）对不同回答打分，再据此调整模型偏好。<strong>RLHF = Reinforcement Learning from Human Feedback，基于人类反馈的强化学习</strong>。</p>
+
+                    <p><strong>蒸馏（distillation）</strong>。让大模型当老师，把小模型教出接近的水平。这是"小模型越来越强"的主要手段之一。</p>
+
+                    <p><strong>对齐（alignment）</strong>。一个更大的筐，泛指"让模型的行为符合人类意图与价值"的所有工作。</p>
+
+                    <h2>三、让模型别胡说：四个必须知道的词</h2>
+
+                    <p><strong>幻觉（hallucination）</strong>。模型一本正经地编造事实、论文和链接。根源在于它的目标是"生成像样的下一个 token"，不是"保证真话"。</p>
+
+                    <p><strong>温度（temperature）</strong>。控制随机性的旋钮。温度低 → 更稳、更保守；温度高 → 更发散、更有创意，也更容易跑偏。写代码时我一般调低，起标题时调高。</p>
+
+                    <p><strong>采样（top-p / top-k）</strong>。另一种控制"从多大范围里挑下一个词"的方式，和温度配合使用。</p>
+
+                    <p><strong>量化（quantization）</strong>。把权重从高精度（FP16）压成低精度（INT8、INT4），<strong>用一点点精度换显存和速度</strong>。这也是为什么同一个模型在你的笔记本上跑得动、在服务器上跑得更快——两边用的根本不是同一份精度。</p>
+
+                    <h2>四、架构侧：Transformer、MoE、KV 缓存</h2>
+
+                    <p><strong>Transformer 与注意力机制（attention）</strong>。当前几乎所有大模型的基础结构。注意力做的事，是让每个 token 能"看"到前文里跟它最相关的部分。</p>
+
+                    <p><strong>MoE（Mixture of Experts，专家混合）</strong>。把模型拆成很多"专家"，每次只激活其中一小部分。所以你会看到两个数字：<strong>总参数</strong>很大，<strong>激活参数</strong>很小。这也是"一个几百 B 的模型为什么能跑得挺快"的答案。</p>
+
+                    <p><strong>KV 缓存（KV cache）</strong>。多轮对话里，模型会把前面算过的中间结果存下来复用，避免重算。代价是它非常吃显存——这直接决定了"为什么聊越久越贵、并发人数上不去"，也是近一年各家技术报告里被反复优化的地方。</p>
+
+                    <h2>五、应用层：提示词、RAG、Agent</h2>
+
+                    <p><strong>提示词（prompt）与系统提示（system prompt）</strong>。前者是你每次输入的话，后者是开发者在后台设定的"角色与规则"。所谓"提示词工程"，本质是<strong>把需求写清楚</strong>。</p>
+
+                    <p><strong>RAG（检索增强生成）</strong>。先去资料库里检索相关片段，再把它们塞进上下文一起回答。它解决的是"模型不知道你的私有资料或最新消息"。</p>
+
+                    <p><strong>Agent（智能体）与工具调用（tool use）</strong>。让模型不只会说，还能<strong>动手</strong>：自己决定调用搜索、读文件、执行命令，然后根据结果继续下一步。</p>
+
+                    <p><strong>MCP（Model Context Protocol，模型上下文协议）</strong>。一套让模型统一接工具的开放协议，2024 年底提出后，成了 2026 年"给 AI 装外设"的常见做法。</p>
+
+                    <h2>六、最容易搞混的六组，一张表说清</h2>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>容易混的说法</th><th>真正的区别</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>参数 vs token</td><td>参数是模型"脑袋里的数字"，token 是文本被切开后的单位</td></tr>
+                                <tr><td>微调 vs RAG</td><td>微调是"改脑子"（改权重），RAG 是"递小抄"（改输入）</td></tr>
+                                <tr><td>上下文窗口 vs 记忆</td><td>窗口是一次能看多少，记忆是产品层自己做的存取功能</td></tr>
+                                <tr><td>幻觉 vs 说谎</td><td>幻觉没有"明知故犯"的意图，它是真的"以为"</td></tr>
+                                <tr><td>开源 vs 开放权重</td><td>给了权重不一定给了训练数据和许可自由，这两件事差很远</td></tr>
+                                <tr><td>推理（reasoning）vs 推理（inference）</td><td>前者指模型"思考几步"，后者指"跑一次模型"，同一个中文词、两码事</td></tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <h2>我自己的用法</h2>
+
+                    <p>我把术语当成<strong>压缩包</strong>：跟懂的人交流时，一个"MoE 激活参数 8B"能省掉三句话；跟不懂的人交流时，硬用术语只会把对方推远。所以我现在有个习惯——听到一个新词，先问自己三个问题：它解决什么问题？它的代价是什么？不用这个词，我能不能把这件事说清楚？</p>
+
+                    <p>第三个问题答"能"的时候，我一般就不用它。</p>
+
+                    <h2>结语</h2>
+
+                    <p>这些词听着唬人，其实每一个背后都是一个很具体的问题：装不下、记不住、太贵了、会胡说、跑不动。<strong>术语是别人解决问题之后留下的名字，不是需要膜拜的东西</strong>。下次有人用一堆缩写把你绕晕，你完全可以说："等一下，你先用人话讲一遍。"</p>
+
+                    <h2>参考资料</h2>
+
+                    <ul>
+                        <li><a href="https://www.kepuchina.cn/article/articleinfo?business_type=100&amp;classify=0&amp;ar_id=710177" target="_blank" rel="noopener">别再硬背 AI 术语了，这样讲更好懂（科普中国）</a></li>
+                        <li><a href="https://github.com/archlizheng/AIPM-Wiki/blob/main/docs/01-ai-basics/glossary.md" target="_blank" rel="noopener">AI 术语速查表（AIPM-Wiki）</a></li>
+                        <li><a href="https://developer.cloud.tencent.cn/article/2653971" target="_blank" rel="noopener">AI 知识体系全景：从大脑到智能员工（腾讯云开发者社区）</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@13/dist/markdown-it.umd.js"></script>
+</body>
+</html>

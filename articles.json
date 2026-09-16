@@ -86,5 +86,53 @@
     "excerpt": "黄仁勋说 AGI 来了，Gary Marcus 说既没有定义也没有证据。这篇用大白话拆开 AGI 的定义之争、几个主流标准，以及我自己总结的一个土办法判断标准。",
     "tags": ["AI", "AGI", "思考"],
     "file": "What_On_Earth_Is_AGI.html"
+  },
+  {
+    "id": "What_Is_P2P",
+    "title": "P2P 是什么",
+    "date": "2026年9月16日",
+    "excerpt": "把「一台服务器发给所有人」改成「大家互相发」。这篇讲清 P2P 必须解决的三个问题：怎么找到有文件的人（DHT）、内网怎么连上（NAT 打洞）、凭什么让人上传（以牙还牙）。",
+    "tags": ["网络", "P2P", "技术", "科普"],
+    "file": "What_Is_P2P.html"
+  },
+  {
+    "id": "Is_The_Internet_Spirit_Really_Good",
+    "title": "\"互联网精神\"真的好吗",
+    "date": "2026年9月16日",
+    "excerpt": "「互联网精神」到底是什么？拆开早期黑客伦理、自由软件和那句被腰斩的名言之后，我把它分成三类主张：哪些值得捍卫、哪些是偷换概念、哪些只是占便宜。",
+    "tags": ["互联网", "思考", "开源"],
+    "file": "Is_The_Internet_Spirit_Really_Good.html"
+  },
+  {
+    "id": "AI_Jargon_Explained",
+    "title": "关于一些 AI 的专业术语",
+    "date": "2026年9月16日",
+    "excerpt": "模型、token、上下文窗口、微调、RAG、Agent、MoE……按「它到底解决什么问题」排列的一份人话版 AI 术语表，附最容易搞混的六组对照。",
+    "tags": ["AI", "术语", "科普"],
+    "file": "AI_Jargon_Explained.html"
+  },
+  {
+    "id": "History_Of_Chinese_Laser_Typesetting",
+    "title": "汉字激光照排技术的历史",
+    "date": "2026年9月16日",
+    "excerpt": "铅字排版时代，排一本书要拣多少字模？汉字为什么比西文晚了很多年才走进数字时代？王选和团队的激光照排系统是怎么解决这个问题的——一段越查越佩服的技术史。",
+    "tags": ["历史", "技术史", "中文信息处理"],
+    "file": "History_Of_Chinese_Laser_Typesetting.html"
+  },
+  {
+    "id": "How_ARG_Clues_Are_Hidden",
+    "title": "ARG 线索可以怎么藏？",
+    "date": "2026年9月16日",
+    "excerpt": "从《I Love Bees》到 Cicada 3301，ARG 的线索可以藏在文本编码、图片元数据、音频频谱、网页源码和现实坐标里。这份清单讲原理、给例子，最后附一份自己设计小型 ARG 的上手步骤。",
+    "tags": ["ARG", "解谜", "游戏设计", "叙事"],
+    "file": "How_ARG_Clues_Are_Hidden.html"
+  },
+  {
+    "id": "Why_Is_Lego_So_Expensive",
+    "title": "乐高你凭什么卖这么贵",
+    "date": "2026年9月16日",
+    "excerpt": "塑料很便宜，乐高却很贵。我把原料成本、模具精度、设计研发、IP 授权和二级市场这几笔账分开算了一遍，顺便回答一个问题：贵的到底是产品，还是品牌？",
+    "tags": ["消费", "品牌", "玩具", "商业分析"],
+    "file": "Why_Is_Lego_So_Expensive.html"
   }
 ]

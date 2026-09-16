@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>P2P 是什么 · ok-lzr的个人空间</title>
+    <meta name="description" content="把「一台服务器发给所有人」改成「大家互相发」。这篇讲清 P2P 必须解决的三个问题：怎么找到有文件的人（DHT）、内网怎么连上（NAT 打洞）、凭什么让人上传（以牙还牙）。">
+    <meta name="author" content="ok-lzr">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://ok-lzr.us.ci/articles/What_Is_P2P.html">
+    <link rel="icon" href="../assets/avatar.png">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="ok-lzr的个人空间">
+    <meta property="og:title" content="P2P 是什么 · ok-lzr的个人空间">
+    <meta property="og:description" content="把「一台服务器发给所有人」改成「大家互相发」。这篇讲清 P2P 必须解决的三个问题：怎么找到有文件的人（DHT）、内网怎么连上（NAT 打洞）、凭什么让人上传（以牙还牙）。">
+    <meta property="og:url" content="https://ok-lzr.us.ci/articles/What_Is_P2P.html">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="https://ok-lzr.us.ci/assets/avatar.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="P2P 是什么">
+    <meta name="twitter:description" content="把「一台服务器发给所有人」改成「大家互相发」。这篇讲清 P2P 必须解决的三个问题：怎么找到有文件的人（DHT）、内网怎么连上（NAT 打洞）、凭什么让人上传（以牙还牙）。">
+    <link rel="stylesheet" href="../styles/style.css?v=9">
+    <link rel="stylesheet" href="../styles/article.css?v=9">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "P2P 是什么",
+        "description": "把「一台服务器发给所有人」改成「大家互相发」。这篇讲清 P2P 必须解决的三个问题：怎么找到有文件的人（DHT）、内网怎么连上（NAT 打洞）、凭什么让人上传（以牙还牙）。",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://ok-lzr.us.ci/articles/What_Is_P2P.html"
+        },
+        "url": "https://ok-lzr.us.ci/articles/What_Is_P2P.html",
+        "datePublished": "2026-09-16",
+        "dateModified": "2026-09-16",
+        "image": "https://ok-lzr.us.ci/assets/avatar.png",
+        "keywords": ["网络","P2P","技术","科普"],
+        "articleSection": "网络",
+        "timeRequired": "PT7M",
+        "inLanguage": "zh-CN",
+        "author": { "@type": "Person", "name": "ok-lzr", "url": "https://github.com/ok-lzr" },
+        "publisher": { "@type": "Person", "name": "ok-lzr" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://ok-lzr.us.ci/" },
+            { "@type": "ListItem", "position": 2, "name": "文章", "item": "https://ok-lzr.us.ci/articles.html" },
+            { "@type": "ListItem", "position": 3, "name": "P2P 是什么", "item": "https://ok-lzr.us.ci/articles/What_Is_P2P.html" }
+        ]
+    }
+    </script>
+</head>
+<body class="article-page">
+    <header>
+        <nav class="navbar" aria-label="主导航">
+            <div class="logo-area">
+                <a href="../index.html" class="avatar-link" aria-label="返回首页">
+                    <img src="../assets/avatar.png" alt="ok-lzr 头像" class="avatar-img" width="42" height="42">
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-toggle" type="button" aria-label="打开菜单" aria-expanded="false" aria-controls="siteNav">
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                    <span class="nav-toggle-bar" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="nav-links" id="siteNav">
+                <a href="../index.html" data-nav="home">首页</a>
+                <a href="../articles.html" data-nav="articles" class="active">文章</a>
+                <a href="../project.html" data-nav="projects">项目</a>
+                <a href="../about.html" data-nav="about">关于</a>
+            </div>
+        </nav>
+    </header>
+    <div class="nav-overlay" aria-hidden="true"></div>
+
+    <main class="main-content main-content--page">
+        <div class="container container--article">
+            <article>
+                <div class="article-header">
+                    <h1>P2P 是什么</h1>
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-calendar.svg" alt="日期" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>2026年9月16日</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <img src="../assets/icon-clock.svg" alt="阅读时间" width="18" height="18" style="display:inline-block; vertical-align:middle; margin-right:4px;">
+                            <span>阅读时间：7 分钟</span>
+                        </div>
+                    </div>
+                    <div class="article-tags">
+                        <span class="tag">网络</span>
+                        <span class="tag">P2P</span>
+                        <span class="tag">技术</span>
+                        <span class="tag">科普</span>
+                    </div>
+                </div>
+                <div class="article-body" id="articleContent">
+                    <p>前阵子我在用一个局域网传输工具，界面上跳出一行小字："已启用 P2P 加速"。我问家里人 P2P 是什么，得到的回答是"就是下载快一点"。这个答案不算错，但实在太亏了——因为 P2P 背后那套设计，是我今年见过的最漂亮的想法之一。花了两天把资料看完，我决定把它整理成一篇人话版。</p>
+
+                    <h2>一句话：把"所有人都来我这拿"，改成"互相拿"</h2>
+
+                    <p>传统做法叫 C/S（客户端 / 服务器）：文件放在一台服务器上，一万个人下载，就是这台服务器把同一份数据发一万遍。人越多，服务器越慢，带宽费越贵，而且它一挂，全体下线。</p>
+
+                    <p>P2P（Peer-to-Peer，点对点）把这件事反过来：每个下载者同时也是上传者。你在下载的时候，已经拿到的部分可以立刻传给下一个人。于是<strong>人越多，总带宽越大，速度反而可能更快</strong>——这是它最反直觉、也最迷人的地方。</p>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr><th>维度</th><th>C/S 模式</th><th>P2P 模式</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>数据来源</td><td>一台（或一组）服务器</td><td>所有参与者</td></tr>
+                                <tr><td>用户变多</td><td>服务器压力变大</td><td>总上传带宽变大</td></tr>
+                                <tr><td>单点故障</td><td>有，服务器挂了就全挂</td><td>没有，谁走了都有人替补</td></tr>
+                                <tr><td>成本</td><td>带宽费随人数线性上涨</td><td>分摊到参与者自己的宽带上</td></tr>
+                                <tr><td>管理难度</td><td>低（都在自己手里）</td><td>高（无法统一控制）</td></tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <h2>它要解决三个问题，每一个都不简单</h2>
+
+                    <h3>问题一：怎么知道谁手里有文件？</h3>
+
+                    <p>最早的 Napster（1999 年）用的办法很直白：<strong>中心索引 + 去中心传输</strong>。文件还是从别人的电脑上下，但"谁有这首歌"记在 Napster 自己的服务器上。所以它一被法院要求关掉索引服务器，整个网络就瘫了。</p>
+
+                    <p>后来的 Gnutella 尝试把索引也分散出去，但简单广播会产生巨量垃圾流量。真正解决问题的是 <strong>DHT（分布式哈希表）</strong>，BitTorrent 用的是其中的 Kademlia：</p>
+
+                    <ul>
+                        <li>文件被算出一个哈希值（infohash），这个值本身就决定了"该由哪些节点负责记录"。</li>
+                        <li>每个节点只维护一小部分"邻居"，查询时每一步都离目标更近，平均只要 O(log n) 步就能找到。</li>
+                        <li>于是<strong>没有一个节点掌握全局</strong>，也就没有可以被一锅端的中心。</li>
+
+                    </ul>
+
+                    <p>顺带说一句，磁力链接（magnet）之所以能用，就是因为它只带一个 infohash，剩下的"去哪找"全靠 DHT 现场解决——链接本身就是一条线索，而不是一个地址。</p>
+
+                    <h3>问题二：两个人都躲在路由器后面，怎么连上？</h3>
+
+                    <p>这是最容易被忽略、也最考验工程水平的一环。现在绝大多数设备都在 NAT（网络地址转换）后面，没有公网 IP，外面的人根本"看不见"你。P2P 的解法是<strong>打洞（hole punching）</strong>：</p>
+
+                    <ol>
+                        <li>双方各自向外部的信令服务器打个招呼，服务器于是知道"谁的哪条线路可以通到谁"。</li>
+                        <li>服务器把这层信息交换给双方，两边同时朝对方的公网出口发包。</li>
+                        <li>路由器看到自己内网有机器主动发出过这个连接，就允许对方的回包进来——一条通道就这么"打"出来了。</li>
+
+                    </ol>
+
+                    <p>打不通的时候（比如双方都是对称型 NAT），只能退而求其次走<strong>中继</strong>：数据绕一圈服务器转发，能用，但贵、也慢。视频通话软件里那套 STUN / TURN 机制，本质上就是在"直连打洞"和"中继兜底"之间做选择。</p>
+
+                    <h3>问题三：凭什么让我上传？</h3>
+
+                    <p>这是我觉得最妙的部分。BitTorrent 的规则是"<strong>以牙还牙（tit-for-tat）</strong>"：</p>
+
+                    <ul>
+                        <li>你只愿意优先把数据传给我，我就优先把数据传给你；那些只下载、不上传的"吸血"客户端，会被所有人一起降速甚至掐断。</li>
+                        <li>同时还规定<strong>最稀有的块优先下载</strong>，避免某个冷门分片最后只剩一个人有、成为瓶颈。</li>
+
+                    </ul>
+
+                    <p>一个没有任何中心管理的网络，靠一条简单的博弈规则，就让几百万个互不认识的陌生人愿意互相帮忙——这比"服务器很强大"有意思多了。</p>
+
+                    <h2>那它是不是好事？</h2>
+
+                    <p>技术上它中立，但用在哪里差别巨大。</p>
+
+                    <p><strong>好的那一面：</strong> 开源镜像分发（Linux 发行版至今仍靠 P2P 分担流量）、区块链、IPFS 这类内容寻址网络、局域网传文件、游戏联机、部分软件更新、WebRTC 视频通话，都是它的直系后代。抗审查也是它天生的属性——没有中心，就没有可以关掉的地方。</p>
+
+                    <p><strong>麻烦的那一面：</strong> 它同时也把"未经授权传播"的成本降到了极低，Napster 和海盗湾的官司就是这么来的；它还是僵尸网络（让被感染的机器互相指挥）和恶意文件传播的温床。另外，用户自己也在承受代价：上传占用你家宽带、暴露你的 IP、连接列表里可能混进坏节点。</p>
+
+                    <p>有意思的是，正因为监管和版权压力，很多"民用 P2P"后来退回了局域网和加速器——我们能看到的 P2P，反而越来越"小"了。</p>
+
+                    <h2>我的一点感想</h2>
+
+                    <p>我最佩服的不是它"快"，而是它把三个看起来很脏的问题（找谁、连不上、凭什么帮你）分别用<strong>哈希寻址、NAT 打洞、博弈激励</strong>解决掉了，而且没有一个是靠"加一台更强的服务器"。</p>
+
+                    <p>如果要用一句话概括它的思想，我觉得是：<strong>把中心去掉，把规则留下</strong>。中心会挂、会被关、会变贵，规则只要大家都认，就能一直跑下去。</p>
+
+                    <h2>参考资料</h2>
+
+                    <ul>
+                        <li><a href="http://nil.csail.mit.edu/6.824/2016/notes/l-dht.txt" target="_blank" rel="noopener">6.824 Lecture 20: P2P, DHTs, and Chord（MIT）</a></li>
+                        <li><a href="https://www.cs.princeton.edu/courses/archive/spring17/cos518/docs/L15-dhts.pdf" target="_blank" rel="noopener">Peer-to-Peer Systems and Distributed Hash Tables（Princeton COS 518）</a></li>
+                        <li><a href="https://courses.cs.washington.edu/courses/cse461/17wi/section-slides/9-p2p.pdf" target="_blank" rel="noopener">Introduction to Computer Networks：P2P 讲义（University of Washington）</a></li>
+                        <li><a href="https://cloud.baidu.com/article/4061158" target="_blank" rel="noopener">P2P 技术详解：从原理到实践的深度剖析（百度智能云）</a></li>
+                        <li><a href="https://cloud.tencent.cn/developer/article/2611434" target="_blank" rel="noopener">分布式组网架构设计：从 BitTorrent DHT 到现代 SD-WAN 的演进（腾讯云开发者社区）</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="article-footer">
+                    <a href="../articles.html" class="back-link">返回文章列表</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <span>✦ 个人网站 · <span id="year"></span></span>
+    </footer>
+
+    <script src="../scripts/site-config.js?v=8"></script>
+    <script src="../scripts/script.js?v=8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@13/dist/markdown-it.umd.js"></script>
+</body>
+</html>
