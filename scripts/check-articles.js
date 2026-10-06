@@ -113,7 +113,6 @@ function main() {
         const loc = match[1];
         if (!loc.startsWith(`${SITE_URL}/articles/`)) continue;
         const file = loc.slice(`${SITE_URL}/articles/`.length);
-        if (file === 'TEMPLATE.html') continue;
         if (!fs.existsSync(path.join(ARTICLES_DIR, file))) problems.push(`sitemap.xml 指向了不存在的页面：${file}`);
     }
 

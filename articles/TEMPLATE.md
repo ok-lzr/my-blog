@@ -122,13 +122,13 @@ node scripts/build-articles.js
 它做的正是以前手工做的那两步（转 HTML + 套页面骨架）：
 
 1. 用 `marked`（`{ gfm: true, breaks: true }`，与线上 [md2html.ok-lzr.us.ci](https://md2html.ok-lzr.us.ci) 同款配置）把 `articles/<ID>.md` 渲染成 HTML，表格自动包 `<div class="table-wrapper">`，外链自动加 `target="_blank" rel="noopener"`；
-2. 以 `articles/TEMPLATE.html` 为骨架，替换标题、摘要、canonical、og/twitter、两条 JSON-LD、日期、阅读时间、标签，再写入正文；
+2. 以 `templates/article.html` 为骨架，替换标题、摘要、canonical、og/twitter、两条 JSON-LD、日期、阅读时间、标签，再写入正文；
 3. 按正文字符数算阅读时间（约 350 字符/分钟，最低 3 分钟）。
 
-> 改页面结构（导航、页脚、meta）时，**直接改 `articles/TEMPLATE.html`**，再跑一次脚本，全站文章页一起更新。
+> 改页面结构（导航、页脚、meta）时，**直接改 `templates/article.html`**，再跑一次脚本，全站文章页一起更新。
 > 首次运行需要联网下载 `marked`（约 45KB，内存中加载，不落盘）。
 
-如果只想手工来一遍（比如没有 Node 环境）：把 Markdown 粘进 [md2html.ok-lzr.us.ci](https://md2html.ok-lzr.us.ci)，复制「源码」里的 HTML，再照 `TEMPLATE.html` 逐项替换上表那些字段（`<title>`、`meta description`、`canonical`、`og:*`/`twitter:*`、JSON-LD 的 `headline`/`description`/`keywords`/`articleSection`/`datePublished`/`timeRequired`、`.article-header` 里的标题与日期与标签、`.article-body` 正文）。
+如果只想手工来一遍（比如没有 Node 环境）：把 Markdown 粘进 [md2html.ok-lzr.us.ci](https://md2html.ok-lzr.us.ci)，复制「源码」里的 HTML，再照 `templates/article.html` 逐项替换上表那些字段（`<title>`、`meta description`、`canonical`、`og:*`/`twitter:*`、JSON-LD 的 `headline`/`description`/`keywords`/`articleSection`/`datePublished`/`timeRequired`、`.article-header` 里的标题与日期与标签、`.article-body` 正文）。
 
 ### 第四步：同步站点级文件
 

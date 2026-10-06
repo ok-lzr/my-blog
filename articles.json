@@ -1,13 +1,5 @@
 [
   {
-    "id": "TEMPLATE",
-    "title": "模板",
-    "date": "2026年5月4日",
-    "excerpt": "文章的模板",
-    "tags": ["标签1", "标签2"],
-    "file": "TEMPLATE.md"
-  },
-  {
     "id": "How_to_Download_DeepSeek_Harness",
     "title": "如何下载 DeepSeek Harness",
     "date": "2026年9月14日",

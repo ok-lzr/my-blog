@@ -5,8 +5,8 @@
  *
  * 设计说明：
  *   1. articles.json 是唯一的信息源（标题、日期、摘要、标签、文件名）。
- *   2. articles/TEMPLATE.html 是唯一的页面骨架，脚本在里面做定点替换，
- *      所以改模板 = 改全站文章页结构。
+ *   2. templates/article.html 是唯一的页面骨架，脚本在里面做定点替换，
+ *      所以改模板 = 改全站文章页结构（它是构建用的，不对外发布）。
  *   3. Markdown 渲染用 marked（GFM + breaks: true），与线上 md2html 工具同款配置。
  *      渲染器已随仓库放在 scripts/vendor/marked.umd.js（带 SHA-256 校验），
  *      构建全程不联网，同一份 md 永远产出同一份 HTML。
@@ -21,7 +21,7 @@ const crypto = require('crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 const ARTICLES_DIR = path.join(ROOT, 'articles');
-const TEMPLATE_FILE = path.join(ARTICLES_DIR, 'TEMPLATE.html');
+const TEMPLATE_FILE = path.join(ROOT, 'templates', 'article.html');
 const LIST_FILE = path.join(ROOT, 'articles.json');
 const SITE_URL = 'https://ok-lzr.us.ci';
 const MARKED_FILE = path.join(__dirname, 'vendor', 'marked.umd.js');
@@ -271,7 +271,7 @@ function buildPage(entry, bodyHtml, minutes, template) {
     const footerIdx = out.indexOf(footerMarker);
     const bodyEnd = out.lastIndexOf('</div>', footerIdx);
     if (bodyStart < bodyMarker.length || footerIdx < 0 || bodyEnd < 0) {
-        throw new Error('页面骨架里找不到 articleBody / article-footer 标记，请检查 TEMPLATE.html');
+        throw new Error('页面骨架里找不到 articleBody / article-footer 标记，请检查 templates/article.html');
     }
     out = out.slice(0, bodyStart) + '\n' + bodyHtml + '\n                ' + out.slice(bodyEnd);
 
