@@ -10,6 +10,7 @@
  *   6. 日期是否落在未来、或过于久远
  *   7. sitemap.xml、articles.html 的 <noscript> 列表是否收录了全部文章
  *   8. 各页面引用的 CSS/JS 版本号（?v=）是不是当前文件内容的哈希
+ *   9. 404.html 的本地引用是否在任意深度的网址下都能解析到真实存在的文件
  *
  * 只要有问题就打印出来，并以退出码 1 结束，方便接到提交钩子里。
  */
@@ -141,6 +142,20 @@ function main() {
                     `${page}：${asset} 的 ?v=${version || '(缺失)'} 已过期，应为 ${versions[asset]}（跑一次 node scripts/build-articles.js 同步）`
                 );
             }
+        }
+    }
+
+    /* 404.html 会在任意深度的网址上被返回（比如 /a/b/c），所以它的本地引用必须写根路径。
+       这里按最坏情况、用浏览器的方式把每个 href/src 解析一遍，看是否还落在真实存在的文件上。 */
+    const notFoundHtml = fs.readFileSync(path.join(ROOT, '404.html'), 'utf8');
+    const deepBase = `${SITE_URL}/a/very/deep/missing/path/`;
+    for (const match of notFoundHtml.matchAll(/(?:href|src)="([^"]+)"/g)) {
+        const ref = match[1];
+        if (/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(ref)) continue; // 外链 / 协议相对 / 锚点
+        const resolved = new URL(ref, deepBase).pathname;
+        const target = decodeURIComponent(resolved).replace(/^\//, '') || 'index.html';
+        if (!fs.existsSync(path.join(ROOT, target))) {
+            problems.push(`404.html：引用「${ref}」在深层网址下会解析成 ${resolved}，仓库里没有这个文件（404 页必须用 / 开头的根路径）`);
         }
     }
 

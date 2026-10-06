@@ -31,10 +31,11 @@ const TEMPLATE_FILE = path.join(ROOT, 'templates', 'article.html');
 
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-/* 匹配「href/src + 可选 ./ 或 ../ 前缀 + 资源路径 + 可选 ?v=... 」
+/* 匹配「href/src + 可选 ../ 或 ./ 或根路径 / 前缀 + 资源路径 + 可选 ?v=... 」
+   根路径那种主要给 404.html 用：它在任意深度的网址上被返回，只能用 / 开头才解析得对。
    捕获组：1 属性名 / 2 前缀 / 3 资源路径 / 4 版本号（可能 undefined） */
 const STAMP_RE = new RegExp(
-    `(href|src)="((?:\\.\\./|\\./)?)(${ASSETS.map(escapeRe).join('|')})(?:\\?v=([^"]*))?"`,
+    `(href|src)="((?:\\.\\./|\\./|/)?)(${ASSETS.map(escapeRe).join('|')})(?:\\?v=([^"]*))?"`,
     'g'
 );
 
