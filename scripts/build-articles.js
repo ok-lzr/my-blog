@@ -11,6 +11,8 @@
  *   3. Markdown 渲染用 marked（GFM + breaks: true），与线上 md2html 工具同款配置。
  *      渲染器已随仓库放在 scripts/vendor/marked.umd.js（带 SHA-256 校验），
  *      构建全程不联网，同一份 md 永远产出同一份 HTML。
+ *   4. 顺带把各页面引用本地 CSS/JS 的 ?v= 刷成文件内容哈希（scripts/asset-versions.js），
+ *      所以改样式/脚本后不用再手工加版本号。
  *
  * 新增一篇文章：写 articles/<ID>.md → 在 articles.json 追加一条 → 跑本脚本。
  * （sitemap.xml、articles.html 的 <noscript> 列表、index.html 的动态仍需手动同步，
@@ -19,10 +21,10 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { ROOT_PAGES, TEMPLATE_FILE, computeVersions, stampHtml } = require('./asset-versions');
 
 const ROOT = path.resolve(__dirname, '..');
 const ARTICLES_DIR = path.join(ROOT, 'articles');
-const TEMPLATE_FILE = path.join(ROOT, 'templates', 'article.html');
 const LIST_FILE = path.join(ROOT, 'articles.json');
 const SITE_URL = 'https://ok-lzr.us.ci';
 const MARKED_FILE = path.join(__dirname, 'vendor', 'marked.umd.js');
@@ -282,10 +284,30 @@ function buildPage(entry, bodyHtml, minutes, template) {
 }
 
 /* ------------------------------------------------------------------ */
+/* 资源版本号                                                          */
+/* ------------------------------------------------------------------ */
+/** 把站点静态页与骨架的 ?v= 刷成当前内容哈希；文章页随后按骨架生成，自然继承 */
+function stampSiteAssets() {
+    const versions = computeVersions();
+    const targets = [...ROOT_PAGES.map((p) => path.join(ROOT, p)), TEMPLATE_FILE];
+    let updated = 0;
+    for (const file of targets) {
+        const before = fs.readFileSync(file, 'utf8');
+        const after = stampHtml(before, versions);
+        if (after !== before) {
+            fs.writeFileSync(file, after, 'utf8');
+            updated += 1;
+        }
+    }
+    if (updated) console.log(`资源版本号：更新了 ${updated} 个文件的 ?v= 引用`);
+}
+
+/* ------------------------------------------------------------------ */
 /* 主流程                                                              */
 /* ------------------------------------------------------------------ */
 async function main() {
     await loadMarked();
+    stampSiteAssets();
     const template = fs.readFileSync(TEMPLATE_FILE, 'utf8');
     const list = JSON.parse(fs.readFileSync(LIST_FILE, 'utf8'));
 

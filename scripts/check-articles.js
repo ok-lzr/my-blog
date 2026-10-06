@@ -9,11 +9,13 @@
  *   5. 是否有 emoji（站点规范不用 emoji）
  *   6. 日期是否落在未来、或过于久远
  *   7. sitemap.xml、articles.html 的 <noscript> 列表是否收录了全部文章
+ *   8. 各页面引用的 CSS/JS 版本号（?v=）是不是当前文件内容的哈希
  *
  * 只要有问题就打印出来，并以退出码 1 结束，方便接到提交钩子里。
  */
 const fs = require('fs');
 const path = require('path');
+const { ROOT_PAGES, TEMPLATE_FILE, computeVersions, readStamps } = require('./asset-versions');
 
 const ROOT = path.resolve(__dirname, '..');
 const ARTICLES_DIR = path.join(ROOT, 'articles');
@@ -121,7 +123,28 @@ function main() {
         if (!fs.existsSync(path.join(ARTICLES_DIR, file))) problems.push(`sitemap.xml 指向了不存在的页面：${file}`);
     }
 
-    console.log(`检查了 ${ids.length} 篇文章。`);
+    // 资源版本号：页面引用的 CSS/JS 必须写着当前文件内容的哈希
+    const versions = computeVersions();
+    const pages = [
+        ...ROOT_PAGES,
+        path.relative(ROOT, TEMPLATE_FILE),
+        ...fs
+            .readdirSync(ARTICLES_DIR)
+            .filter((f) => f.endsWith('.html'))
+            .map((f) => `articles/${f}`),
+    ];
+    for (const page of pages) {
+        const html = fs.readFileSync(path.join(ROOT, page), 'utf8');
+        for (const { asset, version } of readStamps(html)) {
+            if (version !== versions[asset]) {
+                problems.push(
+                    `${page}：${asset} 的 ?v=${version || '(缺失)'} 已过期，应为 ${versions[asset]}（跑一次 node scripts/build-articles.js 同步）`
+                );
+            }
+        }
+    }
+
+    console.log(`检查了 ${ids.length} 篇文章、${pages.length} 个页面的资源版本号。`);
     if (notes.length) console.log(`\n提示：\n${notes.join('\n')}`);
     if (problems.length) {
         console.log(`\n发现 ${problems.length} 个问题：\n${problems.join('\n')}`);

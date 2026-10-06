@@ -125,7 +125,8 @@ node scripts/build-articles.js
 
 1. 用 `marked`（`{ gfm: true, breaks: true }`，与线上 [md2html.ok-lzr.us.ci](https://md2html.ok-lzr.us.ci) 同款配置）把 `articles/<ID>.md` 渲染成 HTML，表格自动包 `<div class="table-wrapper">`，外链自动加 `target="_blank" rel="noopener"`；
 2. 以 `templates/article.html` 为骨架，替换标题、摘要、canonical、og/twitter、两条 JSON-LD、日期、阅读时间、标签，再写入正文；
-3. 按正文字符数算阅读时间（约 350 字符/分钟，最低 3 分钟）。
+3. 按正文字符数算阅读时间（约 350 字符/分钟，最低 3 分钟）；
+4. 把各页面里本地 CSS/JS 的 `?v=` 刷成文件内容的短哈希（`scripts/asset-versions.js`）——所以改过样式或脚本后**不用再手工加版本号**，跑一次本脚本就会全站同步。
 
 > 改页面结构（导航、页脚、meta）时，**直接改 `templates/article.html`**，再跑一次脚本，全站文章页一起更新。
 > 渲染器 `marked` 已随仓库放在 `scripts/vendor/marked.umd.js`（18.1.0 + SHA-256 校验），构建全程不联网。
@@ -151,7 +152,8 @@ node scripts/check-articles.js
 - 阅读时间与 `timeRequired` 是否一致，标签是否齐全；
 - 正文里有没有未渲染的 `**`、`](`，有没有没替换掉的占位符；
 - 有没有 emoji（本站规范不用 emoji）；
-- `sitemap.xml` 与 `articles.html` 的静态列表是否收录了每一篇。
+- `sitemap.xml` 与 `articles.html` 的静态列表是否收录了每一篇；
+- 各页面引用的 CSS/JS 版本号（`?v=`）是不是当前文件内容的哈希（改过样式却忘了跑构建，会在这里报出来）。
 
 几个容易踩的坑：
 
