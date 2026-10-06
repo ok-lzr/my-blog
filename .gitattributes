@@ -1,0 +1,8 @@
+# 文本文件统一以 LF 入库，Windows 检出时也不再变 CRLF：
+# 保证工作区文件与仓库版本逐字节一致，构建产物的 diff 才干净、可复现
+* text=auto eol=lf
+
+# 构建依赖的第三方文件：必须按原始字节保存
+# （scripts/build-articles.js 会做 sha256 校验，被转成 CRLF 就会校验失败。
+#   放在上面那条之后，确保这条针对具体路径的规则优先生效）
+scripts/vendor/marked.umd.js text eol=lf

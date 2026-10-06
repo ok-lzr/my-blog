@@ -8,7 +8,8 @@
  *   2. articles/TEMPLATE.html 是唯一的页面骨架，脚本在里面做定点替换，
  *      所以改模板 = 改全站文章页结构。
  *   3. Markdown 渲染用 marked（GFM + breaks: true），与线上 md2html 工具同款配置。
- *      首次运行需要联网下载 marked（约 45KB，内存中加载，不落盘）。
+ *      渲染器已随仓库放在 scripts/vendor/marked.umd.js（带 SHA-256 校验），
+ *      构建全程不联网，同一份 md 永远产出同一份 HTML。
  *
  * 新增一篇文章：写 articles/<ID>.md → 在 articles.json 追加一条 → 跑本脚本。
  * （sitemap.xml、articles.html 的 <noscript> 列表、index.html 的动态仍需手动同步，
@@ -16,28 +17,38 @@
  */
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const ROOT = path.resolve(__dirname, '..');
 const ARTICLES_DIR = path.join(ROOT, 'articles');
 const TEMPLATE_FILE = path.join(ARTICLES_DIR, 'TEMPLATE.html');
 const LIST_FILE = path.join(ROOT, 'articles.json');
 const SITE_URL = 'https://ok-lzr.us.ci';
-const MARKED_CDN = 'https://cdn.jsdelivr.net/npm/marked/lib/marked.umd.js';
+const MARKED_FILE = path.join(__dirname, 'vendor', 'marked.umd.js');
+/* 与 scripts/vendor/README.md 记录的版本一致；有意升级 marked 时两者必须同步更新 */
+const MARKED_SHA256 = 'f424dcb508fdf93e0137a970cfce8f3207ea2e3f37eca5f7556a52875683632a';
 
 /* ------------------------------------------------------------------ */
 /* Markdown → HTML                                                     */
 /* ------------------------------------------------------------------ */
 let marked = null;
 
-async function loadMarked() {
+function loadMarked() {
     if (marked) return marked;
     let code;
     try {
-        const res = await fetch(MARKED_CDN);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        code = await res.text();
+        code = fs.readFileSync(MARKED_FILE, 'utf8');
     } catch (error) {
-        throw new Error(`无法下载 marked（转换 Markdown 需要联网）：${error.message}`);
+        throw new Error(`找不到本地 Markdown 渲染器 ${path.relative(ROOT, MARKED_FILE)}：${error.message}`);
+    }
+    const actual = crypto.createHash('sha256').update(code, 'utf8').digest('hex');
+    if (actual !== MARKED_SHA256) {
+        throw new Error(
+            `Markdown 渲染器校验失败：${path.relative(ROOT, MARKED_FILE)}\n` +
+                `  期望 sha256 ${MARKED_SHA256}\n` +
+                `  实际 sha256 ${actual}\n` +
+                '  如果是有意升级 marked，请同时更新本脚本的 MARKED_SHA256 与 scripts/vendor/README.md。'
+        );
     }
     const mod = { exports: {} };
     new Function('module', 'exports', code)(mod, mod.exports);
