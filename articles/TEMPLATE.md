@@ -98,7 +98,7 @@ def say_hello():
 
 ### 第二步：登记到 articles.json
 
-在 `articles.json` 里追加一条（`TEMPLATE` 那条不要动，它不会出现在列表里）：
+在 `articles.json` 里追加一条（数组里都是已发布的文章；本文件 `articles/TEMPLATE.md` 只是语法参考，不登记）：
 
 ```json
 {
@@ -106,10 +106,12 @@ def say_hello():
   "title": "文章标题",
   "date": "2026年9月16日",
   "excerpt": "卡片上显示的摘要，一般与 meta description 一致",
-  "tags": ["标签1", "标签2"],
-  "file": "<ID>.html"
+  "tags": ["标签1", "标签2"]
 }
 ```
+
+`id` 同时决定源文件名与页面文件名：`articles/<id>.md` → `articles/<id>.html`，不用另登记输出文件名；
+它也直接进网址，所以只能用英文、数字、下划线（列表页按 `id` 拼链接）。
 
 `date` 用「YYYY年M月D日」的显示格式，必须和 md 的 H1 标题、页面显示的日期逐字一致（标题不一致脚本会报警）。
 
@@ -126,7 +128,7 @@ node scripts/build-articles.js
 3. 按正文字符数算阅读时间（约 350 字符/分钟，最低 3 分钟）。
 
 > 改页面结构（导航、页脚、meta）时，**直接改 `templates/article.html`**，再跑一次脚本，全站文章页一起更新。
-> 首次运行需要联网下载 `marked`（约 45KB，内存中加载，不落盘）。
+> 渲染器 `marked` 已随仓库放在 `scripts/vendor/marked.umd.js`（18.1.0 + SHA-256 校验），构建全程不联网。
 
 如果只想手工来一遍（比如没有 Node 环境）：把 Markdown 粘进 [md2html.ok-lzr.us.ci](https://md2html.ok-lzr.us.ci)，复制「源码」里的 HTML，再照 `templates/article.html` 逐项替换上表那些字段（`<title>`、`meta description`、`canonical`、`og:*`/`twitter:*`、JSON-LD 的 `headline`/`description`/`keywords`/`articleSection`/`datePublished`/`timeRequired`、`.article-header` 里的标题与日期与标签、`.article-body` 正文）。
 

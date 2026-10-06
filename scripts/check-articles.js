@@ -40,9 +40,14 @@ function main() {
     for (const entry of list) {
         if (!entry || entry.id === 'TEMPLATE') continue;
         ids.push(entry.id);
+        // 列表页用 encodeURIComponent(id) 拼链接，构建则直接用 id 当文件名：
+        // 一旦 id 含需要转义的字符，两者就会指向不同地址，这里提前拦住
+        if (encodeURIComponent(entry.id) !== entry.id) {
+            problems.push(`${entry.id}：id 只能用英文、数字、下划线、连字符（它同时是文件名与网址）`);
+        }
 
         const mdPath = path.join(ARTICLES_DIR, `${entry.id}.md`);
-        const htmlPath = path.join(ARTICLES_DIR, entry.file || `${entry.id}.html`);
+        const htmlPath = path.join(ARTICLES_DIR, `${entry.id}.html`);
         if (!fs.existsSync(mdPath)) {
             problems.push(`${entry.id}：缺少 Markdown 源文件`);
             continue;
@@ -105,7 +110,7 @@ function main() {
 
         // 站点级收录
         if (!sitemap.includes(`${SITE_URL}/articles/${entry.id}.html`)) problems.push(`${entry.id}：sitemap.xml 里没有收录`);
-        if (!articlesPage.includes(`articles/${entry.file || `${entry.id}.html`}`)) problems.push(`${entry.id}：articles.html 的静态列表里没有收录`);
+        if (!articlesPage.includes(`articles/${entry.id}.html`)) problems.push(`${entry.id}：articles.html 的静态列表里没有收录`);
     }
 
     // 反向检查：sitemap 里有没有指向不存在的文章

@@ -4,127 +4,111 @@
     "title": "如何下载 DeepSeek Harness",
     "date": "2026年9月14日",
     "excerpt": "怎么装 dsh？这篇记录了我自己折腾 DeepSeek Harness 的两种方式：npx 一行命令快速启动，以及从源码克隆构建，外加我踩过的四个坑。",
-    "tags": ["DeepSeek", "Harness", "AI", "开源"],
-    "file": "How_to_Download_DeepSeek_Harness.html"
+    "tags": ["DeepSeek", "Harness", "AI", "开源"]
   },
   {
     "id": "Cpp26_Updates",
     "title": "C++26 的更新",
     "date": "2026年9月14日",
     "excerpt": "刷 cppreference 时整理的一份笔记：C++26 里最值得期待的几项更新——#embed 嵌入资源、契约、std::execution、std::inplace_vector，以及几个小但好用的改动。",
-    "tags": ["C++", "C++26", "编程语言"],
-    "file": "Cpp26_Updates.html"
+    "tags": ["C++", "C++26", "编程语言"]
   },
   {
     "id": "How_Circle_Drawing_Algorithms_Work",
     "title": "画圆算法是怎么画圆的",
     "date": "2026年9月14日",
     "excerpt": "屏幕上的圆是怎么画出来的？从圆的方程到中点画圆法，我把推导过程和自己踩过的坑写成了这篇，附完整的 C 代码与 8 对称性技巧。",
-    "tags": ["算法", "图形学", "C"],
-    "file": "How_Circle_Drawing_Algorithms_Work.html"
+    "tags": ["算法", "图形学", "C"]
   },
   {
     "id": "RTX50_Series_GPU_Theoretical_Comparison",
     "title": "RTX50 系列全显卡理论对比",
     "date": "2026年9月14日",
     "excerpt": "想装机，先把参数看明白：RTX 50 系列全家桶的 CUDA 核心、显存、位宽、带宽与功耗横向对比，外加我对 RTX 5080 Ti 与 SUPER 系列传闻的整理。",
-    "tags": ["硬件", "显卡", "NVIDIA"],
-    "file": "RTX50_Series_GPU_Theoretical_Comparison.html"
+    "tags": ["硬件", "显卡", "NVIDIA"]
   },
   {
     "id": "What_Is_An_NPU",
     "title": "NPU 是什么",
     "date": "2026年9月14日",
     "excerpt": "陪朋友看手机发布会时被问住了：NPU 到底是什么？这篇用大白话讲清它的原理、和 CPU/GPU 的区别，以及它为什么会被塞进每一台新设备。",
-    "tags": ["AI", "硬件", "NPU"],
-    "file": "What_Is_An_NPU.html"
+    "tags": ["AI", "硬件", "NPU"]
   },
   {
     "id": "Why_Memory_Prices_Are_Rising",
     "title": "深度分析：为什么最近内存价格水涨船高",
     "date": "2026年9月14日",
     "excerpt": "去年想加两条 DDR5，被价格劝退；今年再去看，更贵了。这篇把 AI 需求、HBM 挤占产能、寡头控产与扩产周期四条线索拼起来，聊聊内存为什么涨成这样。",
-    "tags": ["硬件", "内存", "DRAM", "行业分析"],
-    "file": "Why_Memory_Prices_Are_Rising.html"
+    "tags": ["硬件", "内存", "DRAM", "行业分析"]
   },
   {
     "id": "DeepSeek_V41_Flash_vs_V4_Pro",
     "title": "DeepSeek V4.1 Flash 发布，竟然完爆 V4 Pro 正式版？！",
     "date": "2026年9月14日",
     "excerpt": "DeepSeek V4.1 Flash 上线，Artificial Analysis 给了 40 分，反超参数大得多的 V4 Pro，官方甚至一度要让 Pro 下线。这篇把技术报告里的 KV 缓存黑科技和我自己的判断都写清楚了。",
-    "tags": ["AI", "DeepSeek", "大模型", "评测"],
-    "file": "DeepSeek_V41_Flash_vs_V4_Pro.html"
+    "tags": ["AI", "DeepSeek", "大模型", "评测"]
   },
   {
     "id": "Careers_That_Still_Pay_In_The_AI_Era",
     "title": "AI 时代，还有什么职业能赚钱？",
     "date": "2026年9月14日",
     "excerpt": "AI 时代还有什么职业能赚钱？读完上科大的劳动力市场报告，我从任务重组出发，聊了三类在涨的岗位、我自己的三条判断标准和三条可操作的路。",
-    "tags": ["AI", "职业", "思考"],
-    "file": "Careers_That_Still_Pay_In_The_AI_Era.html"
+    "tags": ["AI", "职业", "思考"]
   },
   {
     "id": "I_Tried_To_Build_My_School_Website",
     "title": "我尝试给学校做了个官网……",
     "date": "2026年9月14日",
     "excerpt": "我给学校做官网的三个月：需求怎么一轮轮长出来、图片怎么从 4MB 压到 200KB、以及被飘动的校徽上了一课。最后它没能上线，但我的收获比想象中多。",
-    "tags": ["前端", "Web", "校园", "折腾"],
-    "file": "I_Tried_To_Build_My_School_Website.html"
+    "tags": ["前端", "Web", "校园", "折腾"]
   },
   {
     "id": "What_On_Earth_Is_AGI",
     "title": "AGI 到底是个什么玩意",
     "date": "2026年9月14日",
     "excerpt": "黄仁勋说 AGI 来了，Gary Marcus 说既没有定义也没有证据。这篇用大白话拆开 AGI 的定义之争、几个主流标准，以及我自己总结的一个土办法判断标准。",
-    "tags": ["AI", "AGI", "思考"],
-    "file": "What_On_Earth_Is_AGI.html"
+    "tags": ["AI", "AGI", "思考"]
   },
   {
     "id": "What_Is_P2P",
     "title": "P2P 是什么",
     "date": "2026年9月16日",
     "excerpt": "把「一台服务器发给所有人」改成「大家互相发」。这篇讲清 P2P 必须解决的三个问题：怎么找到有文件的人（DHT）、内网怎么连上（NAT 打洞）、凭什么让人上传（以牙还牙）。",
-    "tags": ["网络", "P2P", "技术", "科普"],
-    "file": "What_Is_P2P.html"
+    "tags": ["网络", "P2P", "技术", "科普"]
   },
   {
     "id": "Is_The_Internet_Spirit_Really_Good",
     "title": "\"互联网精神\"真的好吗",
     "date": "2026年9月16日",
     "excerpt": "「互联网精神」到底是什么？拆开早期黑客伦理、自由软件和那句被腰斩的名言之后，我把它分成三类主张：哪些值得捍卫、哪些是偷换概念、哪些只是占便宜。",
-    "tags": ["互联网", "思考", "开源"],
-    "file": "Is_The_Internet_Spirit_Really_Good.html"
+    "tags": ["互联网", "思考", "开源"]
   },
   {
     "id": "AI_Jargon_Explained",
     "title": "关于一些 AI 的专业术语",
     "date": "2026年9月16日",
     "excerpt": "模型、token、上下文窗口、微调、RAG、Agent、MoE……按「它到底解决什么问题」排列的一份人话版 AI 术语表，附最容易搞混的六组对照。",
-    "tags": ["AI", "术语", "科普"],
-    "file": "AI_Jargon_Explained.html"
+    "tags": ["AI", "术语", "科普"]
   },
   {
     "id": "History_Of_Chinese_Laser_Typesetting",
     "title": "汉字激光照排技术的历史",
     "date": "2026年9月16日",
     "excerpt": "铅字排版时代，排一本书要拣多少字模？汉字为什么比西文晚了很多年才走进数字时代？王选和团队的激光照排系统是怎么解决这个问题的——一段越查越佩服的技术史。",
-    "tags": ["历史", "技术史", "中文信息处理"],
-    "file": "History_Of_Chinese_Laser_Typesetting.html"
+    "tags": ["历史", "技术史", "中文信息处理"]
   },
   {
     "id": "How_ARG_Clues_Are_Hidden",
     "title": "ARG 线索可以怎么藏？",
     "date": "2026年9月16日",
     "excerpt": "从《I Love Bees》到 Cicada 3301，ARG 的线索可以藏在文本编码、图片元数据、音频频谱、网页源码和现实坐标里。这份清单讲原理、给例子，最后附一份自己设计小型 ARG 的上手步骤。",
-    "tags": ["ARG", "解谜", "游戏设计", "叙事"],
-    "file": "How_ARG_Clues_Are_Hidden.html"
+    "tags": ["ARG", "解谜", "游戏设计", "叙事"]
   },
   {
     "id": "Why_Is_Lego_So_Expensive",
     "title": "乐高你凭什么卖这么贵",
     "date": "2026年9月16日",
     "excerpt": "塑料很便宜，乐高却很贵。我把原料成本、模具精度、设计研发、IP 授权和二级市场这几笔账分开算了一遍，顺便回答一个问题：贵的到底是产品，还是品牌？",
-    "tags": ["消费", "品牌", "玩具", "商业分析"],
-    "file": "Why_Is_Lego_So_Expensive.html"
+    "tags": ["消费", "品牌", "玩具", "商业分析"]
   }
 ]

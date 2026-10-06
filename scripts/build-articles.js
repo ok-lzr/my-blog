@@ -4,7 +4,8 @@
  * 用法：node scripts/build-articles.js
  *
  * 设计说明：
- *   1. articles.json 是唯一的信息源（标题、日期、摘要、标签、文件名）。
+ *   1. articles.json 是唯一的信息源（标题、日期、摘要、标签）；页面文件名只由 id 决定，
+ *      即 articles/<id>.md → articles/<id>.html，不需要（也没有）另一个文件名字段。
  *   2. templates/article.html 是唯一的页面骨架，脚本在里面做定点替换，
  *      所以改模板 = 改全站文章页结构（它是构建用的，不对外发布）。
  *   3. Markdown 渲染用 marked（GFM + breaks: true），与线上 md2html 工具同款配置。
@@ -292,7 +293,7 @@ async function main() {
     const problems = [];
 
     for (const entry of list) {
-        if (!entry || entry.id === 'TEMPLATE' || !entry.file) continue;
+        if (!entry || entry.id === 'TEMPLATE') continue;
         const mdFile = path.join(ARTICLES_DIR, `${entry.id}.md`);
         if (!fs.existsSync(mdFile)) {
             problems.push(`缺少源文件：articles/${entry.id}.md（articles.json 里登记了，但没有 md）`);
@@ -306,7 +307,7 @@ async function main() {
 
         const minutes = readingMinutes(markdown);
         const html = buildPage(entry, renderBody(markdown), minutes, template);
-        fs.writeFileSync(path.join(ARTICLES_DIR, entry.file), html, 'utf8');
+        fs.writeFileSync(path.join(ARTICLES_DIR, `${entry.id}.html`), html, 'utf8');
         report.push({ id: entry.id, date: entry.date, minutes, bytes: Buffer.byteLength(html, 'utf8') });
     }
 
